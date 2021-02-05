@@ -1,8 +1,10 @@
 pragma ton-solidity >=0.35.0;
 pragma AbiHeader expire;
+pragma AbiHeader pubkey;
 import "./Debot.sol";
 
-contract CasinoDebot is Debot {
+contract CasinoDebot is Debot, DError {
+    
     address m_casino;
     uint8 public m_lastCode;
     uint128 public m_lastComment;
@@ -15,29 +17,31 @@ contract CasinoDebot is Debot {
         m_casino = casino;
     }
     uint8 constant STATE_MAIN = 1;
-    uint8 constant STATE_BET_SINGLE = 2;
-    uint8 constant STATE_BET_SINGLE2 = 3;
-    uint8 constant STATE_BET_SINGLE3 = 4;
+    uint8 constant STATE_PRE_MAIN = 12;
+    uint8 constant STATE_MENU       =13;
+    uint8 constant STATE_BET_SINGLE = 22;
+    uint8 constant STATE_BET_SINGLE2 = 23;
+    uint8 constant STATE_BET_SINGLE3 = 24;
 
-    uint8 constant STATE_BET_DOZEN = 5;
-    uint8 constant STATE_BET_DOZEN2 = 6;
-    uint8 constant STATE_BET_DOZEN3 = 7;
+    uint8 constant STATE_BET_DOZEN = 25;
+    uint8 constant STATE_BET_DOZEN2 = 26;
+    uint8 constant STATE_BET_DOZEN3 = 27;
 
-    uint8 constant STATE_BET_COLUMN = 8;
-    uint8 constant STATE_BET_COLUMN2 = 9;
-    uint8 constant STATE_BET_COLUMN3 = 10;
+    uint8 constant STATE_BET_COLUMN = 28;
+    uint8 constant STATE_BET_COLUMN2 = 29;
+    uint8 constant STATE_BET_COLUMN3 = 30;
 
-    uint8 constant STATE_BET_COLOR = 11;
-    uint8 constant STATE_BET_COLOR2 = 12;
-    uint8 constant STATE_BET_COLOR3 = 13;
+    uint8 constant STATE_BET_COLOR = 31;
+    uint8 constant STATE_BET_COLOR2 = 32;
+    uint8 constant STATE_BET_COLOR3 = 33;
 
-    uint8 constant STATE_BET_GS = 14;
-    uint8 constant STATE_BET_GS2 = 15;
-    uint8 constant STATE_BET_GS3 = 16;
-    uint8 constant STATE_BET_PARITY = 17;
-    uint8 constant STATE_BET_PARITY2 = 18;
-    uint8 constant STATE_BET_PARITY3 = 19;
-    uint8 constant STATE_CHECK = 20;
+    uint8 constant STATE_BET_GS = 34;
+    uint8 constant STATE_BET_GS2 = 35;
+    uint8 constant STATE_BET_GS3 = 36;
+    uint8 constant STATE_BET_PARITY = 37;
+    uint8 constant STATE_BET_PARITY2 = 38;
+    uint8 constant STATE_BET_PARITY3 = 39;
+    uint8 constant STATE_CHECK = 50;
 
 
     modifier accept() {
@@ -72,7 +76,7 @@ contract CasinoDebot is Debot {
             ActionPrint("Quit", "quit", STATE_EXIT)
             ]));
 
-        optional(string) args;
+        // optional(string) args;
         contexts.push(Context(STATE_MAIN,
             "Bet menu:", [
             ActionGoto("Single - bet on the single number from 0 to 36", STATE_BET_SINGLE),
@@ -94,16 +98,18 @@ contract CasinoDebot is Debot {
             ActionRun("Enter number for bet", "enterNumBetSingle", STATE_BET_SINGLE3),
             ActionGoto("Return to bet menu", STATE_MAIN),
             ActionPrint("Quit", "Bye!", STATE_EXIT) ] ));
+            
         contexts.push(Context(STATE_BET_SINGLE3,
             "Are you sure?", [
             ActionSendMsg("Yes", "sendSubmitMsgBetSingle", "sign=by_user", STATE_MENU),
             ActionGoto("Return to main menu", STATE_MAIN),
             ActionGoto("Return to set address", STATE_ZERO),
             ActionPrint("Quit", "Bye!", STATE_EXIT) ] ));
-        fargs.set("getVal");
+        // fargs.set("getVal");
         contexts.push(Context(STATE_CHECK,
-            "", [
-            ActionPrintEx("", "Code: {}\nComment: {}\nCasino: {}", true, fargs, STATE_CURRENT),
+            "Exit or not?", [
+            // ActionPrintEx("", "Code: {}\nComment: {}\nCasino: {}", STATE_CURRENT),
+            // ActionPrintEx("", "Code: {}\nComment: {}\nCasino: {}", true, fargs, STATE_CURRENT),
             ActionGoto("Return to main menu", STATE_MAIN),
             ActionGoto("Return to set address", STATE_ZERO),
             ActionPrint("Quit", "Bye!", STATE_EXIT) ] ));
@@ -119,7 +125,7 @@ contract CasinoDebot is Debot {
         m_casino = casino;
     }
     // Callback function to get answer from the casino.
-    function receiveAnswer(uint8 code, uint128 comment) public override {
+    function receiveAnswer(uint8 code, uint128 comment) public {    //override
         require(msg.sender == m_casino, 101);
         tvm.accept();
         m_lastCode = code;
@@ -134,17 +140,47 @@ contract CasinoDebot is Debot {
 
     receive() external pure {}
 
-    function enterNumBetSingle(uint256 numb) private accept {
+    function enterNumBetSingle(uint64 numb) private accept {
         m_numberBetSing = numb;
     }
 
     function sendSubmitMsgBetSingle() public accept view returns (address dest, TvmCell body) {
         dest = m_target.get();
-        body = tvm.encodeBody(Casino.singleBet, m_numberBetSing, m_numberBetSingValue);
+        body = tvm.encodeBody(m_numberBetSing,  m_numberBetSingValue);//Casino.singleBet m_casino, 
     }
 
-    function enterNumBetSingleValue(uint256 numb) private accept {
+    function enterNumBetSingleValue(uint64 numb) private accept {
         m_numberBetSingValue = numb;
+    }
+
+    function getVersion() public override accept returns (string name, uint24 semver) {
+        name = "Token Create DeBot";
+        semver = (1 << 8);
+    }
+
+    function start() public override accept {}
+
+    function quit() public override accept {}
+
+    uint32 constant ERROR_ZERO_ADDRESS = 1001;
+    uint32 constant ERROR_AMOUNT_TOO_LOW = 1002;
+    uint32 constant ERROR_TOO_MANY_CUSTODIANS = 1003;
+    uint32 constant ERROR_INVALID_CONFIRMATIONS = 1004;
+    uint32 constant ERROR_AMOUNT_TOO_BIG = 1005;
+
+    function getErrorDescription(uint32 error) public pure override returns (string desc) {
+        if (error == ERROR_ZERO_ADDRESS) {
+            return "recipient address can't be zero";
+        } else if (error == ERROR_AMOUNT_TOO_LOW) {
+            return "amount must be greater or equal than 0.001 tons";
+        } else if (error == ERROR_TOO_MANY_CUSTODIANS) {
+            return "custodian count must be less than 32";
+        } else if (error == ERROR_INVALID_CONFIRMATIONS) {
+            return "number of confirmations must be less than number of custodians";
+        } else if (error == ERROR_AMOUNT_TOO_BIG) {
+            return "amount is bigger than wallet balance";
+        }
+        return "unknown exception";
     }
 
 }
