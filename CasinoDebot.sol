@@ -183,15 +183,15 @@ contract CasinoDebot is Debot, DError {
         // dest = m_target.get();
         dest = m_casino;
 
-        // body = tvm.encodeBody(ICasino.singleBet, m_casino, m_numberBetSing,  m_numberBetSingValue);//Casino.singleBet m_casino, 
-        // ICasinoClient(msg.sender).singleBet{value: m_numberBetSingValue}(m_numberBetSing);
+        // body = tvm.encodeBody(Casino.singleBet, m_casino, m_numberBetSing,  m_numberBetSingValue);//Casino.singleBet m_casino, 
+        // CasinoClient(msg.sender).singleBet{value: m_numberBetSingValue}(m_numberBetSing);
         
         // первый вариант транзакции
-        body = tvm.encodeBody(ICasino.singleBet, m_numberBetSing);        
+        body = tvm.encodeBody(Casino.singleBet, m_numberBetSing);        
         dest.transfer({value:m_numberBetSingValue, body:body});
 
         // второй вариант транзакции
-        // ICasinoClient(msg.sender).singleBet{value: m_numberBetSingValue}(m_numberBetSing);
+        // CasinoClient(msg.sender).singleBet{value: m_numberBetSingValue}(m_numberBetSing);
     }        
 
 

@@ -1,0 +1,121 @@
+{
+	"ABI version": 2,
+	"header": ["time", "expire"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+				{"name":"casinoAssurance","type":"uint128"},
+				{"name":"minimalBet","type":"uint128"},
+				{"name":"ownerWallet","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "withdrawBenefits",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getSeed",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "singleBet",
+			"inputs": [
+				{"name":"number","type":"uint8"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "dozenBet",
+			"inputs": [
+				{"name":"number","type":"uint8"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "columnBet",
+			"inputs": [
+				{"name":"number","type":"uint8"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "greatSmallBet",
+			"inputs": [
+				{"name":"isGreat","type":"bool"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "parityBet",
+			"inputs": [
+				{"name":"isEven","type":"bool"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "colorBet",
+			"inputs": [
+				{"name":"isRed","type":"bool"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "receiveFunds",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "m_minimalBalance",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"m_minimalBalance","type":"uint128"}
+			]
+		},
+		{
+			"name": "m_minimalBet",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"m_minimalBet","type":"uint128"}
+			]
+		},
+		{
+			"name": "m_ownerWallet",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"m_ownerWallet","type":"address"}
+			]
+		}
+	],
+	"data": [
+	],
+	"events": [
+		{
+			"name": "TooLowBalance",
+			"inputs": [
+				{"name":"replenishment","type":"uint256"}
+			],
+			"outputs": [
+			]
+		}
+	]
+}

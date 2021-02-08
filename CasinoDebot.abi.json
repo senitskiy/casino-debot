@@ -15,6 +15,22 @@
 			]
 		},
 		{
+			"name": "setABI",
+			"inputs": [
+				{"name":"dabi","type":"bytes"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setTargetABI",
+			"inputs": [
+				{"name":"tabi","type":"bytes"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "fetch",
 			"inputs": [
 			],
@@ -58,12 +74,28 @@
 			]
 		},
 		{
+			"name": "enterNumBetSingle",
+			"inputs": [
+				{"name":"numb","type":"uint8"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "sendSubmitMsgBetSingle",
 			"inputs": [
 			],
 			"outputs": [
 				{"name":"dest","type":"address"},
 				{"name":"body","type":"cell"}
+			]
+		},
+		{
+			"name": "enterNumBetSingleValue",
+			"inputs": [
+				{"name":"numb","type":"uint8"}
+			],
+			"outputs": [
 			]
 		},
 		{

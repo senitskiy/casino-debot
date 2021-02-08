@@ -114,6 +114,186 @@ CALL $c7_to_c4$
 TRUE
 SETGLOB 7
 
+.globl	setABI
+.public	setABI
+.type	setABI, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+; Decode dabi
+LDREF
+ENDS
+;; param: dabi
+; function setABI
+GETGLOB 2
+GETGLOB 5
+DUP
+ISNULL
+PUSHCONT {
+	DROP
+	PUSHINT 0
+}
+IF
+;; ==
+EQUAL
+THROWIFNOT 100
+ACCEPT
+; expValue
+; end expValue
+;; push identifier dabi
+DUP
+; colValue
+SETGLOB 11
+; end colValue
+PUSHINT 1
+; expValue
+;; fetch m_options
+GETGLOB 10
+; end expValue
+SWAP
+OR
+UFITS 8
+; colValue
+SETGLOB 10
+; end colValue
+DROP
+; end function setABI
+CALL $c7_to_c4$
+TRUE
+SETGLOB 7
+
+.globl	setABI_internal
+.type	setABI_internal, @function
+;; param: dabi
+; function setABI
+GETGLOB 2
+GETGLOB 5
+DUP
+ISNULL
+PUSHCONT {
+	DROP
+	PUSHINT 0
+}
+IF
+;; ==
+EQUAL
+THROWIFNOT 100
+ACCEPT
+; expValue
+; end expValue
+;; push identifier dabi
+DUP
+; colValue
+SETGLOB 11
+; end colValue
+PUSHINT 1
+; expValue
+;; fetch m_options
+GETGLOB 10
+; end expValue
+SWAP
+OR
+UFITS 8
+; colValue
+SETGLOB 10
+; end colValue
+DROP
+; end function setABI
+
+.globl	setTargetABI
+.public	setTargetABI
+.type	setTargetABI, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+; Decode tabi
+LDREF
+ENDS
+;; param: tabi
+; function setTargetABI
+GETGLOB 2
+GETGLOB 5
+DUP
+ISNULL
+PUSHCONT {
+	DROP
+	PUSHINT 0
+}
+IF
+;; ==
+EQUAL
+THROWIFNOT 100
+ACCEPT
+; expValue
+; end expValue
+;; push identifier tabi
+DUP
+; colValue
+SETGLOB 12
+; end colValue
+PUSHINT 2
+; expValue
+;; fetch m_options
+GETGLOB 10
+; end expValue
+SWAP
+OR
+UFITS 8
+; colValue
+SETGLOB 10
+; end colValue
+DROP
+; end function setTargetABI
+CALL $c7_to_c4$
+TRUE
+SETGLOB 7
+
+.globl	setTargetABI_internal
+.type	setTargetABI_internal, @function
+;; param: tabi
+; function setTargetABI
+GETGLOB 2
+GETGLOB 5
+DUP
+ISNULL
+PUSHCONT {
+	DROP
+	PUSHINT 0
+}
+IF
+;; ==
+EQUAL
+THROWIFNOT 100
+ACCEPT
+; expValue
+; end expValue
+;; push identifier tabi
+DUP
+; colValue
+SETGLOB 12
+; end colValue
+PUSHINT 2
+; expValue
+;; fetch m_options
+GETGLOB 10
+; end expValue
+SWAP
+OR
+UFITS 8
+; colValue
+SETGLOB 10
+; end colValue
+DROP
+; end function setTargetABI
+
 .globl	fetch
 .public	fetch
 .type	fetch, @function
@@ -154,140 +334,6 @@ NEWC
 STSLICE
 ENDC
 PUSHSLICE x656e74657253746f7261676541646472657373
-NEWC
-STSLICE
-ENDC
-PUSHINT 1
-;; param: desc
-;; param: name
-;; param: to
-; function ActionRun
-;; return
-;; push identifier desc
-PUSH S2
-;; push identifier name
-PUSH S2
-PUSHINT 1
-NEWC
-ENDC
-;; push identifier to
-PUSH S4
-;; push identifier empty
-GETGLOB 14
-TUPLE 6
-XCHG s3
-BLKDROP 3
-; end function ActionRun
-UNTUPLE 6
-NEWC
-PUSH S6
-STREFR
-PUSH S5
-STREFR
-PUSH S4
-STUR 8
-PUSH S3
-STREFR
-PUSH S2
-STUR 8
-PUSH S1
-STREFR
-XCHG s6
-BLKDROP 6
-PUSHINT 0
-ROT
-PUSHINT 32
-DICTUSETB
-PUSHSLICE x51756974
-NEWC
-STSLICE
-ENDC
-PUSHSLICE x71756974
-NEWC
-STSLICE
-ENDC
-PUSHINT 255
-;; param: desc
-;; param: text
-;; param: to
-; function ActionPrint
-;; return
-;; push identifier desc
-PUSH S2
-;; push identifier text
-PUSH S2
-PUSHINT 5
-NEWC
-ENDC
-;; push identifier to
-PUSH S4
-;; push identifier empty
-GETGLOB 14
-TUPLE 6
-XCHG s3
-BLKDROP 3
-; end function ActionPrint
-UNTUPLE 6
-NEWC
-PUSH S6
-STREFR
-PUSH S5
-STREFR
-PUSH S4
-STUR 8
-PUSH S3
-STREFR
-PUSH S2
-STUR 8
-PUSH S1
-STREFR
-XCHG s6
-BLKDROP 6
-PUSHINT 1
-ROT
-PUSHINT 32
-DICTUSETB
-PAIR
-TUPLE 3
-;; array.push(..)
-UNTUPLE 3
-NEWC
-PUSH S3
-STUR 8
-PUSH S2
-STREFR
-PUSH S1
-UNPAIR
-ROTREV
-STUR 32
-STDICT
-XCHG s3
-BLKDROP 3
-SWAP
-UNPAIR
-PUSH S1
-INC
-XCHG s3
-ROTREV
-PUSHINT 32
-DICTUSETB
-PAIR
-; colValue
-NIP
-; end colValue
-; expValue
-DUP
-; end expValue
-PUSHINT 12
-NEWC
-ENDC
-PUSHINT 2
-NEWDICT
-PUSHSLICE x48656c6c6f2c20706c6561736520656e7465722074686520636173696e6f206164647265737320
-NEWC
-STSLICE
-ENDC
-PUSHSLICE x736574436173696e6f
 NEWC
 STSLICE
 ENDC
@@ -1853,140 +1899,6 @@ NEWC
 STSLICE
 ENDC
 PUSHSLICE x656e74657253746f7261676541646472657373
-NEWC
-STSLICE
-ENDC
-PUSHINT 1
-;; param: desc
-;; param: name
-;; param: to
-; function ActionRun
-;; return
-;; push identifier desc
-PUSH S2
-;; push identifier name
-PUSH S2
-PUSHINT 1
-NEWC
-ENDC
-;; push identifier to
-PUSH S4
-;; push identifier empty
-GETGLOB 14
-TUPLE 6
-XCHG s3
-BLKDROP 3
-; end function ActionRun
-UNTUPLE 6
-NEWC
-PUSH S6
-STREFR
-PUSH S5
-STREFR
-PUSH S4
-STUR 8
-PUSH S3
-STREFR
-PUSH S2
-STUR 8
-PUSH S1
-STREFR
-XCHG s6
-BLKDROP 6
-PUSHINT 0
-ROT
-PUSHINT 32
-DICTUSETB
-PUSHSLICE x51756974
-NEWC
-STSLICE
-ENDC
-PUSHSLICE x71756974
-NEWC
-STSLICE
-ENDC
-PUSHINT 255
-;; param: desc
-;; param: text
-;; param: to
-; function ActionPrint
-;; return
-;; push identifier desc
-PUSH S2
-;; push identifier text
-PUSH S2
-PUSHINT 5
-NEWC
-ENDC
-;; push identifier to
-PUSH S4
-;; push identifier empty
-GETGLOB 14
-TUPLE 6
-XCHG s3
-BLKDROP 3
-; end function ActionPrint
-UNTUPLE 6
-NEWC
-PUSH S6
-STREFR
-PUSH S5
-STREFR
-PUSH S4
-STUR 8
-PUSH S3
-STREFR
-PUSH S2
-STUR 8
-PUSH S1
-STREFR
-XCHG s6
-BLKDROP 6
-PUSHINT 1
-ROT
-PUSHINT 32
-DICTUSETB
-PAIR
-TUPLE 3
-;; array.push(..)
-UNTUPLE 3
-NEWC
-PUSH S3
-STUR 8
-PUSH S2
-STREFR
-PUSH S1
-UNPAIR
-ROTREV
-STUR 32
-STDICT
-XCHG s3
-BLKDROP 3
-SWAP
-UNPAIR
-PUSH S1
-INC
-XCHG s3
-ROTREV
-PUSHINT 32
-DICTUSETB
-PAIR
-; colValue
-NIP
-; end colValue
-; expValue
-DUP
-; end expValue
-PUSHINT 12
-NEWC
-ENDC
-PUSHINT 2
-NEWDICT
-PUSHSLICE x48656c6c6f2c20706c6561736520656e7465722074686520636173696e6f206164647265737320
-NEWC
-STSLICE
-ENDC
-PUSHSLICE x736574436173696e6f
 NEWC
 STSLICE
 ENDC
@@ -3839,6 +3751,37 @@ NIP
 ;; returning named params
 ; end function getVal
 
+.globl	enterNumBetSingle
+.public	enterNumBetSingle
+.type	enterNumBetSingle, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+; Decode numb
+LDU 8
+ENDS
+;; param: numb
+; modifier accept
+ACCEPT
+; function enterNumBetSingle
+; expValue
+; end expValue
+;; push identifier numb
+DUP
+; colValue
+SETGLOB 18
+; end colValue
+; end function enterNumBetSingle
+DROP
+; end modifier accept
+CALL $c7_to_c4$
+TRUE
+SETGLOB 7
+
 .globl	enterNumBetSingle_internal
 .type	enterNumBetSingle_internal, @function
 ;; param: numb
@@ -4053,6 +3996,37 @@ SETGLOB 8
 GETGLOB 8
 UNTUPLE 2
 
+.globl	enterNumBetSingleValue
+.public	enterNumBetSingleValue
+.type	enterNumBetSingleValue, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+; Decode numb
+LDU 8
+ENDS
+;; param: numb
+; modifier accept
+ACCEPT
+; function enterNumBetSingleValue
+; expValue
+; end expValue
+;; push identifier numb
+DUP
+; colValue
+SETGLOB 24
+; end colValue
+; end function enterNumBetSingleValue
+DROP
+; end modifier accept
+CALL $c7_to_c4$
+TRUE
+SETGLOB 7
+
 .globl	enterNumBetSingleValue_internal
 .type	enterNumBetSingleValue_internal, @function
 ;; param: numb
@@ -4100,7 +4074,7 @@ ENDC
 PUSHINT 0
 ; expValue
 ; end expValue
-PUSHSLICE x546f6b656e20437265617465204465426f74
+PUSHSLICE x436173696e6f204465426f74
 NEWC
 STSLICE
 ENDC
@@ -4195,7 +4169,7 @@ ENDC
 PUSHINT 0
 ; expValue
 ; end expValue
-PUSHSLICE x546f6b656e20437265617465204465426f74
+PUSHSLICE x436173696e6f204465426f74
 NEWC
 STSLICE
 ENDC
