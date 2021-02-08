@@ -3834,23 +3834,11 @@ GETGLOB 15
 ; colValue
 POP S2
 ; end colValue
-NEWC
-STSLICECONST x7e54a047
-;; number
-;; push identifier m_numberBetSing
-GETGLOB 18
-STUR 8
-ENDC
-; expValue
-; end expValue
-; colValue
-NIP
-; end colValue
-;; transfer()
+;; Remote call Casino.singleBet
 ;; push identifier m_numberBetSingValue
 GETGLOB 24
-;; push identifier dest
-PUSH S2
+;; get member sender
+GETGLOB 9
 NEWC
 STSLICECONST x62_
 STSLICE
@@ -3859,10 +3847,12 @@ STGRAMS
 PUSHINT 105
 STZEROES
 STSLICECONST 0
-STSLICECONST 1
-;; push identifier body
-PUSH S1
-STREFR
+STSLICECONST 0
+STSLICECONST x7e54a047
+;; number
+;; push identifier m_numberBetSing
+GETGLOB 18
+STUR 8
 ENDC
 PUSHINT 1
 SENDRAWMSG
@@ -3956,23 +3946,11 @@ GETGLOB 15
 ; colValue
 POP S2
 ; end colValue
-NEWC
-STSLICECONST x7e54a047
-;; number
-;; push identifier m_numberBetSing
-GETGLOB 18
-STUR 8
-ENDC
-; expValue
-; end expValue
-; colValue
-NIP
-; end colValue
-;; transfer()
+;; Remote call Casino.singleBet
 ;; push identifier m_numberBetSingValue
 GETGLOB 24
-;; push identifier dest
-PUSH S2
+;; get member sender
+GETGLOB 9
 NEWC
 STSLICECONST x62_
 STSLICE
@@ -3981,10 +3959,12 @@ STGRAMS
 PUSHINT 105
 STZEROES
 STSLICECONST 0
-STSLICECONST 1
-;; push identifier body
-PUSH S1
-STREFR
+STSLICECONST 0
+STSLICECONST x7e54a047
+;; number
+;; push identifier m_numberBetSing
+GETGLOB 18
+STUR 8
 ENDC
 PUSHINT 1
 SENDRAWMSG

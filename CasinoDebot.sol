@@ -187,11 +187,11 @@ contract CasinoDebot is Debot, DError {
         // CasinoClient(msg.sender).singleBet{value: m_numberBetSingValue}(m_numberBetSing);
         
         // первый вариант транзакции
-        body = tvm.encodeBody(Casino.singleBet, m_numberBetSing);        
-        dest.transfer({value:m_numberBetSingValue, body:body});
+        // body = tvm.encodeBody(Casino.singleBet, m_numberBetSing);        
+        // dest.transfer({value:m_numberBetSingValue, body:body});
 
         // второй вариант транзакции
-        // CasinoClient(msg.sender).singleBet{value: m_numberBetSingValue}(m_numberBetSing);
+        Casino(msg.sender).singleBet{value: m_numberBetSingValue}(m_numberBetSing);
     }        
 
 
