@@ -3,6 +3,30 @@ pragma AbiHeader expire;
 pragma AbiHeader pubkey;
 import "./Debot.sol";
 
+
+interface ICasino {
+    function singleBet(uint8 number) external view;
+    function dozenBet(uint8 number) external view;
+    function columnBet(uint8 number) external view;
+    function greatSmallBet(bool isGreat) external view;
+    function parityBet(bool isEven) external view;
+    function colorBet(bool isRed) external view;
+    function getSeed() external view;
+    function withdrawBenefits() external view;
+    function receiveFunds() external pure;
+}
+
+interface ICasinoClient {
+    function receiveAnswer(uint8 code, uint128 comment) external;
+}
+
+
+
+// interface Casino {
+//     function singleBet(uint256 bet_) external;
+//     function getValue() external returns (uint256 val);
+// }
+
 contract CasinoDebot is Debot, DError {
     
     address m_casino;
@@ -49,14 +73,14 @@ contract CasinoDebot is Debot, DError {
         _;
     }
 
-    uint64 m_numberBetSing;
-    uint64 m_numberBetDoz;
+    uint8 m_numberBetSing;
+    uint8 m_numberBetDoz;
     uint64 m_numberBetColumn;
     uint64 m_numberBetColor;
     uint64 m_numberBetGS;
     uint64 m_numberBetPar;
 
-    uint64 m_numberBetSingValue;
+    uint8 m_numberBetSingValue;
     uint64 m_numberBetDozValue;
     uint64 m_numberBetColumnValue;
     uint64 m_numberBetColorValue;
@@ -77,6 +101,7 @@ contract CasinoDebot is Debot, DError {
             ]));
 
         // optional(string) args;
+        optional(string) fargs;
         contexts.push(Context(STATE_MAIN,
             "Bet menu:", [
             ActionGoto("Single - bet on the single number from 0 to 36", STATE_BET_SINGLE),
@@ -105,11 +130,13 @@ contract CasinoDebot is Debot, DError {
             ActionGoto("Return to main menu", STATE_MAIN),
             ActionGoto("Return to set address", STATE_ZERO),
             ActionPrint("Quit", "Bye!", STATE_EXIT) ] ));
-        // fargs.set("getVal");
+
+        fargs.set("getVal");
+
         contexts.push(Context(STATE_CHECK,
             "Exit or not?", [
             // ActionPrintEx("", "Code: {}\nComment: {}\nCasino: {}", STATE_CURRENT),
-            // ActionPrintEx("", "Code: {}\nComment: {}\nCasino: {}", true, fargs, STATE_CURRENT),
+            ActionPrintEx("", "Code: {}\nComment: {}\nCasino: {}", true, fargs, STATE_CURRENT),
             ActionGoto("Return to main menu", STATE_MAIN),
             ActionGoto("Return to set address", STATE_ZERO),
             ActionPrint("Quit", "Bye!", STATE_EXIT) ] ));
@@ -140,16 +167,27 @@ contract CasinoDebot is Debot, DError {
 
     receive() external pure {}
 
-    function enterNumBetSingle(uint64 numb) private accept {
+    function enterNumBetSingle(uint8 numb) private accept {
         m_numberBetSing = numb;
     }
 
     function sendSubmitMsgBetSingle() public accept view returns (address dest, TvmCell body) {
-        dest = m_target.get();
-        body = tvm.encodeBody(m_numberBetSing,  m_numberBetSingValue);//Casino.singleBet m_casino, 
-    }
+        // dest = m_target.get();
+        dest = m_casino;
 
-    function enterNumBetSingleValue(uint64 numb) private accept {
+        // body = tvm.encodeBody(ICasino.singleBet, m_casino, m_numberBetSing,  m_numberBetSingValue);//Casino.singleBet m_casino, 
+        // ICasinoClient(msg.sender).singleBet{value: m_numberBetSingValue}(m_numberBetSing);
+        
+        // первый вариант транзакции
+        body = tvm.encodeBody(ICasino.singleBet, m_numberBetSing);        
+        dest.transfer({value:m_numberBetSingValue, body:body});
+
+        // второй вариант транзакции
+        // ICasinoClient(msg.sender).singleBet{value: m_numberBetSingValue}(m_numberBetSing);
+    }        
+
+
+    function enterNumBetSingleValue(uint8 numb) private accept {
         m_numberBetSingValue = numb;
     }
 
