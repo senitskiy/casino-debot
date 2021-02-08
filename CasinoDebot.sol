@@ -4,7 +4,7 @@ pragma AbiHeader pubkey;
 import "./Debot.sol";
 
 
-interface ICasino {
+interface Casino {
     function singleBet(uint8 number) external view;
     function dozenBet(uint8 number) external view;
     function columnBet(uint8 number) external view;
@@ -16,7 +16,7 @@ interface ICasino {
     function receiveFunds() external pure;
 }
 
-interface ICasinoClient {
+interface CasinoClient {
     function receiveAnswer(uint8 code, uint128 comment) external;
 }
 
@@ -87,16 +87,24 @@ contract CasinoDebot is Debot, DError {
     uint64 m_numberBetGSValue;
     uint64 m_numberBetParValue;
 
+    function setABI(string dabi) public {
+        require(tvm.pubkey() == msg.pubkey(), 100);
+        tvm.accept();
+        m_debotAbi.set(dabi);
+        m_options |= DEBOT_ABI;
+    }
+
+    function setTargetABI(string tabi) public {
+        require(tvm.pubkey() == msg.pubkey(), 100);
+        tvm.accept();
+        m_targetAbi.set(tabi);
+        m_options |= DEBOT_TARGET_ABI;
+    }
+
     function fetch() public override accept returns (Context[] contexts){
         contexts.push(Context(STATE_ZERO,
             "", [
             ActionRun("Hello, please enter the storage address ", "enterStorageAddress", STATE_MAIN),
-            ActionPrint("Quit", "quit", STATE_EXIT)
-            ]));
-
-        contexts.push(Context(STATE_PRE_MAIN,
-            "", [
-            ActionRun("Hello, please enter the casino address ", "setCasino", STATE_MAIN),
             ActionPrint("Quit", "quit", STATE_EXIT)
             ]));
 
@@ -167,7 +175,7 @@ contract CasinoDebot is Debot, DError {
 
     receive() external pure {}
 
-    function enterNumBetSingle(uint8 numb) private accept {
+    function enterNumBetSingle(uint8 numb) public accept {
         m_numberBetSing = numb;
     }
 
@@ -187,12 +195,12 @@ contract CasinoDebot is Debot, DError {
     }        
 
 
-    function enterNumBetSingleValue(uint8 numb) private accept {
+    function enterNumBetSingleValue(uint8 numb) public accept {
         m_numberBetSingValue = numb;
     }
 
     function getVersion() public override accept returns (string name, uint24 semver) {
-        name = "Token Create DeBot";
+        name = "Casino DeBot";
         semver = (1 << 8);
     }
 
