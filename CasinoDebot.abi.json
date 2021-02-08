@@ -93,7 +93,7 @@
 		{
 			"name": "enterNumBetSingleValue",
 			"inputs": [
-				{"name":"numb","type":"uint8"}
+				{"name":"numb","type":"uint128"}
 			],
 			"outputs": [
 			]

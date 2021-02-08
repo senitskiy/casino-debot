@@ -80,7 +80,7 @@ contract CasinoDebot is Debot, DError {
     uint64 m_numberBetGS;
     uint64 m_numberBetPar;
 
-    uint8 m_numberBetSingValue;
+    uint128 m_numberBetSingValue;
     uint64 m_numberBetDozValue;
     uint64 m_numberBetColumnValue;
     uint64 m_numberBetColorValue;
@@ -195,7 +195,7 @@ contract CasinoDebot is Debot, DError {
     }        
 
 
-    function enterNumBetSingleValue(uint8 numb) public accept {
+    function enterNumBetSingleValue(uint128 numb) public accept {
         m_numberBetSingValue = numb;
     }
 
