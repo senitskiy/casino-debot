@@ -2,23 +2,10 @@ pragma ton-solidity >=0.35.0;
 pragma AbiHeader expire;
 pragma AbiHeader pubkey;
 import "./Debot.sol";
+import "./CasinoDebotInterfaces.sol";
 
 
-interface Casino {
-    function singleBet(uint8 number) external view;
-    function dozenBet(uint8 number) external view;
-    function columnBet(uint8 number) external view;
-    function greatSmallBet(bool isGreat) external view;
-    function parityBet(bool isEven) external view;
-    function colorBet(bool isRed) external view;
-    function getSeed() external view;
-    function withdrawBenefits() external view;
-    function receiveFunds() external pure;
-}
 
-interface CasinoClient {
-    function receiveAnswer(uint8 code, uint128 comment) external;
-}
 
 
 
@@ -191,8 +178,14 @@ contract CasinoDebot is Debot, DError {
         // dest.transfer({value:m_numberBetSingValue, body:body});
 
         // второй вариант транзакции
-        Casino(msg.sender).singleBet{value: m_numberBetSingValue}(m_numberBetSing);
-    }        
+        // Casino(msg.sender).singleBet{value: m_numberBetSingValue}(m_numberBetSing);
+
+        // третий вариант
+        Casino(m_casino).singleBet{value: m_numberBetSingValue}(m_numberBetSing);
+
+    }
+
+           
 
 
     function enterNumBetSingleValue(uint128 numb) public accept {
@@ -203,6 +196,8 @@ contract CasinoDebot is Debot, DError {
         name = "Casino DeBot";
         semver = (1 << 8);
     }
+
+
 
     function start() public override accept {}
 

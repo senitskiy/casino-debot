@@ -1,0 +1,115 @@
+{
+	"ABI version": 2,
+	"header": ["time", "expire"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+				{"name":"casino","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "receiveAnswer",
+			"inputs": [
+				{"name":"code","type":"uint8"},
+				{"name":"comment","type":"uint128"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getVal",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"code","type":"uint8"},
+				{"name":"comment","type":"uint128"},
+				{"name":"casino","type":"address"}
+			]
+		},
+		{
+			"name": "setCasino",
+			"inputs": [
+				{"name":"casino","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "bet",
+			"inputs": [
+				{"name":"value","type":"uint128"},
+				{"name":"number","type":"uint8"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "betDozen",
+			"inputs": [
+				{"name":"value","type":"uint128"},
+				{"name":"number","type":"uint8"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "betColumn",
+			"inputs": [
+				{"name":"value","type":"uint128"},
+				{"name":"number","type":"uint8"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "betColor",
+			"inputs": [
+				{"name":"value","type":"uint128"},
+				{"name":"isRed","type":"bool"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "betGreatSmall",
+			"inputs": [
+				{"name":"value","type":"uint128"},
+				{"name":"isGreat","type":"bool"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "betParity",
+			"inputs": [
+				{"name":"value","type":"uint128"},
+				{"name":"isEven","type":"bool"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "m_lastCode",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"m_lastCode","type":"uint8"}
+			]
+		},
+		{
+			"name": "m_lastComment",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"m_lastComment","type":"uint128"}
+			]
+		}
+	],
+	"data": [
+	],
+	"events": [
+	]
+}

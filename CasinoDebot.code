@@ -3837,8 +3837,8 @@ POP S2
 ;; Remote call Casino.singleBet
 ;; push identifier m_numberBetSingValue
 GETGLOB 24
-;; get member sender
-GETGLOB 9
+;; push identifier m_casino
+GETGLOB 15
 NEWC
 STSLICECONST x62_
 STSLICE
@@ -3949,8 +3949,8 @@ POP S2
 ;; Remote call Casino.singleBet
 ;; push identifier m_numberBetSingValue
 GETGLOB 24
-;; get member sender
-GETGLOB 9
+;; push identifier m_casino
+GETGLOB 15
 NEWC
 STSLICECONST x62_
 STSLICE
