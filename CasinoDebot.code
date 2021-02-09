@@ -458,6 +458,15 @@ NIP
 NULL
 ;; decl: fargs
 ; expValue
+; end expValue
+PUSHSLICE x7061727365436173696e6f41646472657373
+NEWC
+STSLICE
+ENDC
+; colValue
+NIP
+; end colValue
+; expValue
 PUSH S1
 ; end expValue
 PUSHINT 1
@@ -465,8 +474,147 @@ PUSHSLICE x426574206d656e753a
 NEWC
 STSLICE
 ENDC
-PUSHINT 9
+PUSHINT 10
 NEWDICT
+NEWC
+ENDC
+PUSHSLICE x4164647265737320436173696e6f3a207b7d
+NEWC
+STSLICE
+ENDC
+TRUE
+;; push identifier fargs
+PUSH S8
+PUSHINT 253
+;; param: desc
+;; param: text
+;; param: instant
+;; param: fargs
+;; param: to
+; function ActionPrintEx
+;; push identifier desc
+PUSH S4
+;; push identifier text
+PUSH S4
+;; push identifier to
+PUSH S2
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+;; decl: act
+;; if
+;; push identifier instant
+PUSH S3
+PUSHCONT {
+	; expValue
+	DUP
+	; end expValue
+	;; get member attrs
+	;; push identifier act
+	PUSH S1
+	INDEX 3
+	CTOS
+	PUSHSLICE x2c696e7374616e74
+	NEWC
+	STSLICE
+	ENDC
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	; colValue
+	SETINDEX 3
+	NIP
+	; end colValue
+}
+IF
+;; end if
+;; if
+;; push identifier fargs
+PUSH S2
+ISNULL
+PUSHCONT {
+	;; get member attrs
+	;; push identifier act
+	DUP
+	INDEX 3
+	CTOS
+	PUSHSLICE x2c66617267733d
+	NEWC
+	STSLICE
+	ENDC
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	CTOS
+	;; push identifier fargs
+	PUSH S3
+	DUP
+	ISNULL
+	THROWIF 63
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	; expValue
+	PUSH S1
+	; end expValue
+	SWAP
+	; colValue
+	SETINDEX 3
+	NIP
+	; end colValue
+}
+IFNOT
+;; end if
+;; return
+XCHG s5
+BLKDROP 5
+; end function ActionPrintEx
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
 PUSHSLICE x53696e676c65202d20626574206f6e207468652073696e676c65206e756d6265722066726f6d203020746f203336
 NEWC
 STSLICE
@@ -507,7 +655,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 0
+PUSHINT 1
 ROT
 PUSHINT 32
 DICTUSETB
@@ -551,7 +699,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 1
+PUSHINT 2
 ROT
 PUSHINT 32
 DICTUSETB
@@ -595,7 +743,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 2
+PUSHINT 3
 ROT
 PUSHINT 32
 DICTUSETB
@@ -639,7 +787,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 3
+PUSHINT 4
 ROT
 PUSHINT 32
 DICTUSETB
@@ -683,7 +831,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 4
+PUSHINT 5
 ROT
 PUSHINT 32
 DICTUSETB
@@ -727,7 +875,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 5
+PUSHINT 6
 ROT
 PUSHINT 32
 DICTUSETB
@@ -771,7 +919,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 6
+PUSHINT 7
 ROT
 PUSHINT 32
 DICTUSETB
@@ -815,7 +963,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 7
+PUSHINT 8
 ROT
 PUSHINT 32
 DICTUSETB
@@ -864,7 +1012,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 8
+PUSHINT 9
 ROT
 PUSHINT 32
 DICTUSETB
@@ -908,7 +1056,7 @@ PUSHSLICE x456e746572206265742076616c7565
 NEWC
 STSLICE
 ENDC
-PUSHSLICE x656e7465724e756d42657453696e676c6556616c7565
+PUSHSLICE x656e746572426574
 NEWC
 STSLICE
 ENDC
@@ -1082,7 +1230,7 @@ NEWC
 ENDC
 PUSHINT 3
 NEWDICT
-PUSHSLICE x456e746572206e756d62657220666f7220626574
+PUSHSLICE x53696e676c652120456e7465722073696e676c65206e756d6265722066726f6d203020746f203336
 NEWC
 STSLICE
 ENDC
@@ -1255,13 +1403,1941 @@ POP S2
 ; expValue
 PUSH S1
 ; end expValue
+PUSHINT 25
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x456e746572206265742076616c7565
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e746572426574
+NEWC
+STSLICE
+ENDC
+PUSHINT 26
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+PUSH S1
+; end expValue
+PUSHINT 26
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x446f7a656e2120456e74657220646f7a656e206f66206e756d626572733a2066726f6d203120746f2031322c2031332d2e2e2e2d32342c2032352d2e2e2e2d3336205b6578703a312c322c335d
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e7465724e756d426574446f7a656e
+NEWC
+STSLICE
+ENDC
+PUSHINT 24
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+PUSH S1
+; end expValue
+PUSHINT 28
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x456e746572206265742076616c7565
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e746572426574
+NEWC
+STSLICE
+ENDC
+PUSHINT 29
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+PUSH S1
+; end expValue
+PUSHINT 29
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x436f6c756d6e2120456e74657220646f7a656e206f66206e756d626572733a2066726f6d203120746f2031322c2031332d2e2e2e2d32342c2032352d2e2e2e2d3336205b6578703a312c322c335d
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e7465724e756d426574436f6c756d6e
+NEWC
+STSLICE
+ENDC
+PUSHINT 24
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+PUSH S1
+; end expValue
+PUSHINT 34
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x456e746572206265742076616c7565
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e746572426574
+NEWC
+STSLICE
+ENDC
+PUSHINT 35
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+PUSH S1
+; end expValue
+PUSHINT 35
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x47726561742f536d616c6c2120456e74657220726967687465656e206e756d626572733a2066726f6d203120746f203138206f722066726f6d20313920746f203336
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e7465724e756d4265744753
+NEWC
+STSLICE
+ENDC
+PUSHINT 24
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+PUSH S1
+; end expValue
+PUSHINT 37
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x456e746572206265742076616c7565
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e746572426574
+NEWC
+STSLICE
+ENDC
+PUSHINT 38
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+PUSH S1
+; end expValue
+PUSHINT 38
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x4576656e2f4f646421204576656e206f72206f6464206e756d62657273
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e7465724e756d426574504152495459
+NEWC
+STSLICE
+ENDC
+PUSHINT 24
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+PUSH S1
+; end expValue
+PUSHINT 31
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x456e746572206265742076616c7565
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e746572426574
+NEWC
+STSLICE
+ENDC
+PUSHINT 32
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+PUSH S1
+; end expValue
+PUSHINT 32
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x434f4c4f522120526564206f7220626c61636b206e756d62657273
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e7465724e756d426574434f4c4f52
+NEWC
+STSLICE
+ENDC
+PUSHINT 24
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+; end expValue
+PUSHSLICE x67657456616c
+NEWC
+STSLICE
+ENDC
+; colValue
+NIP
+; end colValue
+; expValue
+PUSH S1
+; end expValue
 PUSHINT 24
 PUSHSLICE x41726520796f7520737572653f
 NEWC
 STSLICE
 ENDC
-PUSHINT 4
+PUSHINT 5
 NEWDICT
+NEWC
+ENDC
+PUSHSLICE x436f64653a207b7d0a436f6d6d656e743a207b7d0a436173696e6f3a207b7d
+NEWC
+STSLICE
+ENDC
+TRUE
+;; push identifier fargs
+PUSH S8
+PUSHINT 253
+;; param: desc
+;; param: text
+;; param: instant
+;; param: fargs
+;; param: to
+; function ActionPrintEx
+;; push identifier desc
+PUSH S4
+;; push identifier text
+PUSH S4
+;; push identifier to
+PUSH S2
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+;; decl: act
+;; if
+;; push identifier instant
+PUSH S3
+PUSHCONT {
+	; expValue
+	DUP
+	; end expValue
+	;; get member attrs
+	;; push identifier act
+	PUSH S1
+	INDEX 3
+	CTOS
+	PUSHSLICE x2c696e7374616e74
+	NEWC
+	STSLICE
+	ENDC
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	; colValue
+	SETINDEX 3
+	NIP
+	; end colValue
+}
+IF
+;; end if
+;; if
+;; push identifier fargs
+PUSH S2
+ISNULL
+PUSHCONT {
+	;; get member attrs
+	;; push identifier act
+	DUP
+	INDEX 3
+	CTOS
+	PUSHSLICE x2c66617267733d
+	NEWC
+	STSLICE
+	ENDC
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	CTOS
+	;; push identifier fargs
+	PUSH S3
+	DUP
+	ISNULL
+	THROWIF 63
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	; expValue
+	PUSH S1
+	; end expValue
+	SWAP
+	; colValue
+	SETINDEX 3
+	NIP
+	; end colValue
+}
+IFNOT
+;; end if
+;; return
+XCHG s5
+BLKDROP 5
+; end function ActionPrintEx
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
 PUSHSLICE x596573
 NEWC
 STSLICE
@@ -1312,7 +3388,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 0
+PUSHINT 1
 ROT
 PUSHINT 32
 DICTUSETB
@@ -1356,7 +3432,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 1
+PUSHINT 2
 ROT
 PUSHINT 32
 DICTUSETB
@@ -1400,7 +3476,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 2
+PUSHINT 3
 ROT
 PUSHINT 32
 DICTUSETB
@@ -1449,7 +3525,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 3
+PUSHINT 4
 ROT
 PUSHINT 32
 DICTUSETB
@@ -2023,6 +4099,15 @@ NIP
 NULL
 ;; decl: fargs
 ; expValue
+; end expValue
+PUSHSLICE x7061727365436173696e6f41646472657373
+NEWC
+STSLICE
+ENDC
+; colValue
+NIP
+; end colValue
+; expValue
 PUSH S1
 ; end expValue
 PUSHINT 1
@@ -2030,8 +4115,147 @@ PUSHSLICE x426574206d656e753a
 NEWC
 STSLICE
 ENDC
-PUSHINT 9
+PUSHINT 10
 NEWDICT
+NEWC
+ENDC
+PUSHSLICE x4164647265737320436173696e6f3a207b7d
+NEWC
+STSLICE
+ENDC
+TRUE
+;; push identifier fargs
+PUSH S8
+PUSHINT 253
+;; param: desc
+;; param: text
+;; param: instant
+;; param: fargs
+;; param: to
+; function ActionPrintEx
+;; push identifier desc
+PUSH S4
+;; push identifier text
+PUSH S4
+;; push identifier to
+PUSH S2
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+;; decl: act
+;; if
+;; push identifier instant
+PUSH S3
+PUSHCONT {
+	; expValue
+	DUP
+	; end expValue
+	;; get member attrs
+	;; push identifier act
+	PUSH S1
+	INDEX 3
+	CTOS
+	PUSHSLICE x2c696e7374616e74
+	NEWC
+	STSLICE
+	ENDC
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	; colValue
+	SETINDEX 3
+	NIP
+	; end colValue
+}
+IF
+;; end if
+;; if
+;; push identifier fargs
+PUSH S2
+ISNULL
+PUSHCONT {
+	;; get member attrs
+	;; push identifier act
+	DUP
+	INDEX 3
+	CTOS
+	PUSHSLICE x2c66617267733d
+	NEWC
+	STSLICE
+	ENDC
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	CTOS
+	;; push identifier fargs
+	PUSH S3
+	DUP
+	ISNULL
+	THROWIF 63
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	; expValue
+	PUSH S1
+	; end expValue
+	SWAP
+	; colValue
+	SETINDEX 3
+	NIP
+	; end colValue
+}
+IFNOT
+;; end if
+;; return
+XCHG s5
+BLKDROP 5
+; end function ActionPrintEx
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
 PUSHSLICE x53696e676c65202d20626574206f6e207468652073696e676c65206e756d6265722066726f6d203020746f203336
 NEWC
 STSLICE
@@ -2072,7 +4296,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 0
+PUSHINT 1
 ROT
 PUSHINT 32
 DICTUSETB
@@ -2116,7 +4340,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 1
+PUSHINT 2
 ROT
 PUSHINT 32
 DICTUSETB
@@ -2160,7 +4384,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 2
+PUSHINT 3
 ROT
 PUSHINT 32
 DICTUSETB
@@ -2204,7 +4428,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 3
+PUSHINT 4
 ROT
 PUSHINT 32
 DICTUSETB
@@ -2248,7 +4472,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 4
+PUSHINT 5
 ROT
 PUSHINT 32
 DICTUSETB
@@ -2292,7 +4516,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 5
+PUSHINT 6
 ROT
 PUSHINT 32
 DICTUSETB
@@ -2336,7 +4560,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 6
+PUSHINT 7
 ROT
 PUSHINT 32
 DICTUSETB
@@ -2380,7 +4604,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 7
+PUSHINT 8
 ROT
 PUSHINT 32
 DICTUSETB
@@ -2429,7 +4653,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 8
+PUSHINT 9
 ROT
 PUSHINT 32
 DICTUSETB
@@ -2473,7 +4697,7 @@ PUSHSLICE x456e746572206265742076616c7565
 NEWC
 STSLICE
 ENDC
-PUSHSLICE x656e7465724e756d42657453696e676c6556616c7565
+PUSHSLICE x656e746572426574
 NEWC
 STSLICE
 ENDC
@@ -2647,7 +4871,7 @@ NEWC
 ENDC
 PUSHINT 3
 NEWDICT
-PUSHSLICE x456e746572206e756d62657220666f7220626574
+PUSHSLICE x53696e676c652120456e7465722073696e676c65206e756d6265722066726f6d203020746f203336
 NEWC
 STSLICE
 ENDC
@@ -2820,13 +5044,1941 @@ POP S2
 ; expValue
 PUSH S1
 ; end expValue
+PUSHINT 25
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x456e746572206265742076616c7565
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e746572426574
+NEWC
+STSLICE
+ENDC
+PUSHINT 26
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+PUSH S1
+; end expValue
+PUSHINT 26
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x446f7a656e2120456e74657220646f7a656e206f66206e756d626572733a2066726f6d203120746f2031322c2031332d2e2e2e2d32342c2032352d2e2e2e2d3336205b6578703a312c322c335d
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e7465724e756d426574446f7a656e
+NEWC
+STSLICE
+ENDC
+PUSHINT 24
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+PUSH S1
+; end expValue
+PUSHINT 28
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x456e746572206265742076616c7565
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e746572426574
+NEWC
+STSLICE
+ENDC
+PUSHINT 29
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+PUSH S1
+; end expValue
+PUSHINT 29
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x436f6c756d6e2120456e74657220646f7a656e206f66206e756d626572733a2066726f6d203120746f2031322c2031332d2e2e2e2d32342c2032352d2e2e2e2d3336205b6578703a312c322c335d
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e7465724e756d426574436f6c756d6e
+NEWC
+STSLICE
+ENDC
+PUSHINT 24
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+PUSH S1
+; end expValue
+PUSHINT 34
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x456e746572206265742076616c7565
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e746572426574
+NEWC
+STSLICE
+ENDC
+PUSHINT 35
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+PUSH S1
+; end expValue
+PUSHINT 35
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x47726561742f536d616c6c2120456e74657220726967687465656e206e756d626572733a2066726f6d203120746f203138206f722066726f6d20313920746f203336
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e7465724e756d4265744753
+NEWC
+STSLICE
+ENDC
+PUSHINT 24
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+PUSH S1
+; end expValue
+PUSHINT 37
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x456e746572206265742076616c7565
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e746572426574
+NEWC
+STSLICE
+ENDC
+PUSHINT 38
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+PUSH S1
+; end expValue
+PUSHINT 38
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x4576656e2f4f646421204576656e206f72206f6464206e756d62657273
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e7465724e756d426574504152495459
+NEWC
+STSLICE
+ENDC
+PUSHINT 24
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+PUSH S1
+; end expValue
+PUSHINT 31
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x456e746572206265742076616c7565
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e746572426574
+NEWC
+STSLICE
+ENDC
+PUSHINT 32
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+PUSH S1
+; end expValue
+PUSHINT 32
+NEWC
+ENDC
+PUSHINT 3
+NEWDICT
+PUSHSLICE x434f4c4f522120526564206f7220626c61636b206e756d62657273
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x656e7465724e756d426574434f4c4f52
+NEWC
+STSLICE
+ENDC
+PUSHINT 24
+;; param: desc
+;; param: name
+;; param: to
+; function ActionRun
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier name
+PUSH S2
+PUSHINT 1
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionRun
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x52657475726e20746f20626574206d656e75
+NEWC
+STSLICE
+ENDC
+PUSHINT 1
+;; param: desc
+;; param: to
+; function ActionGoto
+;; return
+;; push identifier desc
+PUSH S1
+NEWC
+ENDC
+PUSHINT 6
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+NIP
+NIP
+; end function ActionGoto
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+PUSHSLICE x51756974
+NEWC
+STSLICE
+ENDC
+PUSHSLICE x42796521
+NEWC
+STSLICE
+ENDC
+PUSHINT 255
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
+PAIR
+TUPLE 3
+;; array.push(..)
+UNTUPLE 3
+NEWC
+PUSH S3
+STUR 8
+PUSH S2
+STREFR
+PUSH S1
+UNPAIR
+ROTREV
+STUR 32
+STDICT
+XCHG s3
+BLKDROP 3
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+POP S2
+; end colValue
+; expValue
+; end expValue
+PUSHSLICE x67657456616c
+NEWC
+STSLICE
+ENDC
+; colValue
+NIP
+; end colValue
+; expValue
+PUSH S1
+; end expValue
 PUSHINT 24
 PUSHSLICE x41726520796f7520737572653f
 NEWC
 STSLICE
 ENDC
-PUSHINT 4
+PUSHINT 5
 NEWDICT
+NEWC
+ENDC
+PUSHSLICE x436f64653a207b7d0a436f6d6d656e743a207b7d0a436173696e6f3a207b7d
+NEWC
+STSLICE
+ENDC
+TRUE
+;; push identifier fargs
+PUSH S8
+PUSHINT 253
+;; param: desc
+;; param: text
+;; param: instant
+;; param: fargs
+;; param: to
+; function ActionPrintEx
+;; push identifier desc
+PUSH S4
+;; push identifier text
+PUSH S4
+;; push identifier to
+PUSH S2
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+;; decl: act
+;; if
+;; push identifier instant
+PUSH S3
+PUSHCONT {
+	; expValue
+	DUP
+	; end expValue
+	;; get member attrs
+	;; push identifier act
+	PUSH S1
+	INDEX 3
+	CTOS
+	PUSHSLICE x2c696e7374616e74
+	NEWC
+	STSLICE
+	ENDC
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	; colValue
+	SETINDEX 3
+	NIP
+	; end colValue
+}
+IF
+;; end if
+;; if
+;; push identifier fargs
+PUSH S2
+ISNULL
+PUSHCONT {
+	;; get member attrs
+	;; push identifier act
+	DUP
+	INDEX 3
+	CTOS
+	PUSHSLICE x2c66617267733d
+	NEWC
+	STSLICE
+	ENDC
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	CTOS
+	;; push identifier fargs
+	PUSH S3
+	DUP
+	ISNULL
+	THROWIF 63
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	; expValue
+	PUSH S1
+	; end expValue
+	SWAP
+	; colValue
+	SETINDEX 3
+	NIP
+	; end colValue
+}
+IFNOT
+;; end if
+;; return
+XCHG s5
+BLKDROP 5
+; end function ActionPrintEx
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 0
+ROT
+PUSHINT 32
+DICTUSETB
 PUSHSLICE x596573
 NEWC
 STSLICE
@@ -2877,7 +7029,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 0
+PUSHINT 1
 ROT
 PUSHINT 32
 DICTUSETB
@@ -2921,7 +7073,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 1
+PUSHINT 2
 ROT
 PUSHINT 32
 DICTUSETB
@@ -2965,7 +7117,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 2
+PUSHINT 3
 ROT
 PUSHINT 32
 DICTUSETB
@@ -3014,7 +7166,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 3
+PUSHINT 4
 ROT
 PUSHINT 32
 DICTUSETB
@@ -3619,7 +7771,7 @@ ENDS
 PUSHINT 0
 ;; ret param: number1
 PUSHINT 0
-;; ret param: casino
+;; ret param: value2
 PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
 ; expValue
 ; end expValue
@@ -3725,7 +7877,7 @@ SETGLOB 7
 PUSHINT 0
 ;; ret param: number1
 PUSHINT 0
-;; ret param: casino
+;; ret param: value2
 PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
 ; expValue
 ; end expValue
@@ -3761,16 +7913,16 @@ PUSHCONT {
 }
 IF
 ; Decode input parameters
-; Decode numb
+; Decode number
 LDU 8
 ENDS
-;; param: numb
+;; param: number
 ; modifier accept
 ACCEPT
 ; function enterNumBetSingle
 ; expValue
 ; end expValue
-;; push identifier numb
+;; push identifier number
 DUP
 ; colValue
 SETGLOB 18
@@ -3784,13 +7936,13 @@ SETGLOB 7
 
 .globl	enterNumBetSingle_internal
 .type	enterNumBetSingle_internal, @function
-;; param: numb
+;; param: number
 ; modifier accept
 ACCEPT
 ; function enterNumBetSingle
 ; expValue
 ; end expValue
-;; push identifier numb
+;; push identifier number
 DUP
 ; colValue
 SETGLOB 18
@@ -3798,6 +7950,1107 @@ SETGLOB 18
 ; end function enterNumBetSingle
 DROP
 ; end modifier accept
+
+.globl	enterNumBetDozen
+.public	enterNumBetDozen
+.type	enterNumBetDozen, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+; Decode number
+LDU 8
+ENDS
+;; param: number
+; modifier accept
+ACCEPT
+; function enterNumBetDozen
+; expValue
+; end expValue
+;; push identifier number
+DUP
+; colValue
+SETGLOB 19
+; end colValue
+; end function enterNumBetDozen
+DROP
+; end modifier accept
+CALL $c7_to_c4$
+TRUE
+SETGLOB 7
+
+.globl	enterNumBetDozen_internal
+.type	enterNumBetDozen_internal, @function
+;; param: number
+; modifier accept
+ACCEPT
+; function enterNumBetDozen
+; expValue
+; end expValue
+;; push identifier number
+DUP
+; colValue
+SETGLOB 19
+; end colValue
+; end function enterNumBetDozen
+DROP
+; end modifier accept
+
+.globl	enterNumBetColumn
+.public	enterNumBetColumn
+.type	enterNumBetColumn, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+; Decode number
+LDU 8
+ENDS
+;; param: number
+; modifier accept
+ACCEPT
+; function enterNumBetColumn
+; expValue
+; end expValue
+;; push identifier number
+DUP
+; colValue
+SETGLOB 20
+; end colValue
+; end function enterNumBetColumn
+DROP
+; end modifier accept
+CALL $c7_to_c4$
+TRUE
+SETGLOB 7
+
+.globl	enterNumBetColumn_internal
+.type	enterNumBetColumn_internal, @function
+;; param: number
+; modifier accept
+ACCEPT
+; function enterNumBetColumn
+; expValue
+; end expValue
+;; push identifier number
+DUP
+; colValue
+SETGLOB 20
+; end colValue
+; end function enterNumBetColumn
+DROP
+; end modifier accept
+
+.globl	enterNumBetGS
+.public	enterNumBetGS
+.type	enterNumBetGS, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+; Decode isGreat
+LDI 1
+ENDS
+;; param: isGreat
+; modifier accept
+ACCEPT
+; function enterNumBetGS
+; expValue
+; end expValue
+;; push identifier isGreat
+DUP
+; colValue
+SETGLOB 22
+; end colValue
+; end function enterNumBetGS
+DROP
+; end modifier accept
+CALL $c7_to_c4$
+TRUE
+SETGLOB 7
+
+.globl	enterNumBetGS_internal
+.type	enterNumBetGS_internal, @function
+;; param: isGreat
+; modifier accept
+ACCEPT
+; function enterNumBetGS
+; expValue
+; end expValue
+;; push identifier isGreat
+DUP
+; colValue
+SETGLOB 22
+; end colValue
+; end function enterNumBetGS
+DROP
+; end modifier accept
+
+.globl	enterNumBetPARITY
+.public	enterNumBetPARITY
+.type	enterNumBetPARITY, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+; Decode isEven
+LDI 1
+ENDS
+;; param: isEven
+; modifier accept
+ACCEPT
+; function enterNumBetPARITY
+; expValue
+; end expValue
+;; push identifier isEven
+DUP
+; colValue
+SETGLOB 23
+; end colValue
+; end function enterNumBetPARITY
+DROP
+; end modifier accept
+CALL $c7_to_c4$
+TRUE
+SETGLOB 7
+
+.globl	enterNumBetPARITY_internal
+.type	enterNumBetPARITY_internal, @function
+;; param: isEven
+; modifier accept
+ACCEPT
+; function enterNumBetPARITY
+; expValue
+; end expValue
+;; push identifier isEven
+DUP
+; colValue
+SETGLOB 23
+; end colValue
+; end function enterNumBetPARITY
+DROP
+; end modifier accept
+
+.globl	enterNumBetCOLOR
+.public	enterNumBetCOLOR
+.type	enterNumBetCOLOR, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+; Decode isRed
+LDI 1
+ENDS
+;; param: isRed
+; modifier accept
+ACCEPT
+; function enterNumBetCOLOR
+; expValue
+; end expValue
+;; push identifier isRed
+DUP
+; colValue
+SETGLOB 21
+; end colValue
+; end function enterNumBetCOLOR
+DROP
+; end modifier accept
+CALL $c7_to_c4$
+TRUE
+SETGLOB 7
+
+.globl	enterNumBetCOLOR_internal
+.type	enterNumBetCOLOR_internal, @function
+;; param: isRed
+; modifier accept
+ACCEPT
+; function enterNumBetCOLOR
+; expValue
+; end expValue
+;; push identifier isRed
+DUP
+; colValue
+SETGLOB 21
+; end colValue
+; end function enterNumBetCOLOR
+DROP
+; end modifier accept
+
+.globl	parseNumBetSingle
+.public	parseNumBetSingle
+.type	parseNumBetSingle, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+PUSH S1
+PUSHCONT {
+	LDU 32
+	GETGLOB 4
+	ROT
+	SETINDEXQ 5
+	SETGLOB 4
+}
+IFNOT
+; Decode input parameters
+ENDS
+; modifier accept
+ACCEPT
+; function parseNumBetSingle
+;; ret param: number0
+PUSHINT 0
+; expValue
+; end expValue
+;; push identifier m_numberBetSing
+GETGLOB 18
+; colValue
+NIP
+; end colValue
+;; returning named params
+;; emitting 1 value(s)
+PUSH S1
+EQINT -1
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 96
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	STSLICECONST xf98465cf
+	PUSH S1
+	STUR 8
+	ENDC
+	PUSHINT 1
+	SENDRAWMSG
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	PUSH S1
+	INDEX 2
+	GETGLOB 9
+	BLKSWAP 1, 3
+	INDEX 1
+	NEWC
+	PUSHINT 2
+	STZEROES
+	STI 1
+	PUSHINT 3
+	STZEROES
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 104
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	PUSH S1
+	STUR 8
+	ENDC
+	GETGLOB 4
+	INDEX 4
+	SENDRAWMSG
+}
+IFELSE
+DROP
+; end function parseNumBetSingle
+; end modifier accept
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	parseNumBetSingle_internal
+.type	parseNumBetSingle_internal, @function
+; modifier accept
+ACCEPT
+; function parseNumBetSingle
+;; ret param: number0
+PUSHINT 0
+; expValue
+; end expValue
+;; push identifier m_numberBetSing
+GETGLOB 18
+; colValue
+NIP
+; end colValue
+;; returning named params
+TUPLE 1
+SETGLOB 8
+; end function parseNumBetSingle
+; end modifier accept
+GETGLOB 8
+UNTUPLE 1
+
+.globl	parseNumBetDozen
+.public	parseNumBetDozen
+.type	parseNumBetDozen, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+PUSH S1
+PUSHCONT {
+	LDU 32
+	GETGLOB 4
+	ROT
+	SETINDEXQ 5
+	SETGLOB 4
+}
+IFNOT
+; Decode input parameters
+ENDS
+; modifier accept
+ACCEPT
+; function parseNumBetDozen
+;; ret param: number0
+PUSHINT 0
+; expValue
+; end expValue
+;; push identifier m_numberBetDozen
+GETGLOB 19
+; colValue
+NIP
+; end colValue
+;; returning named params
+;; emitting 1 value(s)
+PUSH S1
+EQINT -1
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 96
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	STSLICECONST xc0c55651
+	PUSH S1
+	STUR 8
+	ENDC
+	PUSHINT 1
+	SENDRAWMSG
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	PUSH S1
+	INDEX 2
+	GETGLOB 9
+	BLKSWAP 1, 3
+	INDEX 1
+	NEWC
+	PUSHINT 2
+	STZEROES
+	STI 1
+	PUSHINT 3
+	STZEROES
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 104
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	PUSH S1
+	STUR 8
+	ENDC
+	GETGLOB 4
+	INDEX 4
+	SENDRAWMSG
+}
+IFELSE
+DROP
+; end function parseNumBetDozen
+; end modifier accept
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	parseNumBetDozen_internal
+.type	parseNumBetDozen_internal, @function
+; modifier accept
+ACCEPT
+; function parseNumBetDozen
+;; ret param: number0
+PUSHINT 0
+; expValue
+; end expValue
+;; push identifier m_numberBetDozen
+GETGLOB 19
+; colValue
+NIP
+; end colValue
+;; returning named params
+TUPLE 1
+SETGLOB 8
+; end function parseNumBetDozen
+; end modifier accept
+GETGLOB 8
+UNTUPLE 1
+
+.globl	parseNumBetColumn
+.public	parseNumBetColumn
+.type	parseNumBetColumn, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+PUSH S1
+PUSHCONT {
+	LDU 32
+	GETGLOB 4
+	ROT
+	SETINDEXQ 5
+	SETGLOB 4
+}
+IFNOT
+; Decode input parameters
+ENDS
+; modifier accept
+ACCEPT
+; function parseNumBetColumn
+;; ret param: number0
+PUSHINT 0
+; expValue
+; end expValue
+;; push identifier m_numberBetColumn
+GETGLOB 20
+; colValue
+NIP
+; end colValue
+;; returning named params
+;; emitting 1 value(s)
+PUSH S1
+EQINT -1
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 96
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	STSLICECONST xcd8db2c6
+	PUSH S1
+	STUR 8
+	ENDC
+	PUSHINT 1
+	SENDRAWMSG
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	PUSH S1
+	INDEX 2
+	GETGLOB 9
+	BLKSWAP 1, 3
+	INDEX 1
+	NEWC
+	PUSHINT 2
+	STZEROES
+	STI 1
+	PUSHINT 3
+	STZEROES
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 104
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	PUSH S1
+	STUR 8
+	ENDC
+	GETGLOB 4
+	INDEX 4
+	SENDRAWMSG
+}
+IFELSE
+DROP
+; end function parseNumBetColumn
+; end modifier accept
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	parseNumBetColumn_internal
+.type	parseNumBetColumn_internal, @function
+; modifier accept
+ACCEPT
+; function parseNumBetColumn
+;; ret param: number0
+PUSHINT 0
+; expValue
+; end expValue
+;; push identifier m_numberBetColumn
+GETGLOB 20
+; colValue
+NIP
+; end colValue
+;; returning named params
+TUPLE 1
+SETGLOB 8
+; end function parseNumBetColumn
+; end modifier accept
+GETGLOB 8
+UNTUPLE 1
+
+.globl	parseNumBetGS
+.public	parseNumBetGS
+.type	parseNumBetGS, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+PUSH S1
+PUSHCONT {
+	LDU 32
+	GETGLOB 4
+	ROT
+	SETINDEXQ 5
+	SETGLOB 4
+}
+IFNOT
+; Decode input parameters
+ENDS
+; modifier accept
+ACCEPT
+; function parseNumBetGS
+;; ret param: number0
+PUSHINT 0
+; expValue
+; end expValue
+;; push identifier m_numberBetGS
+GETGLOB 22
+; colValue
+NIP
+; end colValue
+;; returning named params
+;; emitting 1 value(s)
+PUSH S1
+EQINT -1
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 96
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	STSLICECONST xa714e509
+	PUSH S1
+	STIR 1
+	ENDC
+	PUSHINT 1
+	SENDRAWMSG
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	PUSH S1
+	INDEX 2
+	GETGLOB 9
+	BLKSWAP 1, 3
+	INDEX 1
+	NEWC
+	PUSHINT 2
+	STZEROES
+	STI 1
+	PUSHINT 3
+	STZEROES
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 104
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	PUSH S1
+	STIR 1
+	ENDC
+	GETGLOB 4
+	INDEX 4
+	SENDRAWMSG
+}
+IFELSE
+DROP
+; end function parseNumBetGS
+; end modifier accept
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	parseNumBetGS_internal
+.type	parseNumBetGS_internal, @function
+; modifier accept
+ACCEPT
+; function parseNumBetGS
+;; ret param: number0
+PUSHINT 0
+; expValue
+; end expValue
+;; push identifier m_numberBetGS
+GETGLOB 22
+; colValue
+NIP
+; end colValue
+;; returning named params
+TUPLE 1
+SETGLOB 8
+; end function parseNumBetGS
+; end modifier accept
+GETGLOB 8
+UNTUPLE 1
+
+.globl	parseNumBetParity
+.public	parseNumBetParity
+.type	parseNumBetParity, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+PUSH S1
+PUSHCONT {
+	LDU 32
+	GETGLOB 4
+	ROT
+	SETINDEXQ 5
+	SETGLOB 4
+}
+IFNOT
+; Decode input parameters
+ENDS
+; modifier accept
+ACCEPT
+; function parseNumBetParity
+;; ret param: number0
+PUSHINT 0
+; expValue
+; end expValue
+;; push identifier m_numberBetParity
+GETGLOB 23
+; colValue
+NIP
+; end colValue
+;; returning named params
+;; emitting 1 value(s)
+PUSH S1
+EQINT -1
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 96
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	STSLICECONST xa1a27621
+	PUSH S1
+	STIR 1
+	ENDC
+	PUSHINT 1
+	SENDRAWMSG
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	PUSH S1
+	INDEX 2
+	GETGLOB 9
+	BLKSWAP 1, 3
+	INDEX 1
+	NEWC
+	PUSHINT 2
+	STZEROES
+	STI 1
+	PUSHINT 3
+	STZEROES
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 104
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	PUSH S1
+	STIR 1
+	ENDC
+	GETGLOB 4
+	INDEX 4
+	SENDRAWMSG
+}
+IFELSE
+DROP
+; end function parseNumBetParity
+; end modifier accept
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	parseNumBetParity_internal
+.type	parseNumBetParity_internal, @function
+; modifier accept
+ACCEPT
+; function parseNumBetParity
+;; ret param: number0
+PUSHINT 0
+; expValue
+; end expValue
+;; push identifier m_numberBetParity
+GETGLOB 23
+; colValue
+NIP
+; end colValue
+;; returning named params
+TUPLE 1
+SETGLOB 8
+; end function parseNumBetParity
+; end modifier accept
+GETGLOB 8
+UNTUPLE 1
+
+.globl	parseNumBetColor
+.public	parseNumBetColor
+.type	parseNumBetColor, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+PUSH S1
+PUSHCONT {
+	LDU 32
+	GETGLOB 4
+	ROT
+	SETINDEXQ 5
+	SETGLOB 4
+}
+IFNOT
+; Decode input parameters
+ENDS
+; modifier accept
+ACCEPT
+; function parseNumBetColor
+;; ret param: number0
+PUSHINT 0
+; expValue
+; end expValue
+;; push identifier m_numberBetColor
+GETGLOB 21
+; colValue
+NIP
+; end colValue
+;; returning named params
+;; emitting 1 value(s)
+PUSH S1
+EQINT -1
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 96
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	STSLICECONST x87f296a1
+	PUSH S1
+	STIR 1
+	ENDC
+	PUSHINT 1
+	SENDRAWMSG
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	PUSH S1
+	INDEX 2
+	GETGLOB 9
+	BLKSWAP 1, 3
+	INDEX 1
+	NEWC
+	PUSHINT 2
+	STZEROES
+	STI 1
+	PUSHINT 3
+	STZEROES
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 104
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	PUSH S1
+	STIR 1
+	ENDC
+	GETGLOB 4
+	INDEX 4
+	SENDRAWMSG
+}
+IFELSE
+DROP
+; end function parseNumBetColor
+; end modifier accept
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	parseNumBetColor_internal
+.type	parseNumBetColor_internal, @function
+; modifier accept
+ACCEPT
+; function parseNumBetColor
+;; ret param: number0
+PUSHINT 0
+; expValue
+; end expValue
+;; push identifier m_numberBetColor
+GETGLOB 21
+; colValue
+NIP
+; end colValue
+;; returning named params
+TUPLE 1
+SETGLOB 8
+; end function parseNumBetColor
+; end modifier accept
+GETGLOB 8
+UNTUPLE 1
+
+.globl	parseCasinoAddress
+.public	parseCasinoAddress
+.type	parseCasinoAddress, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+PUSH S1
+PUSHCONT {
+	LDU 32
+	GETGLOB 4
+	ROT
+	SETINDEXQ 5
+	SETGLOB 4
+}
+IFNOT
+; Decode input parameters
+ENDS
+; modifier accept
+ACCEPT
+; function parseCasinoAddress
+;; ret param: param0
+PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
+; expValue
+; end expValue
+;; push identifier m_casino
+GETGLOB 15
+; colValue
+NIP
+; end colValue
+;; returning named params
+;; emitting 1 value(s)
+PUSH S1
+EQINT -1
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 96
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	STSLICECONST xd46b7f14
+	PUSH S1
+	STSLICER
+	ENDC
+	PUSHINT 1
+	SENDRAWMSG
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	PUSH S1
+	INDEX 2
+	GETGLOB 9
+	BLKSWAP 1, 3
+	INDEX 1
+	NEWC
+	PUSHINT 2
+	STZEROES
+	STI 1
+	PUSHINT 3
+	STZEROES
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 104
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	PUSH S1
+	STSLICER
+	ENDC
+	GETGLOB 4
+	INDEX 4
+	SENDRAWMSG
+}
+IFELSE
+DROP
+; end function parseCasinoAddress
+; end modifier accept
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	parseCasinoAddress_internal
+.type	parseCasinoAddress_internal, @function
+; modifier accept
+ACCEPT
+; function parseCasinoAddress
+;; ret param: param0
+PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
+; expValue
+; end expValue
+;; push identifier m_casino
+GETGLOB 15
+; colValue
+NIP
+; end colValue
+;; returning named params
+TUPLE 1
+SETGLOB 8
+; end function parseCasinoAddress
+; end modifier accept
+GETGLOB 8
+UNTUPLE 1
 
 .globl	sendSubmitMsgBetSingle
 .public	sendSubmitMsgBetSingle
@@ -3834,11 +9087,23 @@ GETGLOB 15
 ; colValue
 POP S2
 ; end colValue
-;; Remote call Casino.singleBet
-;; push identifier m_numberBetSingValue
+NEWC
+STSLICECONST x7e54a047
+;; number
+;; push identifier m_numberBetSing
+GETGLOB 18
+STUR 8
+ENDC
+; expValue
+; end expValue
+; colValue
+NIP
+; end colValue
+;; Remote call ICasino.singleBet
+;; push identifier m_BetValue
 GETGLOB 24
-;; push identifier m_casino
-GETGLOB 15
+;; push identifier dest
+PUSH S2
 NEWC
 STSLICECONST x62_
 STSLICE
@@ -3946,11 +9211,23 @@ GETGLOB 15
 ; colValue
 POP S2
 ; end colValue
-;; Remote call Casino.singleBet
-;; push identifier m_numberBetSingValue
+NEWC
+STSLICECONST x7e54a047
+;; number
+;; push identifier m_numberBetSing
+GETGLOB 18
+STUR 8
+ENDC
+; expValue
+; end expValue
+; colValue
+NIP
+; end colValue
+;; Remote call ICasino.singleBet
+;; push identifier m_BetValue
 GETGLOB 24
-;; push identifier m_casino
-GETGLOB 15
+;; push identifier dest
+PUSH S2
 NEWC
 STSLICECONST x62_
 STSLICE
@@ -3976,9 +9253,9 @@ SETGLOB 8
 GETGLOB 8
 UNTUPLE 2
 
-.globl	enterNumBetSingleValue
-.public	enterNumBetSingleValue
-.type	enterNumBetSingleValue, @function
+.globl	enterBet
+.public	enterBet
+.type	enterBet, @function
 GETGLOB 1
 ISNULL
 PUSHCONT {
@@ -4000,7 +9277,7 @@ ENDS
 ;; param: numb
 ; modifier accept
 ACCEPT
-; function enterNumBetSingleValue
+; function enterBet
 ; expValue
 ; end expValue
 ;; push identifier numb
@@ -4008,19 +9285,19 @@ DUP
 ; colValue
 SETGLOB 24
 ; end colValue
-; end function enterNumBetSingleValue
+; end function enterBet
 DROP
 ; end modifier accept
 CALL $c7_to_c4$
 TRUE
 SETGLOB 7
 
-.globl	enterNumBetSingleValue_internal
-.type	enterNumBetSingleValue_internal, @function
+.globl	enterBet_internal
+.type	enterBet_internal, @function
 ;; param: numb
 ; modifier accept
 ACCEPT
-; function enterNumBetSingleValue
+; function enterBet
 ; expValue
 ; end expValue
 ;; push identifier numb
@@ -4028,7 +9305,7 @@ DUP
 ; colValue
 SETGLOB 24
 ; end colValue
-; end function enterNumBetSingleValue
+; end function enterBet
 DROP
 ; end modifier accept
 
@@ -4914,27 +10191,10 @@ GETGLOB 3
 STUR 64
 GETGLOB 6
 STUR 1
-NEWC
-GETGLOB 14
-GETGLOB 23
-GETGLOB 24
-GETGLOB 25
-GETGLOB 26
-GETGLOB 27
-GETGLOB 28
-GETGLOB 29
-REVERSE 9, 0
-STREF
-STU 64
-STU 128
-STU 64
-STU 64
-STU 64
-STU 64
-STU 64
 GETGLOB 10
 GETGLOB 11
 GETGLOB 12
+GETGLOB 13
 GETGLOB 15
 GETGLOB 16
 GETGLOB 17
@@ -4943,9 +10203,10 @@ GETGLOB 19
 GETGLOB 20
 GETGLOB 21
 GETGLOB 22
-GETGLOB 13
-REVERSE 14, 0
-STBREF
+GETGLOB 23
+GETGLOB 24
+GETGLOB 14
+REVERSE 16, 0
 STU 8
 SWAP
 DUP
@@ -4979,14 +10240,6 @@ PUSHCONT {
 	STSLICECONST 0
 }
 IFELSE
-STSLICE
-STU 8
-STU 128
-STU 8
-STU 8
-STU 64
-STU 64
-STU 64
 SWAP
 DUP
 ISNULL
@@ -5003,6 +10256,17 @@ PUSHCONT {
 	STSLICECONST 0
 }
 IFELSE
+STSLICE
+STU 8
+STU 128
+STU 8
+STU 8
+STU 8
+STI 1
+STI 1
+STI 1
+STU 128
+STREF
 ENDC
 POP C4
 
@@ -5013,23 +10277,6 @@ CTOS        ; c4
 LDU 256      ; pubkey c4
 LDU 64      ; pubkey timestamp c4
 LDU 1       ; pubkey [timestamp] constructor_flag memory
-LDREFRTOS
-LDREF
-LDU 64
-LDU 128
-LDU 64
-LDU 64
-LDU 64
-LDU 64
-PLDU 64
-SETGLOB 29
-SETGLOB 28
-SETGLOB 27
-SETGLOB 26
-SETGLOB 25
-SETGLOB 24
-SETGLOB 23
-SETGLOB 14
 LDU 8
 LDOPTREF
 SWAP
@@ -5051,28 +10298,31 @@ PUSHCONT {
 }
 IFNOT
 SETGLOB 12
+LDOPTREF
+SWAP
+DUP
+ISNULL
+PUSHCONT {
+	CTOS
+	LDMSGADDR
+	DROP
+}
+IFNOT
+SETGLOB 13
 LDMSGADDR
 LDU 8
 LDU 128
 LDU 8
 LDU 8
-LDU 64
-LDU 64
-LDU 64
-DUP
-PLDI 1
-PUSHCONT {
-	PLDREF
-	CTOS
-	LDMSGADDR
-	DROP
-}
-PUSHCONT {
-	DROP
-	NULL
-}
-IFELSE
-SETGLOB 13
+LDU 8
+LDI 1
+LDI 1
+LDI 1
+LDU 128
+PLDREF
+SETGLOB 14
+SETGLOB 24
+SETGLOB 23
 SETGLOB 22
 SETGLOB 21
 SETGLOB 20
@@ -5098,23 +10348,6 @@ PUSHCONT {
 	LDU 256      ; pubkey c4
 	LDU 64      ; pubkey timestamp c4
 	LDU 1       ; pubkey [timestamp] constructor_flag memory
-	LDREFRTOS
-	LDREF
-	LDU 64
-	LDU 128
-	LDU 64
-	LDU 64
-	LDU 64
-	LDU 64
-	PLDU 64
-	SETGLOB 29
-	SETGLOB 28
-	SETGLOB 27
-	SETGLOB 26
-	SETGLOB 25
-	SETGLOB 24
-	SETGLOB 23
-	SETGLOB 14
 	LDU 8
 	LDOPTREF
 	SWAP
@@ -5136,28 +10369,31 @@ PUSHCONT {
 	}
 	IFNOT
 	SETGLOB 12
+	LDOPTREF
+	SWAP
+	DUP
+	ISNULL
+	PUSHCONT {
+		CTOS
+		LDMSGADDR
+		DROP
+	}
+	IFNOT
+	SETGLOB 13
 	LDMSGADDR
 	LDU 8
 	LDU 128
 	LDU 8
 	LDU 8
-	LDU 64
-	LDU 64
-	LDU 64
-	DUP
-	PLDI 1
-	PUSHCONT {
-		PLDREF
-		CTOS
-		LDMSGADDR
-		DROP
-	}
-	PUSHCONT {
-		DROP
-		NULL
-	}
-	IFELSE
-	SETGLOB 13
+	LDU 8
+	LDI 1
+	LDI 1
+	LDI 1
+	LDU 128
+	PLDREF
+	SETGLOB 14
+	SETGLOB 24
+	SETGLOB 23
 	SETGLOB 22
 	SETGLOB 21
 	SETGLOB 20
@@ -5187,7 +10423,7 @@ PUSHCONT {
 	; init m_numberBetSing
 	PUSHINT 0
 	SETGLOB 18
-	; init m_numberBetDoz
+	; init m_numberBetDozen
 	PUSHINT 0
 	SETGLOB 19
 	; init m_numberBetColumn
@@ -5199,27 +10435,12 @@ PUSHCONT {
 	; init m_numberBetGS
 	PUSHINT 0
 	SETGLOB 22
-	; init m_numberBetPar
+	; init m_numberBetParity
 	PUSHINT 0
 	SETGLOB 23
-	; init m_numberBetSingValue
+	; init m_BetValue
 	PUSHINT 0
 	SETGLOB 24
-	; init m_numberBetDozValue
-	PUSHINT 0
-	SETGLOB 25
-	; init m_numberBetColumnValue
-	PUSHINT 0
-	SETGLOB 26
-	; init m_numberBetColorValue
-	PUSHINT 0
-	SETGLOB 27
-	; init m_numberBetGSValue
-	PUSHINT 0
-	SETGLOB 28
-	; init m_numberBetParValue
-	PUSHINT 0
-	SETGLOB 29
 	; init m_options
 	PUSHINT 0
 	SETGLOB 10

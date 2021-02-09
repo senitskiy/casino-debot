@@ -70,15 +70,111 @@
 			"outputs": [
 				{"name":"number0","type":"uint8"},
 				{"name":"number1","type":"uint128"},
-				{"name":"casino","type":"address"}
+				{"name":"value2","type":"address"}
 			]
 		},
 		{
 			"name": "enterNumBetSingle",
 			"inputs": [
-				{"name":"numb","type":"uint8"}
+				{"name":"number","type":"uint8"}
 			],
 			"outputs": [
+			]
+		},
+		{
+			"name": "enterNumBetDozen",
+			"inputs": [
+				{"name":"number","type":"uint8"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "enterNumBetColumn",
+			"inputs": [
+				{"name":"number","type":"uint8"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "enterNumBetGS",
+			"inputs": [
+				{"name":"isGreat","type":"bool"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "enterNumBetPARITY",
+			"inputs": [
+				{"name":"isEven","type":"bool"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "enterNumBetCOLOR",
+			"inputs": [
+				{"name":"isRed","type":"bool"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "parseNumBetSingle",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"number0","type":"uint8"}
+			]
+		},
+		{
+			"name": "parseNumBetDozen",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"number0","type":"uint8"}
+			]
+		},
+		{
+			"name": "parseNumBetColumn",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"number0","type":"uint8"}
+			]
+		},
+		{
+			"name": "parseNumBetGS",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"number0","type":"bool"}
+			]
+		},
+		{
+			"name": "parseNumBetParity",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"number0","type":"bool"}
+			]
+		},
+		{
+			"name": "parseNumBetColor",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"number0","type":"bool"}
+			]
+		},
+		{
+			"name": "parseCasinoAddress",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"param0","type":"address"}
 			]
 		},
 		{
@@ -91,7 +187,7 @@
 			]
 		},
 		{
-			"name": "enterNumBetSingleValue",
+			"name": "enterBet",
 			"inputs": [
 				{"name":"numb","type":"uint128"}
 			],

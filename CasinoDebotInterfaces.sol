@@ -2,7 +2,7 @@ pragma ton-solidity >=0.35.0;
 pragma AbiHeader expire;
 
 
-interface Casino {
+interface ICasino {
     function singleBet(uint8 number) external view;
     function dozenBet(uint8 number) external view;
     function columnBet(uint8 number) external view;
@@ -14,6 +14,6 @@ interface Casino {
     function receiveFunds() external pure;
 }
 
-interface CasinoClient {
+interface ICasinoClient {
     function receiveAnswer(uint8 code, uint128 comment) external;
 }

@@ -38,6 +38,14 @@
 			]
 		},
 		{
+			"name": "singleBet",
+			"inputs": [
+				{"name":"number","type":"uint8"}
+			],
+			"outputs": [
+			]
+		},		
+		{
 			"name": "bet",
 			"inputs": [
 				{"name":"value","type":"uint128"},
