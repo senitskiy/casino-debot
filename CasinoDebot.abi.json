@@ -64,16 +64,6 @@
 			]
 		},
 		{
-			"name": "getVal",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"number0","type":"uint8"},
-				{"name":"number1","type":"uint128"},
-				{"name":"value2","type":"address"}
-			]
-		},
-		{
 			"name": "enterNumBetSingle",
 			"inputs": [
 				{"name":"number","type":"uint8"}
@@ -100,7 +90,7 @@
 		{
 			"name": "enterNumBetGS",
 			"inputs": [
-				{"name":"isGreat","type":"bool"}
+				{"name":"isGreat","type":"uint8"}
 			],
 			"outputs": [
 			]
@@ -108,7 +98,7 @@
 		{
 			"name": "enterNumBetPARITY",
 			"inputs": [
-				{"name":"isEven","type":"bool"}
+				{"name":"isEven","type":"uint8"}
 			],
 			"outputs": [
 			]
@@ -116,7 +106,7 @@
 		{
 			"name": "enterNumBetCOLOR",
 			"inputs": [
-				{"name":"isRed","type":"bool"}
+				{"name":"isRed","type":"uint8"}
 			],
 			"outputs": [
 			]
@@ -150,7 +140,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"name":"number0","type":"bool"}
+				{"name":"number0","type":"uint184"}
 			]
 		},
 		{
@@ -158,7 +148,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"name":"number0","type":"bool"}
+				{"name":"number0","type":"uint8"}
 			]
 		},
 		{
@@ -166,7 +156,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"name":"number0","type":"bool"}
+				{"name":"number0","type":"uint8"}
 			]
 		},
 		{
@@ -179,6 +169,51 @@
 		},
 		{
 			"name": "sendSubmitMsgBetSingle",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"dest","type":"address"},
+				{"name":"body","type":"cell"}
+			]
+		},
+		{
+			"name": "sendSubmitMsgBetDozen",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"dest","type":"address"},
+				{"name":"body","type":"cell"}
+			]
+		},
+		{
+			"name": "sendSubmitMsgBetColumn",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"dest","type":"address"},
+				{"name":"body","type":"cell"}
+			]
+		},
+		{
+			"name": "sendSubmitMsgBetGreatSmall",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"dest","type":"address"},
+				{"name":"body","type":"cell"}
+			]
+		},
+		{
+			"name": "sendSubmitMsgBetParity",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"dest","type":"address"},
+				{"name":"body","type":"cell"}
+			]
+		},
+		{
+			"name": "sendSubmitMsgBetColor",
 			"inputs": [
 			],
 			"outputs": [

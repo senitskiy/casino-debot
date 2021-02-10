@@ -8,20 +8,29 @@ interface ICasino {
     function singleBet(uint8 number) external view;
     function dozenBet(uint8 number) external view;
     function columnBet(uint8 number) external view;
-    function greatSmallBet(bool isGreat) external view;
-    function parityBet(bool isEven) external view;
-    function colorBet(bool isRed) external view;
+    function greatSmallBet(uint8 isGreat) external view;
+    function parityBet(uint8 isEven) external view;
+    function colorBet(uint8 isRed) external view;
     function getSeed() external view;
     function withdrawBenefits() external view;
     function receiveFunds() external pure;
 }
 
 interface ICasinoClient {
+    // function transfer(address dest, uint128 tokens, uint128 grams) external functionID(0x000000c);
+
     function receiveAnswer(uint8 code, uint128 comment) external;
+
+    function bet(uint128 value, uint8 number) external;
+    function betDozen(uint128 value, uint8 number) external;
+    function betColumn(uint128 value, uint8 number) external;
+    function betColor(uint128 value, bool isRed) external;
+    function betGreatSmall(uint128 value, bool isGreat) external;
+    function betParity(uint128 value, bool isEven) external;
+
+    
+    function getVal() external returns (uint8 code, uint128 comment, address casino);
 }
-
-
-
 
 // interface Casino {
 //     function singleBet(uint256 bet_) external;
@@ -77,9 +86,9 @@ contract CasinoDebot is Debot, DError {
     uint8   m_numberBetSing;
     uint8   m_numberBetDozen;
     uint8   m_numberBetColumn;
-    bool    m_numberBetColor;
-    bool    m_numberBetGS;
-    bool    m_numberBetParity;
+    uint8   m_numberBetColor;
+    uint8   m_numberBetGS;
+    uint8   m_numberBetParity;
 
     uint128 m_BetValue;
     // uint64 m_numberBetDozValue;
@@ -105,18 +114,21 @@ contract CasinoDebot is Debot, DError {
     function fetch() public override accept returns (Context[] contexts){
         contexts.push(Context(STATE_ZERO,
             "", [
-            ActionRun("Hello, please enter the storage address ", "enterStorageAddress", STATE_MAIN),
+            ActionRun("Hello, please enter your address for play in CASINO.", "enterStorageAddress", STATE_MAIN),
             ActionPrint("Quit", "quit", STATE_EXIT)
             ]));
 
         // optional(string) args;
         optional(string) fargs;
+        optional(string) fargs2;
         
         fargs.set("parseCasinoAddress");
+        // fargs2.set("getValInner");
 
         contexts.push(Context(STATE_MAIN,
             "Bet menu:", [
             ActionPrintEx("", "Address Casino: {}", true, fargs, STATE_CURRENT),
+            // ActionPrintEx("", "Code: {}\nComment: {}\nCasino: {}", true, fargs2, STATE_CURRENT),
             ActionGoto("Single - bet on the single number from 0 to 36", STATE_BET_SINGLE),
             ActionGoto("Dozen - bet on the dozen of numbers: from 1 to 12, 13-...-24, 25-...-36", STATE_BET_DOZEN),
             ActionGoto("Column - bet on the column of numbers: 1-4-...-34, 2-5-...-35, 3-6-...-36", STATE_BET_COLUMN),
@@ -126,7 +138,8 @@ contract CasinoDebot is Debot, DError {
             ActionGoto("Return to set address", STATE_ZERO),
             ActionGoto("Check last result", STATE_CHECK),
             ActionPrint("Quit", "quit", STATE_EXIT) ] ));
-        
+
+        //STATE_BET_SINGLE
         contexts.push(Context(STATE_BET_SINGLE,
             "", [
             ActionRun("Enter bet value", "enterBet", STATE_BET_SINGLE2),
@@ -139,6 +152,15 @@ contract CasinoDebot is Debot, DError {
             ActionGoto("Return to bet menu", STATE_MAIN),
             ActionPrint("Quit", "Bye!", STATE_EXIT) ] ));
 
+        contexts.push(Context(STATE_BET_SINGLE3,
+            "Are you sure?", [
+            // ActionPrintEx("", "Code: {}\nComment: {}\nCasino: {}", true, fargs, STATE_CURRENT),    
+            ActionSendMsg("Yes", "sendSubmitMsgBetSingle", "sign=by_user", STATE_MENU),
+            ActionGoto("Return to main menu", STATE_MAIN),
+            ActionGoto("Return to set address", STATE_ZERO),
+            ActionPrint("Quit", "Bye!", STATE_EXIT) ] ));        
+
+        //STATE_BET_DOZEN 
         contexts.push(Context(STATE_BET_DOZEN,
             "", [
             ActionRun("Enter bet value", "enterBet", STATE_BET_DOZEN2),
@@ -147,10 +169,19 @@ contract CasinoDebot is Debot, DError {
 
         contexts.push(Context(STATE_BET_DOZEN2,
             "", [
-            ActionRun("Dozen! Enter dozen of numbers: from 1 to 12, 13-...-24, 25-...-36 [exp:1,2,3]", "enterNumBetDozen", STATE_BET_SINGLE3),
+            ActionRun("Dozen! Enter dozen of numbers: from 1 to 12, 13-...-24, 25-...-36 [exm:1,2,3]", "enterNumBetDozen", STATE_BET_DOZEN3),
             ActionGoto("Return to bet menu", STATE_MAIN),
             ActionPrint("Quit", "Bye!", STATE_EXIT) ] ));        
 
+        contexts.push(Context(STATE_BET_DOZEN3,
+            "Are you sure?", [
+            // ActionPrintEx("", "Code: {}\nComment: {}\nCasino: {}", true, fargs, STATE_CURRENT),    
+            ActionSendMsg("Yes", "sendSubmitMsgBetDozen", "sign=by_user", STATE_MENU),
+            ActionGoto("Return to main menu", STATE_MAIN),
+            ActionGoto("Return to set address", STATE_ZERO),
+            ActionPrint("Quit", "Bye!", STATE_EXIT) ] ));
+
+        //STATE_BET_COLUMN
         contexts.push(Context(STATE_BET_COLUMN,
             "", [
             ActionRun("Enter bet value", "enterBet", STATE_BET_COLUMN2),
@@ -159,10 +190,19 @@ contract CasinoDebot is Debot, DError {
 
         contexts.push(Context(STATE_BET_COLUMN2,
             "", [
-            ActionRun("Column! Enter dozen of numbers: from 1 to 12, 13-...-24, 25-...-36 [exp:1,2,3]", "enterNumBetColumn", STATE_BET_SINGLE3),
+            ActionRun("Column! Enter column of numbers: from 1 to 12, 13-...-24, 25-...-36 [exm:1,2,3]", "enterNumBetColumn", STATE_BET_COLUMN3),
             ActionGoto("Return to bet menu", STATE_MAIN),
             ActionPrint("Quit", "Bye!", STATE_EXIT) ] ));   
 
+        contexts.push(Context(STATE_BET_COLUMN3,
+            "Are you sure?", [
+            // ActionPrintEx("", "Code: {}\nComment: {}\nCasino: {}", true, fargs, STATE_CURRENT),    
+            ActionSendMsg("Yes", "sendSubmitMsgBetColumn", "sign=by_user", STATE_MENU),
+            ActionGoto("Return to main menu", STATE_MAIN),
+            ActionGoto("Return to set address", STATE_ZERO),
+            ActionPrint("Quit", "Bye!", STATE_EXIT) ] ));
+
+        //STATE_BET_GS
         contexts.push(Context(STATE_BET_GS,
             "", [
             ActionRun("Enter bet value", "enterBet", STATE_BET_GS2),
@@ -171,10 +211,19 @@ contract CasinoDebot is Debot, DError {
 
         contexts.push(Context(STATE_BET_GS2,
             "", [
-            ActionRun("Great/Small! Enter righteen numbers: from 1 to 18 or from 19 to 36", "enterNumBetGS", STATE_BET_SINGLE3),
+            ActionRun("Great/Small! Enter righteen numbers: from 1 to 18 [Small:0] or from 19 to 36.[Great:1]", "enterNumBetGS", STATE_BET_GS3),
             ActionGoto("Return to bet menu", STATE_MAIN),
             ActionPrint("Quit", "Bye!", STATE_EXIT) ] ));   
 
+        contexts.push(Context(STATE_BET_GS3,
+            "Are you sure?", [
+            // ActionPrintEx("", "Code: {}\nComment: {}\nCasino: {}", true, fargs, STATE_CURRENT),    
+            ActionSendMsg("Yes", "sendSubmitMsgBetGreatSmall", "sign=by_user", STATE_MENU),
+            ActionGoto("Return to main menu", STATE_MAIN),
+            ActionGoto("Return to set address", STATE_ZERO),
+            ActionPrint("Quit", "Bye!", STATE_EXIT) ] ));
+
+        //STATE_BET_PARITY
         contexts.push(Context(STATE_BET_PARITY,
             "", [
             ActionRun("Enter bet value", "enterBet", STATE_BET_PARITY2),
@@ -183,10 +232,19 @@ contract CasinoDebot is Debot, DError {
 
         contexts.push(Context(STATE_BET_PARITY2,
             "", [
-            ActionRun("Even/Odd! Even or odd numbers", "enterNumBetPARITY", STATE_BET_SINGLE3),
+            ActionRun("Even/Odd! Even or odd numbers. [even = 1; odd = 0", "enterNumBetPARITY", STATE_BET_PARITY3),
             ActionGoto("Return to bet menu", STATE_MAIN),
             ActionPrint("Quit", "Bye!", STATE_EXIT) ] ));   
 
+        contexts.push(Context(STATE_BET_PARITY3,
+            "Are you sure?", [
+            // ActionPrintEx("", "Code: {}\nComment: {}\nCasino: {}", true, fargs, STATE_CURRENT),    
+            ActionSendMsg("Yes", "sendSubmitMsgBetParity", "sign=by_user", STATE_MENU),
+            ActionGoto("Return to main menu", STATE_MAIN),
+            ActionGoto("Return to set address", STATE_ZERO),
+            ActionPrint("Quit", "Bye!", STATE_EXIT) ] ));
+
+        //STATE_BET_COLOR
         contexts.push(Context(STATE_BET_COLOR,
             "", [
             ActionRun("Enter bet value", "enterBet", STATE_BET_COLOR2),
@@ -195,26 +253,24 @@ contract CasinoDebot is Debot, DError {
 
         contexts.push(Context(STATE_BET_COLOR2,
             "", [
-            ActionRun("COLOR! Red or black numbers", "enterNumBetCOLOR", STATE_BET_SINGLE3),
+            ActionRun("COLOR! Red or black numbers [Red:true; black:false]", "enterNumBetCOLOR", STATE_BET_COLOR3),
             ActionGoto("Return to bet menu", STATE_MAIN),
             ActionPrint("Quit", "Bye!", STATE_EXIT) ] ));   
 
-        fargs.set("getVal"); 
-
-        contexts.push(Context(STATE_BET_SINGLE3,
+        contexts.push(Context(STATE_BET_COLOR3,
             "Are you sure?", [
-            ActionPrintEx("", "Code: {}\nComment: {}\nCasino: {}", true, fargs, STATE_CURRENT),    
-            ActionSendMsg("Yes", "sendSubmitMsgBetSingle", "sign=by_user", STATE_MENU),
+            // ActionPrintEx("", "Code: {}\nComment: {}\nCasino: {}", true, fargs, STATE_CURRENT),    
+            ActionSendMsg("Yes", "sendSubmitMsgBetColor", "sign=by_user", STATE_MENU),
             ActionGoto("Return to main menu", STATE_MAIN),
             ActionGoto("Return to set address", STATE_ZERO),
             ActionPrint("Quit", "Bye!", STATE_EXIT) ] ));
 
-        fargs.set("getVal");
+        // fargs.set("getVal");
 
         contexts.push(Context(STATE_CHECK,
             "Exit or not?", [
             // ActionPrintEx("", "Code: {}\nComment: {}\nCasino: {}", STATE_CURRENT),
-            ActionPrintEx("", "Code: {}\nComment: {}\nCasino: {}", true, fargs, STATE_CURRENT),
+            // ActionPrintEx("", "Code: {}\nComment: {}\nCasino: {}", true, fargs, STATE_CURRENT),
             ActionGoto("Return to main menu", STATE_MAIN),
             ActionGoto("Return to set address", STATE_ZERO),
             ActionPrint("Quit", "Bye!", STATE_EXIT) ] ));
@@ -237,11 +293,13 @@ contract CasinoDebot is Debot, DError {
         m_lastComment = comment;
     }
 
-    function getVal() public view returns (uint8 number0, uint128 number1, address value2) {
-        number0 = m_lastCode;
-        number1 = m_lastComment;
-        value2 = m_casino;
-    }
+    // function getValInner() public view returns (address dest, TvmCell body) {
+
+    //     dest = m_target;
+
+    //     body = tvm.encodeBody(ICasinoClient.getVal,);
+
+    // }
 
     receive() external pure {}
 
@@ -258,15 +316,15 @@ contract CasinoDebot is Debot, DError {
         m_numberBetColumn = number;
     }
 
-    function enterNumBetGS(bool isGreat) public accept {
+    function enterNumBetGS(uint8 isGreat) public accept {
         m_numberBetGS = isGreat;
     }
 
-    function enterNumBetPARITY(bool isEven) public accept {
+    function enterNumBetPARITY(uint8 isEven) public accept {
         m_numberBetParity = isEven;
     }
 
-    function enterNumBetCOLOR(bool isRed) public accept {
+    function enterNumBetCOLOR(uint8 isRed) public accept {
         m_numberBetColor = isRed;
     }                    
 
@@ -283,15 +341,15 @@ contract CasinoDebot is Debot, DError {
         number0 = m_numberBetColumn;
     }
 
-    function parseNumBetGS() public view accept returns (bool number0) {
+    function parseNumBetGS() public view accept returns (uint184 number0) {
         number0 = m_numberBetGS;
     }
 
-    function parseNumBetParity() public view accept returns (bool number0) {
+    function parseNumBetParity() public view accept returns (uint8 number0) {
         number0 = m_numberBetParity;
     }
 
-    function parseNumBetColor() public view accept returns (bool number0) {
+    function parseNumBetColor() public view accept returns (uint8 number0) {
         number0 = m_numberBetColor;
     }                
 
@@ -303,13 +361,30 @@ contract CasinoDebot is Debot, DError {
     // function bet(uint128 value, uint8 number) public view onlyOwner {
     //     ICasino(m_casino).singleBet{value: value}(number);
     // }
+
+    // function sendSubmitMsg() public accept view returns (address dest, TvmCell body) {
+    //     dest = m_target.get();
+    //     body = tvm.encodeBody(ITONTokenWallet.transfer, m_dest, m_tokens, m_grams);
+    // }
+
+//    function sendSubmitMsg() public accept view returns (address dest, TvmCell body) {
+//         dest = m_target.get();
+//         body = tvm.encodeBody(Storage.storeValue, m_numberFromStorage);
+//     }
+
+    // function getNumFromStorage() public view accept returns (address dest, TvmCell body) {
+    //     dest = m_target.get();
+    //     body = tvm.encodeBody(Storage.getNumber);
+    //     Storage(dest).getNumber();
+    // }
+
     function sendSubmitMsgBetSingle() public accept view returns (address dest, TvmCell body) {
         // dest = m_target.get();
-        dest = m_casino;
+        dest = m_target;
 
-        body = tvm.encodeBody(ICasino.singleBet, m_numberBetSing);//Casino.singleBet m_casino, ICasino.singleBet, m_casino, m_numberBetSing,  m_BetValue
+        body = tvm.encodeBody(ICasinoClient.bet, m_BetValue, m_numberBetSing);//Casino.singleBet m_casino, ICasino.singleBet, m_casino, m_numberBetSing,  m_BetValue
         // ICasino(msg.sender).singleBet{value: m_BetValue}(m_numberBetSing);
-        ICasino(dest).singleBet{value: m_BetValue}(m_numberBetSing);
+        // ICasino(dest).singleBet{value: m_BetValue}(m_numberBetSing);
         
         // первый вариант транзакции
         // body = tvm.encodeBody(Casino.singleBet, m_numberBetSing);        
@@ -323,6 +398,47 @@ contract CasinoDebot is Debot, DError {
 
     }
 
+    function sendSubmitMsgBetDozen() public accept view returns (address dest, TvmCell body) {
+
+        // body = tvm.encodeBody(ICasino.singleBet, m_numberBetSing);
+        // ICasino(m_casino).dozenBet{value: m_BetValue}(m_numberBetDozen);
+        //ICasino(m_casino).dozenBet{value: value}(number); 
+        ICasinoClient(m_casino).betDozen(m_BetValue, m_numberBetDozen);
+    }
+
+    function sendSubmitMsgBetColumn() public accept view returns (address dest, TvmCell body) {
+
+        body = tvm.encodeBody(ICasino.singleBet, m_numberBetColumn);
+        ICasino(m_casino).columnBet{value: m_BetValue}(m_numberBetColumn);
+        // ICasino(m_casino).columnBet{value: value}(number);
+    }
+
+    function sendSubmitMsgBetGreatSmall() public accept view returns (address dest, TvmCell body) {
+
+        // body = tvm.encodeBody(ICasino.singleBet, m_numberBetGS);
+        ICasino(m_casino).greatSmallBet{value: m_BetValue}(m_numberBetGS);
+        
+        // ICasino(m_casino).greatSmallBet{value: value}(isGreat);
+    }
+
+    function sendSubmitMsgBetParity() public accept view returns (address dest, TvmCell body) {
+
+        // body = tvm.encodeBody(ICasino.singleBet, m_numberBetParity);
+        ICasino(m_casino).parityBet{value: m_BetValue}(m_numberBetParity);
+        // ICasino(m_casino).parityBet{value: value}(isEven);
+    }
+
+    function sendSubmitMsgBetColor() public accept view returns (address dest, TvmCell body) {
+        // dest = m_target.get();
+        dest = m_target;
+
+        // body = tvm.encodeBody(ICasino.singleBet, m_numberBetColor);//Casino.singleBet m_casino, ICasino.singleBet, m_casino, m_numberBetSing,  m_BetValue
+        // ICasino(msg.sender).singleBet{value: m_BetValue}(m_numberBetSing);
+        ICasino(dest).colorBet{value: m_BetValue}(m_numberBetColor);
+        // ICasino(m_casino).colorBet{value: value}(isRed);
+        // betColor(uint128 value, bool isRed) 
+
+    }
            
     // function getNumFromStorage() public view accept returns (address dest, TvmCell body) {
     //     dest = m_target.get();
