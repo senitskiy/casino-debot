@@ -25,7 +25,7 @@ zero_address=0:0000000000000000000000000000000000000000000000000000000000000000
 ../tonos-cli call 0:49256c4d5e124cfcdb89b928179dc3889041a1cfa326461aa21d9dee9aec5031 setTargetABI "{\"tabi\":\"$smc_abi\"}" --sign CasinoDebot.keys.json --abi CasinoDebot.abi.json
 
 ../tonos-cli call 0:49256c4d5e124cfcdb89b928179dc3889041a1cfa326461aa21d9dee9aec5031 setABI "{\"dabi\":\"$debot_abi\"}" --sign CasinoDebot.keys.json --abi CasinoDebot.abi.json
-
+## ========== debot run ================
 ../tonos-cli debot fetch 0:49256c4d5e124cfcdb89b928179dc3889041a1cfa326461aa21d9dee9aec5031
 
 #### ===============CasinoClient====without getVal=======================================
