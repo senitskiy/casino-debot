@@ -28,11 +28,12 @@ zero_address=0:0000000000000000000000000000000000000000000000000000000000000000
 
 ../tonos-cli debot fetch 0:49256c4d5e124cfcdb89b928179dc3889041a1cfa326461aa21d9dee9aec5031
 
-===============CasinoClient====without getVal==============================================
+####===============CasinoClient====without getVal==============================================
 "dune powder stuff until pear vintage guide remove coast else either supply"
 0:95c4b37cfbfa56e12c68dd2da82f5841b92c188ee3baa6516175733aa4192bc7
 
-=================CasinoClient=== with getVal===========================
+####=================CasinoClient=== with getVal===========================
 
 "next category blush trend apple sleep neck capital wash reduce addict basic"
 0:ca132a31585f50ade77738f59926214110e7b9c6d47b7cba8efe05139c1f6169
+
