@@ -28,12 +28,20 @@ zero_address=0:0000000000000000000000000000000000000000000000000000000000000000
 
 ../tonos-cli debot fetch 0:49256c4d5e124cfcdb89b928179dc3889041a1cfa326461aa21d9dee9aec5031
 
-####===============CasinoClient====without getVal==============================================
+#### ===============CasinoClient====without getVal=======================================
 "dune powder stuff until pear vintage guide remove coast else either supply"
 0:95c4b37cfbfa56e12c68dd2da82f5841b92c188ee3baa6516175733aa4192bc7
 
-####=================CasinoClient=== with getVal===========================
+#### =================CasinoClient=== with getVal===========================
 
 "next category blush trend apple sleep neck capital wash reduce addict basic"
 0:ca132a31585f50ade77738f59926214110e7b9c6d47b7cba8efe05139c1f6169
 
+### ===========Casino.abi.json============
+Seed phrase: "memory again tattoo silver solid light steak name video slam sword sort"
+Raw address: 3c8045f1b815bebe42e4531c5e0585dfe675e4bee9b2822be7f36ccc83ba4ec1
+
+### CasinoOwner.abi.json
+=============================================
+Seed phrase: "display fan icon example estate female agent scale syrup drum broken degree"
+Raw address: 0:0dbe35788f90afbc94100b77b31ed6ffa78c5de2dd0bd86535ae1709eb2d8727
