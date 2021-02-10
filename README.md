@@ -43,5 +43,5 @@ Raw address: 3c8045f1b815bebe42e4531c5e0585dfe675e4bee9b2822be7f36ccc83ba4ec1
 
 ### CasinoOwner.abi.json
 =============================================
-Seed phrase: "display fan icon example estate female agent scale syrup drum broken degree"
-Raw address: 0:0dbe35788f90afbc94100b77b31ed6ffa78c5de2dd0bd86535ae1709eb2d8727
+"display fan icon example estate female agent scale syrup drum broken degree"
+0:0dbe35788f90afbc94100b77b31ed6ffa78c5de2dd0bd86535ae1709eb2d8727
