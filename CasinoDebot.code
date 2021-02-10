@@ -459,6 +459,8 @@ NULL
 ;; decl: fargs
 NULL
 ;; decl: fargs2
+NULL
+;; decl: fargs3
 ; expValue
 ; end expValue
 PUSHSLICE x7061727365436173696e6f41646472657373
@@ -466,17 +468,35 @@ NEWC
 STSLICE
 ENDC
 ; colValue
+POP S3
+; end colValue
+; expValue
+; end expValue
+PUSHSLICE x67657456616c496e6e6572
+NEWC
+STSLICE
+ENDC
+; colValue
 POP S2
 ; end colValue
 ; expValue
-PUSH S2
+; end expValue
+PUSHSLICE x7061727365526573426f6479
+NEWC
+STSLICE
+ENDC
+; colValue
+NIP
+; end colValue
+; expValue
+PUSH S3
 ; end expValue
 PUSHINT 1
 PUSHSLICE x426574206d656e753a
 NEWC
 STSLICE
 ENDC
-PUSHINT 10
+PUSHINT 12
 NEWDICT
 NEWC
 ENDC
@@ -486,7 +506,7 @@ STSLICE
 ENDC
 TRUE
 ;; push identifier fargs
-PUSH S9
+PUSH S10
 PUSHINT 253
 ;; param: desc
 ;; param: text
@@ -617,6 +637,284 @@ PUSHINT 0
 ROT
 PUSHINT 32
 DICTUSETB
+NEWC
+ENDC
+PUSHSLICE x436f64653a207b7d0a436f6d6d656e743a207b7d
+NEWC
+STSLICE
+ENDC
+TRUE
+;; push identifier fargs2
+PUSH S9
+PUSHINT 253
+;; param: desc
+;; param: text
+;; param: instant
+;; param: fargs
+;; param: to
+; function ActionPrintEx
+;; push identifier desc
+PUSH S4
+;; push identifier text
+PUSH S4
+;; push identifier to
+PUSH S2
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+;; decl: act
+;; if
+;; push identifier instant
+PUSH S3
+PUSHCONT {
+	; expValue
+	DUP
+	; end expValue
+	;; get member attrs
+	;; push identifier act
+	PUSH S1
+	INDEX 3
+	CTOS
+	PUSHSLICE x2c696e7374616e74
+	NEWC
+	STSLICE
+	ENDC
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	; colValue
+	SETINDEX 3
+	NIP
+	; end colValue
+}
+IF
+;; end if
+;; if
+;; push identifier fargs
+PUSH S2
+ISNULL
+PUSHCONT {
+	;; get member attrs
+	;; push identifier act
+	DUP
+	INDEX 3
+	CTOS
+	PUSHSLICE x2c66617267733d
+	NEWC
+	STSLICE
+	ENDC
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	CTOS
+	;; push identifier fargs
+	PUSH S3
+	DUP
+	ISNULL
+	THROWIF 63
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	; expValue
+	PUSH S1
+	; end expValue
+	SWAP
+	; colValue
+	SETINDEX 3
+	NIP
+	; end colValue
+}
+IFNOT
+;; end if
+;; return
+XCHG s5
+BLKDROP 5
+; end function ActionPrintEx
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+NEWC
+ENDC
+PUSHSLICE x436f64653a207b7d0a436f6d6d656e743a207b7d
+NEWC
+STSLICE
+ENDC
+TRUE
+;; push identifier fargs3
+PUSH S8
+PUSHINT 253
+;; param: desc
+;; param: text
+;; param: instant
+;; param: fargs
+;; param: to
+; function ActionPrintEx
+;; push identifier desc
+PUSH S4
+;; push identifier text
+PUSH S4
+;; push identifier to
+PUSH S2
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+;; decl: act
+;; if
+;; push identifier instant
+PUSH S3
+PUSHCONT {
+	; expValue
+	DUP
+	; end expValue
+	;; get member attrs
+	;; push identifier act
+	PUSH S1
+	INDEX 3
+	CTOS
+	PUSHSLICE x2c696e7374616e74
+	NEWC
+	STSLICE
+	ENDC
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	; colValue
+	SETINDEX 3
+	NIP
+	; end colValue
+}
+IF
+;; end if
+;; if
+;; push identifier fargs
+PUSH S2
+ISNULL
+PUSHCONT {
+	;; get member attrs
+	;; push identifier act
+	DUP
+	INDEX 3
+	CTOS
+	PUSHSLICE x2c66617267733d
+	NEWC
+	STSLICE
+	ENDC
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	CTOS
+	;; push identifier fargs
+	PUSH S3
+	DUP
+	ISNULL
+	THROWIF 63
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	; expValue
+	PUSH S1
+	; end expValue
+	SWAP
+	; colValue
+	SETINDEX 3
+	NIP
+	; end colValue
+}
+IFNOT
+;; end if
+;; return
+XCHG s5
+BLKDROP 5
+; end function ActionPrintEx
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
 PUSHSLICE x53696e676c65202d20626574206f6e207468652073696e676c65206e756d6265722066726f6d203020746f203336
 NEWC
 STSLICE
@@ -657,7 +955,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 1
+PUSHINT 3
 ROT
 PUSHINT 32
 DICTUSETB
@@ -701,7 +999,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 2
+PUSHINT 4
 ROT
 PUSHINT 32
 DICTUSETB
@@ -745,7 +1043,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 3
+PUSHINT 5
 ROT
 PUSHINT 32
 DICTUSETB
@@ -789,7 +1087,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 4
+PUSHINT 6
 ROT
 PUSHINT 32
 DICTUSETB
@@ -833,7 +1131,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 5
+PUSHINT 7
 ROT
 PUSHINT 32
 DICTUSETB
@@ -877,7 +1175,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 6
+PUSHINT 8
 ROT
 PUSHINT 32
 DICTUSETB
@@ -921,7 +1219,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 7
+PUSHINT 9
 ROT
 PUSHINT 32
 DICTUSETB
@@ -965,7 +1263,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 8
+PUSHINT 10
 ROT
 PUSHINT 32
 DICTUSETB
@@ -1014,7 +1312,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 9
+PUSHINT 11
 ROT
 PUSHINT 32
 DICTUSETB
@@ -1044,10 +1342,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 22
 NEWC
@@ -1222,10 +1520,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 23
 NEWC
@@ -1400,10 +1698,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 24
 PUSHSLICE x41726520796f7520737572653f
@@ -1629,10 +1927,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 25
 NEWC
@@ -1807,10 +2105,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 26
 NEWC
@@ -1985,10 +2283,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 27
 PUSHSLICE x41726520796f7520737572653f
@@ -2214,10 +2512,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 28
 NEWC
@@ -2392,10 +2690,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 29
 NEWC
@@ -2570,10 +2868,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 30
 PUSHSLICE x41726520796f7520737572653f
@@ -2799,10 +3097,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 34
 NEWC
@@ -2977,10 +3275,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 35
 NEWC
@@ -3155,10 +3453,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 36
 PUSHSLICE x41726520796f7520737572653f
@@ -3384,10 +3682,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 37
 NEWC
@@ -3562,10 +3860,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 38
 NEWC
@@ -3740,10 +4038,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 39
 PUSHSLICE x41726520796f7520737572653f
@@ -3969,10 +4267,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 31
 NEWC
@@ -4147,10 +4445,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 32
 NEWC
@@ -4325,10 +4623,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 33
 PUSHSLICE x41726520796f7520737572653f
@@ -4554,10 +4852,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 50
 PUSHSLICE x45786974206f72206e6f743f
@@ -4729,10 +5027,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ;; returning named params
-DROP2
+BLKDROP 3
 ;; emitting 1 value(s)
 PUSH S1
 EQINT -1
@@ -4951,6 +5249,8 @@ NULL
 ;; decl: fargs
 NULL
 ;; decl: fargs2
+NULL
+;; decl: fargs3
 ; expValue
 ; end expValue
 PUSHSLICE x7061727365436173696e6f41646472657373
@@ -4958,17 +5258,35 @@ NEWC
 STSLICE
 ENDC
 ; colValue
+POP S3
+; end colValue
+; expValue
+; end expValue
+PUSHSLICE x67657456616c496e6e6572
+NEWC
+STSLICE
+ENDC
+; colValue
 POP S2
 ; end colValue
 ; expValue
-PUSH S2
+; end expValue
+PUSHSLICE x7061727365526573426f6479
+NEWC
+STSLICE
+ENDC
+; colValue
+NIP
+; end colValue
+; expValue
+PUSH S3
 ; end expValue
 PUSHINT 1
 PUSHSLICE x426574206d656e753a
 NEWC
 STSLICE
 ENDC
-PUSHINT 10
+PUSHINT 12
 NEWDICT
 NEWC
 ENDC
@@ -4978,7 +5296,7 @@ STSLICE
 ENDC
 TRUE
 ;; push identifier fargs
-PUSH S9
+PUSH S10
 PUSHINT 253
 ;; param: desc
 ;; param: text
@@ -5109,6 +5427,284 @@ PUSHINT 0
 ROT
 PUSHINT 32
 DICTUSETB
+NEWC
+ENDC
+PUSHSLICE x436f64653a207b7d0a436f6d6d656e743a207b7d
+NEWC
+STSLICE
+ENDC
+TRUE
+;; push identifier fargs2
+PUSH S9
+PUSHINT 253
+;; param: desc
+;; param: text
+;; param: instant
+;; param: fargs
+;; param: to
+; function ActionPrintEx
+;; push identifier desc
+PUSH S4
+;; push identifier text
+PUSH S4
+;; push identifier to
+PUSH S2
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+;; decl: act
+;; if
+;; push identifier instant
+PUSH S3
+PUSHCONT {
+	; expValue
+	DUP
+	; end expValue
+	;; get member attrs
+	;; push identifier act
+	PUSH S1
+	INDEX 3
+	CTOS
+	PUSHSLICE x2c696e7374616e74
+	NEWC
+	STSLICE
+	ENDC
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	; colValue
+	SETINDEX 3
+	NIP
+	; end colValue
+}
+IF
+;; end if
+;; if
+;; push identifier fargs
+PUSH S2
+ISNULL
+PUSHCONT {
+	;; get member attrs
+	;; push identifier act
+	DUP
+	INDEX 3
+	CTOS
+	PUSHSLICE x2c66617267733d
+	NEWC
+	STSLICE
+	ENDC
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	CTOS
+	;; push identifier fargs
+	PUSH S3
+	DUP
+	ISNULL
+	THROWIF 63
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	; expValue
+	PUSH S1
+	; end expValue
+	SWAP
+	; colValue
+	SETINDEX 3
+	NIP
+	; end colValue
+}
+IFNOT
+;; end if
+;; return
+XCHG s5
+BLKDROP 5
+; end function ActionPrintEx
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 1
+ROT
+PUSHINT 32
+DICTUSETB
+NEWC
+ENDC
+PUSHSLICE x436f64653a207b7d0a436f6d6d656e743a207b7d
+NEWC
+STSLICE
+ENDC
+TRUE
+;; push identifier fargs3
+PUSH S8
+PUSHINT 253
+;; param: desc
+;; param: text
+;; param: instant
+;; param: fargs
+;; param: to
+; function ActionPrintEx
+;; push identifier desc
+PUSH S4
+;; push identifier text
+PUSH S4
+;; push identifier to
+PUSH S2
+;; param: desc
+;; param: text
+;; param: to
+; function ActionPrint
+;; return
+;; push identifier desc
+PUSH S2
+;; push identifier text
+PUSH S2
+PUSHINT 5
+NEWC
+ENDC
+;; push identifier to
+PUSH S4
+;; push identifier empty
+GETGLOB 14
+TUPLE 6
+XCHG s3
+BLKDROP 3
+; end function ActionPrint
+;; decl: act
+;; if
+;; push identifier instant
+PUSH S3
+PUSHCONT {
+	; expValue
+	DUP
+	; end expValue
+	;; get member attrs
+	;; push identifier act
+	PUSH S1
+	INDEX 3
+	CTOS
+	PUSHSLICE x2c696e7374616e74
+	NEWC
+	STSLICE
+	ENDC
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	; colValue
+	SETINDEX 3
+	NIP
+	; end colValue
+}
+IF
+;; end if
+;; if
+;; push identifier fargs
+PUSH S2
+ISNULL
+PUSHCONT {
+	;; get member attrs
+	;; push identifier act
+	DUP
+	INDEX 3
+	CTOS
+	PUSHSLICE x2c66617267733d
+	NEWC
+	STSLICE
+	ENDC
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	CTOS
+	;; push identifier fargs
+	PUSH S3
+	DUP
+	ISNULL
+	THROWIF 63
+	CTOS
+	SWAP
+	NEWC
+	STSLICE
+	STSLICE
+	ENDC
+	; expValue
+	PUSH S1
+	; end expValue
+	SWAP
+	; colValue
+	SETINDEX 3
+	NIP
+	; end colValue
+}
+IFNOT
+;; end if
+;; return
+XCHG s5
+BLKDROP 5
+; end function ActionPrintEx
+UNTUPLE 6
+NEWC
+PUSH S6
+STREFR
+PUSH S5
+STREFR
+PUSH S4
+STUR 8
+PUSH S3
+STREFR
+PUSH S2
+STUR 8
+PUSH S1
+STREFR
+XCHG s6
+BLKDROP 6
+PUSHINT 2
+ROT
+PUSHINT 32
+DICTUSETB
 PUSHSLICE x53696e676c65202d20626574206f6e207468652073696e676c65206e756d6265722066726f6d203020746f203336
 NEWC
 STSLICE
@@ -5149,7 +5745,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 1
+PUSHINT 3
 ROT
 PUSHINT 32
 DICTUSETB
@@ -5193,7 +5789,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 2
+PUSHINT 4
 ROT
 PUSHINT 32
 DICTUSETB
@@ -5237,7 +5833,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 3
+PUSHINT 5
 ROT
 PUSHINT 32
 DICTUSETB
@@ -5281,7 +5877,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 4
+PUSHINT 6
 ROT
 PUSHINT 32
 DICTUSETB
@@ -5325,7 +5921,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 5
+PUSHINT 7
 ROT
 PUSHINT 32
 DICTUSETB
@@ -5369,7 +5965,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 6
+PUSHINT 8
 ROT
 PUSHINT 32
 DICTUSETB
@@ -5413,7 +6009,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 7
+PUSHINT 9
 ROT
 PUSHINT 32
 DICTUSETB
@@ -5457,7 +6053,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 8
+PUSHINT 10
 ROT
 PUSHINT 32
 DICTUSETB
@@ -5506,7 +6102,7 @@ PUSH S1
 STREFR
 XCHG s6
 BLKDROP 6
-PUSHINT 9
+PUSHINT 11
 ROT
 PUSHINT 32
 DICTUSETB
@@ -5536,10 +6132,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 22
 NEWC
@@ -5714,10 +6310,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 23
 NEWC
@@ -5892,10 +6488,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 24
 PUSHSLICE x41726520796f7520737572653f
@@ -6121,10 +6717,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 25
 NEWC
@@ -6299,10 +6895,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 26
 NEWC
@@ -6477,10 +7073,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 27
 PUSHSLICE x41726520796f7520737572653f
@@ -6706,10 +7302,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 28
 NEWC
@@ -6884,10 +7480,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 29
 NEWC
@@ -7062,10 +7658,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 30
 PUSHSLICE x41726520796f7520737572653f
@@ -7291,10 +7887,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 34
 NEWC
@@ -7469,10 +8065,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 35
 NEWC
@@ -7647,10 +8243,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 36
 PUSHSLICE x41726520796f7520737572653f
@@ -7876,10 +8472,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 37
 NEWC
@@ -8054,10 +8650,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 38
 NEWC
@@ -8232,10 +8828,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 39
 PUSHSLICE x41726520796f7520737572653f
@@ -8461,10 +9057,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 31
 NEWC
@@ -8639,10 +9235,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 32
 NEWC
@@ -8817,10 +9413,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 33
 PUSHSLICE x41726520796f7520737572653f
@@ -9046,10 +9642,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ; expValue
-PUSH S2
+PUSH S3
 ; end expValue
 PUSHINT 50
 PUSHSLICE x45786974206f72206e6f743f
@@ -9221,10 +9817,10 @@ PUSHINT 32
 DICTUSETB
 PAIR
 ; colValue
-POP S3
+POP S4
 ; end colValue
 ;; returning named params
-DROP2
+BLKDROP 3
 TUPLE 1
 SETGLOB 8
 ; end function fetch
@@ -9447,6 +10043,225 @@ SETGLOB 17
 ; end colValue
 DROP2
 ; end function receiveAnswer
+
+.globl	getValInner
+.public	getValInner
+.type	getValInner, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+PUSH S1
+PUSHCONT {
+	LDU 32
+	GETGLOB 4
+	ROT
+	SETINDEXQ 5
+	SETGLOB 4
+}
+IFNOT
+; Decode input parameters
+ENDS
+; modifier accept
+ACCEPT
+; function getValInner
+;; ret param: dest
+PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
+;; ret param: body
+NEWC
+ENDC
+; expValue
+; end expValue
+;; push identifier m_target
+GETGLOB 13
+; colValue
+POP S2
+; end colValue
+NEWC
+STSLICECONST x2d164363
+STSLICECONST x5ae7b83e
+ENDC
+; expValue
+; end expValue
+; colValue
+NIP
+; end colValue
+;; returning named params
+;; emitting 2 value(s)
+PUSH S2
+EQINT -1
+PUSHCONT {
+	PUSH S4
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 96
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	STSLICECONST x81cbe4d1
+	PUSH S2
+	STSLICER
+	PUSH S1
+	STREFR
+	ENDC
+	PUSHINT 1
+	SENDRAWMSG
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	PUSH S1
+	INDEX 2
+	GETGLOB 9
+	BLKSWAP 1, 3
+	INDEX 1
+	NEWC
+	PUSHINT 2
+	STZEROES
+	STI 1
+	PUSHINT 3
+	STZEROES
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 104
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	PUSH S2
+	STSLICER
+	PUSH S1
+	STREFR
+	ENDC
+	GETGLOB 4
+	INDEX 4
+	SENDRAWMSG
+}
+IFELSE
+DROP2
+; end function getValInner
+; end modifier accept
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	getValInner_internal
+.type	getValInner_internal, @function
+; modifier accept
+ACCEPT
+; function getValInner
+;; ret param: dest
+PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
+;; ret param: body
+NEWC
+ENDC
+; expValue
+; end expValue
+;; push identifier m_target
+GETGLOB 13
+; colValue
+POP S2
+; end colValue
+NEWC
+STSLICECONST x2d164363
+STSLICECONST x5ae7b83e
+ENDC
+; expValue
+; end expValue
+; colValue
+NIP
+; end colValue
+;; returning named params
+TUPLE 2
+SETGLOB 8
+; end function getValInner
+; end modifier accept
+GETGLOB 8
+UNTUPLE 2
+
+.globl	res_body
+.public	res_body
+.type	res_body, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+; Decode code
+LDU 8
+; Decode comment
+LDUQ 128
+PUSHCONT {
+	;; load next cell
+	LDREF
+	ENDS
+	CTOS
+	LDU 128
+}
+IFNOT
+ENDS
+;; param: code
+;; param: comment
+; function res_body
+; expValue
+; end expValue
+;; push identifier code
+PUSH S1
+; colValue
+SETGLOB 16
+; end colValue
+; expValue
+; end expValue
+;; push identifier comment
+DUP
+; colValue
+SETGLOB 17
+; end colValue
+DROP2
+; end function res_body
+CALL $c7_to_c4$
+TRUE
+SETGLOB 7
+
+.globl	res_body_internal
+.type	res_body_internal, @function
+;; param: code
+;; param: comment
+; function res_body
+; expValue
+; end expValue
+;; push identifier code
+PUSH S1
+; colValue
+SETGLOB 16
+; end colValue
+; expValue
+; end expValue
+;; push identifier comment
+DUP
+; colValue
+SETGLOB 17
+; end colValue
+DROP2
+; end function res_body
 
 .globl	enterNumBetSingle
 .public	enterNumBetSingle
@@ -10597,6 +11412,151 @@ SETGLOB 8
 GETGLOB 8
 UNTUPLE 1
 
+.globl	parseResBody
+.public	parseResBody
+.type	parseResBody, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+PUSH S1
+PUSHCONT {
+	LDU 32
+	GETGLOB 4
+	ROT
+	SETINDEXQ 5
+	SETGLOB 4
+}
+IFNOT
+; Decode input parameters
+ENDS
+; modifier accept
+ACCEPT
+; function parseResBody
+;; ret param: param0
+PUSHINT 0
+;; ret param: param1
+PUSHINT 0
+; expValue
+; end expValue
+;; push identifier m_lastCode
+GETGLOB 16
+; colValue
+POP S2
+; end colValue
+; expValue
+; end expValue
+;; push identifier m_lastComment
+GETGLOB 17
+; colValue
+NIP
+; end colValue
+;; returning named params
+;; emitting 2 value(s)
+PUSH S2
+EQINT -1
+PUSHCONT {
+	PUSH S4
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 96
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	STSLICECONST xe095509b
+	PUSH S2
+	STUR 8
+	PUSH S1
+	STUR 128
+	ENDC
+	PUSHINT 1
+	SENDRAWMSG
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	PUSH S1
+	INDEX 2
+	GETGLOB 9
+	BLKSWAP 1, 3
+	INDEX 1
+	NEWC
+	PUSHINT 2
+	STZEROES
+	STI 1
+	PUSHINT 3
+	STZEROES
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 104
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	PUSH S2
+	STUR 8
+	PUSH S1
+	STUR 128
+	ENDC
+	GETGLOB 4
+	INDEX 4
+	SENDRAWMSG
+}
+IFELSE
+DROP2
+; end function parseResBody
+; end modifier accept
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	parseResBody_internal
+.type	parseResBody_internal, @function
+; modifier accept
+ACCEPT
+; function parseResBody
+;; ret param: param0
+PUSHINT 0
+;; ret param: param1
+PUSHINT 0
+; expValue
+; end expValue
+;; push identifier m_lastCode
+GETGLOB 16
+; colValue
+POP S2
+; end colValue
+; expValue
+; end expValue
+;; push identifier m_lastComment
+GETGLOB 17
+; colValue
+NIP
+; end colValue
+;; returning named params
+TUPLE 2
+SETGLOB 8
+; end function parseResBody
+; end modifier accept
+GETGLOB 8
+UNTUPLE 2
+
 .globl	sendSubmitMsgBetSingle
 .public	sendSubmitMsgBetSingle
 .type	sendSubmitMsgBetSingle, @function
@@ -10790,16 +11750,14 @@ PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
 ;; ret param: body
 NEWC
 ENDC
-;; Remote call ICasinoClient.betDozen
-;; push identifier m_casino
-GETGLOB 15
+; expValue
+; end expValue
+;; push identifier m_target
+GETGLOB 13
+; colValue
+POP S2
+; end colValue
 NEWC
-STSLICECONST x62_
-STSLICE
-PUSHSLICE x3989680000000000000000000000000004_
-STSLICER
-STSLICECONST 0
-STSLICECONST 0
 STSLICECONST x0792c249
 ;; value
 ;; push identifier m_BetValue
@@ -10810,8 +11768,11 @@ STUR 128
 GETGLOB 19
 STUR 8
 ENDC
-PUSHINT 1
-SENDRAWMSG
+; expValue
+; end expValue
+; colValue
+NIP
+; end colValue
 ;; returning named params
 ;; emitting 2 value(s)
 PUSH S2
@@ -10895,16 +11856,14 @@ PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
 ;; ret param: body
 NEWC
 ENDC
-;; Remote call ICasinoClient.betDozen
-;; push identifier m_casino
-GETGLOB 15
+; expValue
+; end expValue
+;; push identifier m_target
+GETGLOB 13
+; colValue
+POP S2
+; end colValue
 NEWC
-STSLICECONST x62_
-STSLICE
-PUSHSLICE x3989680000000000000000000000000004_
-STSLICER
-STSLICECONST 0
-STSLICECONST 0
 STSLICECONST x0792c249
 ;; value
 ;; push identifier m_BetValue
@@ -10915,8 +11874,11 @@ STUR 128
 GETGLOB 19
 STUR 8
 ENDC
-PUSHINT 1
-SENDRAWMSG
+; expValue
+; end expValue
+; colValue
+NIP
+; end colValue
 ;; returning named params
 TUPLE 2
 SETGLOB 8
@@ -10953,11 +11915,22 @@ PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
 ;; ret param: body
 NEWC
 ENDC
+; expValue
+; end expValue
+;; push identifier m_target
+GETGLOB 13
+; colValue
+POP S2
+; end colValue
 NEWC
-STSLICECONST x7e54a047
+STSLICECONST x46057cdb
+;; value
+;; push identifier m_BetValue
+GETGLOB 24
+STUR 128
 ;; number
-;; push identifier m_numberBetColumn
-GETGLOB 20
+;; push identifier m_numberBetDozen
+GETGLOB 19
 STUR 8
 ENDC
 ; expValue
@@ -10965,28 +11938,6 @@ ENDC
 ; colValue
 NIP
 ; end colValue
-;; Remote call ICasino.columnBet
-;; push identifier m_BetValue
-GETGLOB 24
-;; push identifier m_casino
-GETGLOB 15
-NEWC
-STSLICECONST x62_
-STSLICE
-SWAP
-STGRAMS
-PUSHINT 105
-STZEROES
-STSLICECONST 0
-STSLICECONST 0
-STSLICECONST x53787db4
-;; number
-;; push identifier m_numberBetColumn
-GETGLOB 20
-STUR 8
-ENDC
-PUSHINT 1
-SENDRAWMSG
 ;; returning named params
 ;; emitting 2 value(s)
 PUSH S2
@@ -11070,11 +12021,22 @@ PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
 ;; ret param: body
 NEWC
 ENDC
+; expValue
+; end expValue
+;; push identifier m_target
+GETGLOB 13
+; colValue
+POP S2
+; end colValue
 NEWC
-STSLICECONST x7e54a047
+STSLICECONST x46057cdb
+;; value
+;; push identifier m_BetValue
+GETGLOB 24
+STUR 128
 ;; number
-;; push identifier m_numberBetColumn
-GETGLOB 20
+;; push identifier m_numberBetDozen
+GETGLOB 19
 STUR 8
 ENDC
 ; expValue
@@ -11082,28 +12044,6 @@ ENDC
 ; colValue
 NIP
 ; end colValue
-;; Remote call ICasino.columnBet
-;; push identifier m_BetValue
-GETGLOB 24
-;; push identifier m_casino
-GETGLOB 15
-NEWC
-STSLICECONST x62_
-STSLICE
-SWAP
-STGRAMS
-PUSHINT 105
-STZEROES
-STSLICECONST 0
-STSLICECONST 0
-STSLICECONST x53787db4
-;; number
-;; push identifier m_numberBetColumn
-GETGLOB 20
-STUR 8
-ENDC
-PUSHINT 1
-SENDRAWMSG
 ;; returning named params
 TUPLE 2
 SETGLOB 8
@@ -11140,28 +12080,29 @@ PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
 ;; ret param: body
 NEWC
 ENDC
-;; Remote call ICasino.greatSmallBet
+; expValue
+; end expValue
+;; push identifier m_target
+GETGLOB 13
+; colValue
+POP S2
+; end colValue
+NEWC
+STSLICECONST x2f47119b
+;; value
 ;; push identifier m_BetValue
 GETGLOB 24
-;; push identifier m_casino
-GETGLOB 15
-NEWC
-STSLICECONST x62_
-STSLICE
-SWAP
-STGRAMS
-PUSHINT 105
-STZEROES
-STSLICECONST 0
-STSLICECONST 0
-STSLICECONST x368985e7
+STUR 128
 ;; isGreat
 ;; push identifier m_numberBetGS
 GETGLOB 22
 STUR 8
 ENDC
-PUSHINT 1
-SENDRAWMSG
+; expValue
+; end expValue
+; colValue
+NIP
+; end colValue
 ;; returning named params
 ;; emitting 2 value(s)
 PUSH S2
@@ -11245,28 +12186,29 @@ PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
 ;; ret param: body
 NEWC
 ENDC
-;; Remote call ICasino.greatSmallBet
+; expValue
+; end expValue
+;; push identifier m_target
+GETGLOB 13
+; colValue
+POP S2
+; end colValue
+NEWC
+STSLICECONST x2f47119b
+;; value
 ;; push identifier m_BetValue
 GETGLOB 24
-;; push identifier m_casino
-GETGLOB 15
-NEWC
-STSLICECONST x62_
-STSLICE
-SWAP
-STGRAMS
-PUSHINT 105
-STZEROES
-STSLICECONST 0
-STSLICECONST 0
-STSLICECONST x368985e7
+STUR 128
 ;; isGreat
 ;; push identifier m_numberBetGS
 GETGLOB 22
 STUR 8
 ENDC
-PUSHINT 1
-SENDRAWMSG
+; expValue
+; end expValue
+; colValue
+NIP
+; end colValue
 ;; returning named params
 TUPLE 2
 SETGLOB 8
@@ -11303,28 +12245,29 @@ PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
 ;; ret param: body
 NEWC
 ENDC
-;; Remote call ICasino.parityBet
+; expValue
+; end expValue
+;; push identifier m_target
+GETGLOB 13
+; colValue
+POP S2
+; end colValue
+NEWC
+STSLICECONST x557301e9
+;; value
 ;; push identifier m_BetValue
 GETGLOB 24
-;; push identifier m_casino
-GETGLOB 15
-NEWC
-STSLICECONST x62_
-STSLICE
-SWAP
-STGRAMS
-PUSHINT 105
-STZEROES
-STSLICECONST 0
-STSLICECONST 0
-STSLICECONST x1e12f025
+STUR 128
 ;; isEven
 ;; push identifier m_numberBetParity
 GETGLOB 23
 STUR 8
 ENDC
-PUSHINT 1
-SENDRAWMSG
+; expValue
+; end expValue
+; colValue
+NIP
+; end colValue
 ;; returning named params
 ;; emitting 2 value(s)
 PUSH S2
@@ -11408,28 +12351,29 @@ PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
 ;; ret param: body
 NEWC
 ENDC
-;; Remote call ICasino.parityBet
+; expValue
+; end expValue
+;; push identifier m_target
+GETGLOB 13
+; colValue
+POP S2
+; end colValue
+NEWC
+STSLICECONST x557301e9
+;; value
 ;; push identifier m_BetValue
 GETGLOB 24
-;; push identifier m_casino
-GETGLOB 15
-NEWC
-STSLICECONST x62_
-STSLICE
-SWAP
-STGRAMS
-PUSHINT 105
-STZEROES
-STSLICECONST 0
-STSLICECONST 0
-STSLICECONST x1e12f025
+STUR 128
 ;; isEven
 ;; push identifier m_numberBetParity
 GETGLOB 23
 STUR 8
 ENDC
-PUSHINT 1
-SENDRAWMSG
+; expValue
+; end expValue
+; colValue
+NIP
+; end colValue
 ;; returning named params
 TUPLE 2
 SETGLOB 8
@@ -11473,28 +12417,22 @@ GETGLOB 13
 ; colValue
 POP S2
 ; end colValue
-;; Remote call ICasino.colorBet
+NEWC
+STSLICECONST x149df0d8
+;; value
 ;; push identifier m_BetValue
 GETGLOB 24
-;; push identifier dest
-PUSH S2
-NEWC
-STSLICECONST x62_
-STSLICE
-SWAP
-STGRAMS
-PUSHINT 105
-STZEROES
-STSLICECONST 0
-STSLICECONST 0
-STSLICECONST x1b001d32
+STUR 128
 ;; isRed
 ;; push identifier m_numberBetColor
 GETGLOB 21
 STUR 8
 ENDC
-PUSHINT 1
-SENDRAWMSG
+; expValue
+; end expValue
+; colValue
+NIP
+; end colValue
 ;; returning named params
 ;; emitting 2 value(s)
 PUSH S2
@@ -11585,28 +12523,22 @@ GETGLOB 13
 ; colValue
 POP S2
 ; end colValue
-;; Remote call ICasino.colorBet
+NEWC
+STSLICECONST x149df0d8
+;; value
 ;; push identifier m_BetValue
 GETGLOB 24
-;; push identifier dest
-PUSH S2
-NEWC
-STSLICECONST x62_
-STSLICE
-SWAP
-STGRAMS
-PUSHINT 105
-STZEROES
-STSLICECONST 0
-STSLICECONST 0
-STSLICECONST x1b001d32
+STUR 128
 ;; isRed
 ;; push identifier m_numberBetColor
 GETGLOB 21
 STUR 8
 ENDC
-PUSHINT 1
-SENDRAWMSG
+; expValue
+; end expValue
+; colValue
+NIP
+; end colValue
 ;; returning named params
 TUPLE 2
 SETGLOB 8

@@ -64,6 +64,24 @@
 			]
 		},
 		{
+			"name": "getValInner",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"dest","type":"address"},
+				{"name":"body","type":"cell"}
+			]
+		},
+		{
+			"name": "res_body",
+			"inputs": [
+				{"name":"code","type":"uint8"},
+				{"name":"comment","type":"uint128"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "enterNumBetSingle",
 			"inputs": [
 				{"name":"number","type":"uint8"}
@@ -165,6 +183,15 @@
 			],
 			"outputs": [
 				{"name":"param0","type":"address"}
+			]
+		},
+		{
+			"name": "parseResBody",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"param0","type":"uint8"},
+				{"name":"param1","type":"uint128"}
 			]
 		},
 		{

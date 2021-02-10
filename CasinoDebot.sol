@@ -24,12 +24,12 @@ interface ICasinoClient {
     function bet(uint128 value, uint8 number) external;
     function betDozen(uint128 value, uint8 number) external;
     function betColumn(uint128 value, uint8 number) external;
-    function betColor(uint128 value, bool isRed) external;
-    function betGreatSmall(uint128 value, bool isGreat) external;
-    function betParity(uint128 value, bool isEven) external;
+    function betColor(uint128 value, uint8 isRed) external;
+    function betGreatSmall(uint128 value, uint8 isGreat) external;
+    function betParity(uint128 value, uint8 isEven) external;
 
     
-    function getVal() external returns (uint8 code, uint128 comment, address casino);
+    function getVal() external returns (uint8 code, uint128 comment);
 }
 
 // interface Casino {
@@ -42,6 +42,7 @@ contract CasinoDebot is Debot, DError {
     address m_casino;
     uint8 public m_lastCode;
     uint128 public m_lastComment;
+    // uint64 res_body;
 
     constructor(address casino, uint8 options, string debotAbi, string targetAbi, address targetAddr) public {
         require(tvm.pubkey() != 0, 103);
@@ -121,14 +122,20 @@ contract CasinoDebot is Debot, DError {
         // optional(string) args;
         optional(string) fargs;
         optional(string) fargs2;
+        optional(string) fargs3;
         
         fargs.set("parseCasinoAddress");
-        // fargs2.set("getValInner");
+        fargs2.set("getValInner");
+        fargs3.set("parseResBody");
+        
+        // param0 = m_lastCode;
+        // param1 = m_lastComment;
 
         contexts.push(Context(STATE_MAIN,
             "Bet menu:", [
             ActionPrintEx("", "Address Casino: {}", true, fargs, STATE_CURRENT),
-            // ActionPrintEx("", "Code: {}\nComment: {}\nCasino: {}", true, fargs2, STATE_CURRENT),
+            ActionPrintEx("", "Code: {}\nComment: {}", true, fargs2, STATE_CURRENT),
+            ActionPrintEx("", "Code: {}\nComment: {}", true, fargs3, STATE_CURRENT),
             ActionGoto("Single - bet on the single number from 0 to 36", STATE_BET_SINGLE),
             ActionGoto("Dozen - bet on the dozen of numbers: from 1 to 12, 13-...-24, 25-...-36", STATE_BET_DOZEN),
             ActionGoto("Column - bet on the column of numbers: 1-4-...-34, 2-5-...-35, 3-6-...-36", STATE_BET_COLUMN),
@@ -293,13 +300,23 @@ contract CasinoDebot is Debot, DError {
         m_lastComment = comment;
     }
 
-    // function getValInner() public view returns (address dest, TvmCell body) {
+    function getValInner() public accept view returns (address dest, TvmCell body) {
 
-    //     dest = m_target;
+        dest = m_target;
 
-    //     body = tvm.encodeBody(ICasinoClient.getVal,);
+        body = tvm.encodeBody(ICasinoClient.getVal, res_body);
 
-    // }
+    // address m_casino;
+    // uint8 public m_lastCode;
+    // uint128 public m_lastComment;
+        // res_body =  callBackBody;
+        // ICasinoClient(dest).getVal();
+    }
+
+    function res_body(uint8 code, uint128 comment) public {
+        m_lastCode      = code;
+        m_lastComment   = comment;
+    }
 
     receive() external pure {}
 
@@ -358,6 +375,13 @@ contract CasinoDebot is Debot, DError {
         param0 = m_casino;
     }
 
+    function parseResBody() public view accept returns (uint8 param0, uint128 param1) {
+        
+        param0 = m_lastCode;
+        param1 = m_lastComment;
+        
+    }
+
     // function bet(uint128 value, uint8 number) public view onlyOwner {
     //     ICasino(m_casino).singleBet{value: value}(number);
     // }
@@ -400,43 +424,48 @@ contract CasinoDebot is Debot, DError {
 
     function sendSubmitMsgBetDozen() public accept view returns (address dest, TvmCell body) {
 
+        dest = m_target;
+
+        body = tvm.encodeBody(ICasinoClient.betDozen, m_BetValue, m_numberBetDozen);
         // body = tvm.encodeBody(ICasino.singleBet, m_numberBetSing);
         // ICasino(m_casino).dozenBet{value: m_BetValue}(m_numberBetDozen);
         //ICasino(m_casino).dozenBet{value: value}(number); 
-        ICasinoClient(m_casino).betDozen(m_BetValue, m_numberBetDozen);
+        // ICasinoClient(m_casino).betDozen(m_BetValue, m_numberBetDozen);
     }
 
     function sendSubmitMsgBetColumn() public accept view returns (address dest, TvmCell body) {
 
-        body = tvm.encodeBody(ICasino.singleBet, m_numberBetColumn);
-        ICasino(m_casino).columnBet{value: m_BetValue}(m_numberBetColumn);
-        // ICasino(m_casino).columnBet{value: value}(number);
+        dest = m_target;
+
+        body = tvm.encodeBody(ICasinoClient.betColumn, m_BetValue, m_numberBetDozen);
+
     }
 
     function sendSubmitMsgBetGreatSmall() public accept view returns (address dest, TvmCell body) {
 
+        dest = m_target;
+        body = tvm.encodeBody(ICasinoClient.betGreatSmall, m_BetValue, m_numberBetGS);
         // body = tvm.encodeBody(ICasino.singleBet, m_numberBetGS);
-        ICasino(m_casino).greatSmallBet{value: m_BetValue}(m_numberBetGS);
+        // ICasino(m_casino).greatSmallBet{value: m_BetValue}(m_numberBetGS);
         
         // ICasino(m_casino).greatSmallBet{value: value}(isGreat);
     }
 
     function sendSubmitMsgBetParity() public accept view returns (address dest, TvmCell body) {
 
+        dest = m_target;
+
+        body = tvm.encodeBody(ICasinoClient.betParity, m_BetValue, m_numberBetParity);
         // body = tvm.encodeBody(ICasino.singleBet, m_numberBetParity);
-        ICasino(m_casino).parityBet{value: m_BetValue}(m_numberBetParity);
+        // ICasino(m_casino).parityBet{value: m_BetValue}();
         // ICasino(m_casino).parityBet{value: value}(isEven);
     }
 
     function sendSubmitMsgBetColor() public accept view returns (address dest, TvmCell body) {
-        // dest = m_target.get();
+
         dest = m_target;
 
-        // body = tvm.encodeBody(ICasino.singleBet, m_numberBetColor);//Casino.singleBet m_casino, ICasino.singleBet, m_casino, m_numberBetSing,  m_BetValue
-        // ICasino(msg.sender).singleBet{value: m_BetValue}(m_numberBetSing);
-        ICasino(dest).colorBet{value: m_BetValue}(m_numberBetColor);
-        // ICasino(m_casino).colorBet{value: value}(isRed);
-        // betColor(uint128 value, bool isRed) 
+        body = tvm.encodeBody(ICasinoClient.betColor, m_BetValue, m_numberBetColor);
 
     }
            
