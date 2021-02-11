@@ -1,0 +1,56 @@
+{
+	"ABI version": 2,
+	"header": ["time", "expire"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+				{"name":"casino","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "returnSeed",
+			"inputs": [
+				{"name":"seed","type":"uint256"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "updateSeed",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "withdrawBenefits",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "replenishCasino",
+			"inputs": [
+				{"name":"value","type":"uint128"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "m_casinoSeed",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"m_casinoSeed","type":"uint256"}
+			]
+		}
+	],
+	"data": [
+	],
+	"events": [
+	]
+}

@@ -55,15 +55,6 @@
 			]
 		},
 		{
-			"name": "receiveAnswer",
-			"inputs": [
-				{"name":"code","type":"uint8"},
-				{"name":"comment","type":"uint128"}
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "getValInner",
 			"inputs": [
 			],

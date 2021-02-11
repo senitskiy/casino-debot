@@ -1,0 +1,176 @@
+===========Casino.abi.json============
+Seed phrase: "memory again tattoo silver solid light steak name video slam sword sort"
+Raw address: 3c8045f1b815bebe42e4531c5e0585dfe675e4bee9b2822be7f36ccc83ba4ec1
+{"public": "deb37cc2b68926d6c0629b9edb789ec8392f6bb38ad28c93542ebd10dae9d5b0","secret": "66174164e0776c9c186d03a8711b02b31295ae46a016d83bacfea9db4797fb8c"}
+=====================================================================================
+"burger actor unusual live curtain penalty pet image cup crew easily capital"
+0:9a00bf5de1311dfb4f10e01766874606430cf0ca8b34038719991e917be9b5d8
+=====================================================================================
+
+colorBet
+    ../tonos-cli call 0:3c8045f1b815bebe42e4531c5e0585dfe675e4bee9b2822be7f36ccc83ba4ec1 colorBet '{"isRed":"true"}' --sign Casino.keys.json --abi Casino.abi.json
+
+withdrawBenefits
+    ../tonos-cli call 0:3c8045f1b815bebe42e4531c5e0585dfe675e4bee9b2822be7f36ccc83ba4ec1 withdrawBenefits '{}' --sign Casino.keys.json --abi Casino.abi.json
+    Succeeded.
+
+getSeed    
+    ../tonos-cli call 0:3c8045f1b815bebe42e4531c5e0585dfe675e4bee9b2822be7f36ccc83ba4ec1 getSeed '{}' --sign Casino.keys.json --abi Casino.abi.json
+
+    receiveFunds
+        ../tonos-cli call 0:3c8045f1b815bebe42e4531c5e0585dfe675e4bee9b2822be7f36ccc83ba4ec1 receiveFunds '{}' --sign Casino.keys.json --abi Casino.abi.json
+
+m_minimalBalance
+    ../tonos-cli run 0:3c8045f1b815bebe42e4531c5e0585dfe675e4bee9b2822be7f36ccc83ba4ec1 m_minimalBalance '{}' --abi Casino.abi.json
+    ../tonos-cli call 0:3c8045f1b815bebe42e4531c5e0585dfe675e4bee9b2822be7f36ccc83ba4ec1 m_minimalBalance '{"casinoAssurance\":100000000000}' --sign Casino.keys.json --abi Casino.abi.json
+
+m_minimalBet
+    ../tonos-cli run 0:3c8045f1b815bebe42e4531c5e0585dfe675e4bee9b2822be7f36ccc83ba4ec1 m_minimalBet '{}' --abi Casino.abi.json
+
+m_ownerWallet
+    ../tonos-cli call 0:3c8045f1b815bebe42e4531c5e0585dfe675e4bee9b2822be7f36ccc83ba4ec1 m_ownerWallet '{}' --abi Casino.abi.json
+
+======================================
+===============CasinoClient===================================================
+"dune powder stuff until pear vintage guide remove coast else either supply"
+0:95c4b37cfbfa56e12c68dd2da82f5841b92c188ee3baa6516175733aa4192bc7
+{"public":"c596c2363d82fd805adca193320afb6a025b69efc29e026a76fae29eba3c37ed","secret":"95881018cadb94a4b141303e2e63aac09ac054753338d000b521c323b360a388"}
+===============================================================================
+"next category blush trend apple sleep neck capital wash reduce addict basic"
+0:ca132a31585f50ade77738f59926214110e7b9c6d47b7cba8efe05139c1f6169
+{"public":"8685ec291f394389fa14f6a282d1cfb191563e07a8f81fada29a7cd2b3efb885","secret":"b4b64f454399addd71fdf49de2e5947139cd2fa127904cdaefbd74cd79f962ac"}
+==================================================================================
+"place ring bid chunk enable arrive undo isolate void win thrive vast"
+0:b0e5b9e6532051493ce2e680f02cfcbcc0d4cdd48bec36d00867599477199370
+{"public":"f692e7c1295357645ede3d7b377c7e8c7bc0342c78be33ceb466275d17cb876d","secret":"287b31e75849444055788ed655b5306153729aaa89817b98c5bc93cfa98ecc5a"}
+================================================================================
+Seed phrase: "motor explain mirror heart script arrange brief radar fancy excite put great"
+Raw address: 0:d94cd40b995b238104f8c748f4d3795b8a332cc3f17d07a24fcc6beeacea7338
+================================================================================
+getVal    
+    ../tonos-cli run 0:d94cd40b995b238104f8c748f4d3795b8a332cc3f17d07a24fcc6beeacea7338 getVal '{}' --abi CasinoClient.abi.json
+
+setCasino
+    ../tonos-cli call 0:d94cd40b995b238104f8c748f4d3795b8a332cc3f17d07a24fcc6beeacea7338 setCasino '{"casino":"0:9a00bf5de1311dfb4f10e01766874606430cf0ca8b34038719991e917be9b5d8"}' --sign CasinoClient.keys.json --abi CasinoClient.abi.json
+        Succeeded.          
+
+receiveAnswer
+    ../tonos-cli call 0:d94cd40b995b238104f8c748f4d3795b8a332cc3f17d07a24fcc6beeacea7338 receiveAnswer '{"code":"5","comment":"0"}' --sign old_CasinoClient.keys.json --abi CasinoClient.abi.json
+    ../tonos-cli call 0:d94cd40b995b238104f8c748f4d3795b8a332cc3f17d07a24fcc6beeacea7338 receiveAnswer '{"code":"5","comment":"0"}' --sign CasinoClient.keys.json --abi CasinoClient.abi.json
+
+m_lastCode
+    ../tonos-cli call 0:d94cd40b995b238104f8c748f4d3795b8a332cc3f17d07a24fcc6beeacea7338 m_lastCode '{}' --sign CasinoClient.keys.json --abi CasinoClient.abi.json
+
+bet
+    ../tonos-cli call 0:d94cd40b995b238104f8c748f4d3795b8a332cc3f17d07a24fcc6beeacea7338 bet '{"value":"1000000000","number":"30"}' --sign CasinoClient.keys.json --abi CasinoClient.abi.json
+    Succeeded.
+
+betDozen(uint128 value, uint8 number)
+    ../tonos-cli call 0:d94cd40b995b238104f8c748f4d3795b8a332cc3f17d07a24fcc6beeacea7338 betDozen '{"value":"1000000000","number":"30"}' --sign CasinoClient.keys.json --abi CasinoClient.abi.json
+
+
+
+
+
+betDozen(uint128 value, uint8 number)    
+    ../tonos-cli call 0:95c4b37cfbfa56e12c68dd2da82f5841b92c188ee3baa6516175733aa4192bc7 betDozen '{"value":"1000000000","number":"3"}' --sign old_CasinoClient.keys.json --abi CasinoClient.abi.json
+
+
+
+=================================================
+CasinoOwner.abi.json
+=============================================
+Seed phrase: "display fan icon example estate female agent scale syrup drum broken degree"
+Raw address: 0:0dbe35788f90afbc94100b77b31ed6ffa78c5de2dd0bd86535ae1709eb2d8727
+===================================================================================
+Seed phrase: "floor pioneer throw desk ladder cricket remove grief taste trade garbage struggle"
+Raw address: 0:49f2b92f1e37e56ea25212e97d715e0d214aff97f7d2271754282777465d7900
+======================================================================================
+Seed phrase: "drip crop gap glad eager cry alarm shaft bridge guide body fish"
+Raw address: 0:3b19ac2fccb1c6823be554ec8d8f7afbf776bb3b6dcdf543de30e4dd6ec8199e
+
+constructor  
+    ../tonos-cli call 0:3b19ac2fccb1c6823be554ec8d8f7afbf776bb3b6dcdf543de30e4dd6ec8199e withdrawBenefits {} --sign CasinoOwner.keys.json --abi CasinoOwner.abi.json
+
+withdrawBenefits
+    ../tonos-cli call 0:3b19ac2fccb1c6823be554ec8d8f7afbf776bb3b6dcdf543de30e4dd6ec8199e withdrawBenefits {} --sign CasinoOwner.keys.json --abi CasinoOwner.abi.json
+
+    ../tonos-cli call 0:3b19ac2fccb1c6823be554ec8d8f7afbf776bb3b6dcdf543de30e4dd6ec8199e withdrawBenefits {} --sign CasinoOwner.keys.json --abi CasinoOwner.abi.json
+
+
+returnSeed
+    ../tonos-cli call 0:3b19ac2fccb1c6823be554ec8d8f7afbf776bb3b6dcdf543de30e4dd6ec8199e returnSeed '{"seed":"display fan icon example estate female agent scale syrup drum broken degree"}' --sign CasinoOwner.keys.json --abi CasinoOwner.abi.json
+
+    ../tonos-cli call 0:3b19ac2fccb1c6823be554ec8d8f7afbf776bb3b6dcdf543de30e4dd6ec8199e returnSeed '{"seed":"display fan icon example estate female agent scale syrup drum broken degree"}' --sign CasinoOwner.keys.json --abi CasinoOwner.abi.json
+
+updateSeed
+    ../tonos-cli call 0:3b19ac2fccb1c6823be554ec8d8f7afbf776bb3b6dcdf543de30e4dd6ec8199e updateSeed '{}' --sign CasinoOwner.keys.json --abi CasinoOwner.abi.json
+
+replenishCasino
+    ../tonos-cli call 0:3b19ac2fccb1c6823be554ec8d8f7afbf776bb3b6dcdf543de30e4dd6ec8199e replenishCasino '{"value":"7000000000000"}' --sign CasinoOwner.keys.json --abi CasinoOwner.abi.json
+    Succeeded.
+
+m_casinoSeed
+    ../tonos-cli call 0:3b19ac2fccb1c6823be554ec8d8f7afbf776bb3b6dcdf543de30e4dd6ec8199e m_casinoSeed '{}' --sign CasinoOwner.keys.json --abi CasinoOwner.abi.json
+    507
+
+
+
+
+
+    deploy
+===================================================           
+../tonos-cli deploy CasinoClient.tvc "{\"casino\":\"0:9a00bf5de1311dfb4f10e01766874606430cf0ca8b34038719991e917be9b5d8\"}" --sign CasinoClient.keys.json --abi CasinoClient.abi.json       
+      
+../tonos-cli deploy CasinoOwner.tvc "{\"casino\":\"0:9a00bf5de1311dfb4f10e01766874606430cf0ca8b34038719991e917be9b5d8\"}" --sign CasinoOwner.keys.json --abi CasinoOwner.abi.json      
+        
+../tonos-cli deploy Casino.tvc "{\"casinoAssurance\":1000000000000,\"minimalBet\":1000000000,\"ownerWallet\":\"0:3b19ac2fccb1c6823be554ec8d8f7afbf776bb3b6dcdf543de30e4dd6ec8199e\"}" --sign Casino.keys.json --abi Casino.abi.json
+
+casinoAssurance,
+        uint128 minimalBet,
+        address ownerWallet
+        
+        
+../tonos-cli run 0:95c4b37cfbfa56e12c68dd2da82f5841b92c188ee3baa6516175733aa4192bc7 betColor {				{"name":"value","type":"uint128"},
+				{"name":"isRed","type":"bool"}} --abi CasinoClient.abi.json        
+				
+				
+    ../tonos-cli call 0:0dbe35788f90afbc94100b77b31ed6ffa78c5de2dd0bd86535ae1709eb2d8727 sendTransaction '{"dest":"0:f9a5517af619a16d1615d0e24ec3fb4ee8f9944cfd67610ce6a355090680fa94", "value":6189000000000, "bounce":true}' --abi CasinoOwner.abi.json --sign CasinoOwner.keys.json				
+				
+				
+../solc CasinoClient.sol      
+../tvm_linker compile CasinoClient.code -o ./CasinoClient.tvc -o ./CasinoClient.tvc --lib ../stdlib_sol.tvm
+../tonos-cli genaddr CasinoClient.tvc CasinoClient.abi.json --genkey CasinoClient.keys.json
+
+../solc Casino.sol
+../tvm_linker compile Casino.code --abi-json ./Casino.abi.json -o ./Casino.tvc --lib ../stdlib_sol.tvm
+../tonos-cli genaddr Casino.tvc Casino.abi.json --genkey Casino.keys.json
+
+../solc CasinoOwner.sol
+../tvm_linker compile CasinoOwner.code --abi-json ./CasinoOwner.abi.json -o ./CasinoOwner.tvc --lib ../stdlib_sol.tvm
+../tonos-cli genaddr CasinoOwner.tvc CasinoOwner.abi.json --genkey CasinoOwner.keys.json
+
+
+
+../solc CasinoDebot.sol 
+../tvm_linker compile CasinoDebot.code --abi-json ./CasinoDebot.abi.json -o ./CasinoDebot.tvc --lib ../stdlib_sol.tvm
+../tonos-cli genaddr CasinoDebot.tvc CasinoDebot.abi.json --genkey CasinoDebot.keys.json
+
+Seed phrase: "property image finger spread sustain pear umbrella rabbit scene catch little age"
+
+Raw address: 0:fa29986308d451b37cf7c568967c45e9dbdeca066f32d107641107b08a206478
+
+
+
+
+smc_abi=$(cat CasinoDebot.abi.json | xxd -ps -c 20000)
+debot_abi=$(cat Casino.abi.json | xxd -ps -c 20000)
+zero_address=0:0000000000000000000000000000000000000000000000000000000000000000
+
+../tonos-cli deploy CasinoDebot.tvc "{\"options\":0,\"debotAbi\":\"\",\"targetAddr\":\"$zero_address\",\"targetAbi\":\"\"}" --sign CasinoDebot.keys.json --abi CasinoDebot.abi.json
+
+../tonos-cli call 0:fa29986308d451b37cf7c568967c45e9dbdeca066f32d107641107b08a206478 setABI "{\"dabi\":\"$debot_abi\"}" --sign CasinoDebot.keys.json --abi CasinoDebot.abi.json
+
+../tonos-cli call 0:fa29986308d451b37cf7c568967c45e9dbdeca066f32d107641107b08a206478 setTargetABI "{\"tabi\":\"$smc_abi\"}" --sign CasinoDebot.keys.json --abi CasinoDebot.abi.json
+
+../tonos-cli debot fetch 0:fa29986308d451b37cf7c568967c45e9dbdeca066f32d107641107b08a206478

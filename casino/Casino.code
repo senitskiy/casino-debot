@@ -1,0 +1,2400 @@
+.globl	constructor
+.public	constructor
+.type	constructor, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7_with_init_storage$
+}
+IF
+;; constructor protection
+GETGLOB 6
+THROWIF 51
+PUSHINT 1
+SETGLOB 6
+;; end constructor protection
+; Decode input parameters
+; Decode casinoAssurance
+LDU 128
+; Decode minimalBet
+LDU 128
+; Decode ownerWallet
+LDMSGADDRQ
+PUSHCONT {
+	;; load next cell
+	LDREF
+	ENDS
+	CTOS
+	LDMSGADDR
+}
+IFNOT
+ENDS
+;; param: casinoAssurance
+;; param: minimalBet
+;; param: ownerWallet
+; constructor Casino
+GETGLOB 2
+NEQINT 0
+THROWIFNOT 101
+GETGLOB 5
+DUP
+ISNULL
+PUSHCONT {
+	DROP
+	PUSHINT 0
+}
+IF
+GETGLOB 2
+;; ==
+EQUAL
+THROWIFNOT 102
+;; push identifier casinoAssurance
+PUSH S2
+PUSHINT 35
+;; push identifier minimalBet
+PUSH S3
+;; *
+MUL
+UFITS 128
+;; >=
+GEQ
+THROWIFNOT 103
+ACCEPT
+; expValue
+; end expValue
+;; push identifier casinoAssurance
+PUSH S2
+; colValue
+SETGLOB 10
+; end colValue
+; expValue
+; end expValue
+;; push identifier minimalBet
+PUSH S1
+; colValue
+SETGLOB 11
+; end colValue
+; expValue
+; end expValue
+;; push identifier ownerWallet
+DUP
+; colValue
+SETGLOB 12
+; end colValue
+BLKDROP 3
+; end constructor Casino
+CALL $c7_to_c4$
+TRUE
+SETGLOB 7
+
+.globl	withdrawBenefits
+.public	withdrawBenefits
+.type	withdrawBenefits, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+ENDS
+; modifier onlyOwner
+GETGLOB 5
+DUP
+ISNULL
+PUSHCONT {
+	DROP
+	PUSHINT 0
+}
+IF
+GETGLOB 2
+;; ==
+EQUAL
+;; short-circuiting ||
+DUP
+PUSHCONT {
+	DROP
+	;; get member sender
+	GETGLOB 9
+	;; push identifier m_ownerWallet
+	GETGLOB 12
+	SDEQ
+}
+IFNOT
+THROWIFNOT 102
+ACCEPT
+; function withdrawBenefits
+;; push identifier m_minimalBalance
+GETGLOB 10
+;; decl: minBalance
+;; if
+;; get member balance
+GETPARAM 7
+INDEX 0
+;; push identifier minBalance
+PUSH S1
+;; <
+LESS
+PUSHCONT {
+	;; emit TooLowBalance
+	NEWC
+	PUSHSLICE xc0000000000000000000000002_
+	STSLICER
+	STSLICECONST 0
+	STSLICECONST 0
+	STSLICECONST x35a2bf07
+	;; replenishment
+	;; push identifier minBalance
+	PUSH S1
+	;; get member balance
+	GETPARAM 7
+	INDEX 0
+	;; -
+	SUB
+	UFITS 128
+	STUR 256
+	ENDC
+	PUSHINT 1
+	SENDRAWMSG
+	GETGLOB 1
+	ISNULL
+	PUSHCONT {
+		CALL $c7_to_c4$
+	}
+	IFNOT
+	THROW 0
+}
+IF
+;; end if
+;; push identifier m_minimalBalance
+GETGLOB 10
+PUSHINT 0
+RAWRESERVE
+;; transfer()
+;; push identifier m_ownerWallet
+GETGLOB 12
+NEWC
+STSLICECONST x42_
+STSLICE
+PUSHINT 109
+STZEROES
+STSLICECONST 0
+STSLICECONST 0
+ENDC
+PUSHINT 128
+SENDRAWMSG
+DROP
+; end function withdrawBenefits
+; end modifier onlyOwner
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	withdrawBenefits_internal
+.type	withdrawBenefits_internal, @function
+; modifier onlyOwner
+GETGLOB 5
+DUP
+ISNULL
+PUSHCONT {
+	DROP
+	PUSHINT 0
+}
+IF
+GETGLOB 2
+;; ==
+EQUAL
+;; short-circuiting ||
+DUP
+PUSHCONT {
+	DROP
+	;; get member sender
+	GETGLOB 9
+	;; push identifier m_ownerWallet
+	GETGLOB 12
+	SDEQ
+}
+IFNOT
+THROWIFNOT 102
+ACCEPT
+; function withdrawBenefits
+;; push identifier m_minimalBalance
+GETGLOB 10
+;; decl: minBalance
+;; if
+;; get member balance
+GETPARAM 7
+INDEX 0
+;; push identifier minBalance
+PUSH S1
+;; <
+LESS
+PUSHCONT {
+	;; emit TooLowBalance
+	NEWC
+	PUSHSLICE xc0000000000000000000000002_
+	STSLICER
+	STSLICECONST 0
+	STSLICECONST 0
+	STSLICECONST x35a2bf07
+	;; replenishment
+	;; push identifier minBalance
+	PUSH S1
+	;; get member balance
+	GETPARAM 7
+	INDEX 0
+	;; -
+	SUB
+	UFITS 128
+	STUR 256
+	ENDC
+	PUSHINT 1
+	SENDRAWMSG
+	GETGLOB 1
+	ISNULL
+	PUSHCONT {
+		CALL $c7_to_c4$
+	}
+	IFNOT
+	THROW 0
+}
+IF
+;; end if
+;; push identifier m_minimalBalance
+GETGLOB 10
+PUSHINT 0
+RAWRESERVE
+;; transfer()
+;; push identifier m_ownerWallet
+GETGLOB 12
+NEWC
+STSLICECONST x42_
+STSLICE
+PUSHINT 109
+STZEROES
+STSLICECONST 0
+STSLICECONST 0
+ENDC
+PUSHINT 128
+SENDRAWMSG
+DROP
+; end function withdrawBenefits
+; end modifier onlyOwner
+
+.globl	getSeed
+.public	getSeed
+.type	getSeed, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+ENDS
+; modifier onlyOwner
+GETGLOB 5
+DUP
+ISNULL
+PUSHCONT {
+	DROP
+	PUSHINT 0
+}
+IF
+GETGLOB 2
+;; ==
+EQUAL
+;; short-circuiting ||
+DUP
+PUSHCONT {
+	DROP
+	;; get member sender
+	GETGLOB 9
+	;; push identifier m_ownerWallet
+	GETGLOB 12
+	SDEQ
+}
+IFNOT
+THROWIFNOT 102
+ACCEPT
+; function getSeed
+RANDSEED
+;; decl: seed
+;; Remote call ICasinoOwner.returnSeed
+;; push identifier m_ownerWallet
+GETGLOB 12
+NEWC
+STSLICECONST x62_
+STSLICE
+PUSHSLICE x3989680000000000000000000000000004_
+STSLICER
+STSLICECONST 0
+STSLICECONST 0
+STSLICECONST x20245b9e
+;; seed
+;; push identifier seed
+PUSH S1
+STUR 256
+ENDC
+PUSHINT 1
+SENDRAWMSG
+DROP
+; end function getSeed
+; end modifier onlyOwner
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	getSeed_internal
+.type	getSeed_internal, @function
+; modifier onlyOwner
+GETGLOB 5
+DUP
+ISNULL
+PUSHCONT {
+	DROP
+	PUSHINT 0
+}
+IF
+GETGLOB 2
+;; ==
+EQUAL
+;; short-circuiting ||
+DUP
+PUSHCONT {
+	DROP
+	;; get member sender
+	GETGLOB 9
+	;; push identifier m_ownerWallet
+	GETGLOB 12
+	SDEQ
+}
+IFNOT
+THROWIFNOT 102
+ACCEPT
+; function getSeed
+RANDSEED
+;; decl: seed
+;; Remote call ICasinoOwner.returnSeed
+;; push identifier m_ownerWallet
+GETGLOB 12
+NEWC
+STSLICECONST x62_
+STSLICE
+PUSHSLICE x3989680000000000000000000000000004_
+STSLICER
+STSLICECONST 0
+STSLICECONST 0
+STSLICECONST x20245b9e
+;; seed
+;; push identifier seed
+PUSH S1
+STUR 256
+ENDC
+PUSHINT 1
+SENDRAWMSG
+DROP
+; end function getSeed
+; end modifier onlyOwner
+
+.globl	sendAnswer_internal
+.type	sendAnswer_internal, @function
+;; param: code
+;; param: comment
+;; param: returnChange
+; function sendAnswer
+;; if
+;; push identifier returnChange
+DUP
+PUSHCONT {
+	;; Remote call ICasinoClient.receiveAnswer
+	;; get member sender
+	GETGLOB 9
+	FALSE
+	NEWC
+	STSLICECONST x6_
+	STI 1
+	PUSHINT 3
+	STZEROES
+	STSLICE
+	PUSHINT 109
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	STSLICECONST x40673d6f
+	;; code
+	;; push identifier code
+	PUSH S3
+	STUR 8
+	;; comment
+	;; push identifier comment
+	PUSH S2
+	STUR 128
+	ENDC
+	PUSHINT 64
+	SENDRAWMSG
+}
+PUSHCONT {
+	;; Remote call ICasinoClient.receiveAnswer
+	;; get member sender
+	GETGLOB 9
+	FALSE
+	NEWC
+	STSLICECONST x6_
+	STI 1
+	PUSHINT 3
+	STZEROES
+	STSLICE
+	PUSHSLICE x3989680000000000000000000000000004_
+	STSLICER
+	STSLICECONST 0
+	STSLICECONST 0
+	STSLICECONST x40673d6f
+	;; code
+	;; push identifier code
+	PUSH S3
+	STUR 8
+	;; comment
+	;; push identifier comment
+	PUSH S2
+	STUR 128
+	ENDC
+	PUSHINT 1
+	SENDRAWMSG
+}
+IFELSE
+;; end if
+BLKDROP 3
+; end function sendAnswer
+
+.globl	checkBet_internal
+.type	checkBet_internal, @function
+;; param: bet
+;; param: payoutMultiplier
+;; param: minBalance
+; function checkBet
+;; get member balance
+GETPARAM 7
+INDEX 0
+;; decl: balance
+;; if
+;; push identifier balance
+DUP
+;; push identifier minBalance
+PUSH S2
+;; <
+LESS
+PUSHCONT {
+	PUSHINT 1
+	PUSHINT 0
+	TRUE
+	CALL $sendAnswer_internal$
+	;; emit TooLowBalance
+	NEWC
+	PUSHSLICE xc0000000000000000000000002_
+	STSLICER
+	STSLICECONST 0
+	STSLICECONST 0
+	STSLICECONST x35a2bf07
+	;; replenishment
+	;; push identifier minBalance
+	PUSH S2
+	;; push identifier balance
+	PUSH S2
+	;; -
+	SUB
+	UFITS 128
+	STUR 256
+	ENDC
+	PUSHINT 1
+	SENDRAWMSG
+	;; return
+	BLKDROP 4
+	FALSE
+	RET
+}
+IFJMP
+;; end if
+;; push identifier m_minimalBet
+GETGLOB 11
+;; decl: minBet
+;; if
+;; push identifier bet
+PUSH S4
+;; push identifier minBet
+PUSH S1
+;; <
+LESS
+PUSHCONT {
+	PUSHINT 2
+	;; push identifier minBet
+	PUSH S1
+	TRUE
+	CALL $sendAnswer_internal$
+	;; return
+	BLKDROP 5
+	FALSE
+	RET
+}
+IFJMP
+;; end if
+;; push identifier minBalance
+PUSH S2
+;; push identifier payoutMultiplier
+PUSH S4
+;; /
+DIV
+;; decl: maxBet
+;; if
+;; push identifier bet
+PUSH S5
+;; push identifier maxBet
+PUSH S1
+;; >
+GREATER
+PUSHCONT {
+	PUSHINT 3
+	;; push identifier maxBet
+	PUSH S1
+	TRUE
+	CALL $sendAnswer_internal$
+	;; return
+	BLKDROP 6
+	FALSE
+	RET
+}
+IFJMP
+;; end if
+;; return
+BLKDROP 6
+TRUE
+; end function checkBet
+
+.globl	finishBet_internal
+.type	finishBet_internal, @function
+;; param: hasWon
+;; param: payout
+;; param: rouletteNumber
+;; param: minBalance
+; function finishBet
+;; if
+;; push identifier hasWon
+PUSH S3
+PUSHCONT {
+	;; if
+	;; get member balance
+	GETPARAM 7
+	INDEX 0
+	;; push identifier payout
+	PUSH S3
+	;; -
+	SUB
+	UFITS 128
+	;; push identifier minBalance
+	PUSH S1
+	;; <
+	LESS
+	PUSHCONT {
+		;; emit TooLowBalance
+		NEWC
+		PUSHSLICE xc0000000000000000000000002_
+		STSLICER
+		STSLICECONST 0
+		STSLICECONST 0
+		STSLICECONST x35a2bf07
+		;; replenishment
+		;; push identifier minBalance
+		PUSH S1
+		;; get member balance
+		GETPARAM 7
+		INDEX 0
+		;; -
+		SUB
+		UFITS 128
+		;; push identifier payout
+		PUSH S4
+		;; +
+		ADD
+		UFITS 128
+		STUR 256
+		ENDC
+		PUSHINT 1
+		SENDRAWMSG
+	}
+	IF
+	;; end if
+	;; transfer()
+	;; push identifier payout
+	PUSH S2
+	;; get member sender
+	GETGLOB 9
+	NEWC
+	STSLICECONST x42_
+	STSLICE
+	SWAP
+	STGRAMS
+	PUSHINT 105
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	ENDC
+	PUSHINT 1
+	SENDRAWMSG
+	PUSHINT 0
+	PUSHINT 0
+	FALSE
+	CALL $sendAnswer_internal$
+}
+PUSHCONT {
+	PUSHINT 4
+	;; push identifier rouletteNumber
+	PUSH S2
+	FALSE
+	CALL $sendAnswer_internal$
+}
+IFELSE
+;; end if
+BLKDROP 4
+; end function finishBet
+
+.globl	singleBet
+.public	singleBet
+.type	singleBet, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+; Decode number
+LDU 8
+ENDS
+;; param: number
+; function singleBet
+PUSHCONT {
+	;; get member value
+	CALL $message_balance_macro$
+	;; decl: bet
+	PUSHINT 36
+	;; decl: payoutMultiplier
+	;; push identifier m_minimalBalance
+	GETGLOB 10
+	;; decl: minBalance
+	;; if
+	;; !
+	;; push identifier bet
+	PUSH S2
+	;; push identifier payoutMultiplier
+	PUSH S2
+	;; push identifier minBalance
+	PUSH S2
+	CALL $checkBet_internal$
+	PUSHCONT {
+		;; return
+		BLKDROP 4
+		RET
+	}
+	IFNOTJMP
+	;; end if
+	;; if
+	;; push identifier number
+	PUSH S3
+	GTINT 36
+	PUSHCONT {
+		PUSHINT 5
+		PUSHINT 0
+		TRUE
+		CALL $sendAnswer_internal$
+		;; return
+		BLKDROP 4
+		RET
+	}
+	IFJMP
+	;; end if
+	; function getNumber
+	CALL $reshuffleCasino_internal$
+	PUSHINT 37
+	;; uint8
+	UFITS 8
+	RAND
+	;; decl: number
+	;; return
+	; end function getNumber
+	;; decl: rouletteNumber
+	;; push identifier rouletteNumber
+	DUP
+	;; push identifier number
+	PUSH S5
+	;; ==
+	EQUAL
+	;; push identifier bet
+	PUSH S4
+	;; push identifier payoutMultiplier
+	PUSH S4
+	;; *
+	MUL
+	UFITS 128
+	;; push identifier rouletteNumber
+	PUSH S2
+	;; push identifier minBalance
+	PUSH S4
+	CALL $finishBet_internal$
+	BLKDROP 5
+}
+CALLX
+; end function singleBet
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	singleBet_internal
+.type	singleBet_internal, @function
+;; param: number
+; function singleBet
+;; get member value
+CALL $message_balance_macro$
+;; decl: bet
+PUSHINT 36
+;; decl: payoutMultiplier
+;; push identifier m_minimalBalance
+GETGLOB 10
+;; decl: minBalance
+;; if
+;; !
+;; push identifier bet
+PUSH S2
+;; push identifier payoutMultiplier
+PUSH S2
+;; push identifier minBalance
+PUSH S2
+CALL $checkBet_internal$
+PUSHCONT {
+	;; return
+	BLKDROP 4
+	RET
+}
+IFNOTJMP
+;; end if
+;; if
+;; push identifier number
+PUSH S3
+GTINT 36
+PUSHCONT {
+	PUSHINT 5
+	PUSHINT 0
+	TRUE
+	CALL $sendAnswer_internal$
+	;; return
+	BLKDROP 4
+	RET
+}
+IFJMP
+;; end if
+; function getNumber
+CALL $reshuffleCasino_internal$
+PUSHINT 37
+;; uint8
+UFITS 8
+RAND
+;; decl: number
+;; return
+; end function getNumber
+;; decl: rouletteNumber
+;; push identifier rouletteNumber
+DUP
+;; push identifier number
+PUSH S5
+;; ==
+EQUAL
+;; push identifier bet
+PUSH S4
+;; push identifier payoutMultiplier
+PUSH S4
+;; *
+MUL
+UFITS 128
+;; push identifier rouletteNumber
+PUSH S2
+;; push identifier minBalance
+PUSH S4
+CALL $finishBet_internal$
+BLKDROP 5
+; end function singleBet
+
+.globl	dozenBet
+.public	dozenBet
+.type	dozenBet, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+; Decode number
+LDU 8
+ENDS
+;; param: number
+; function dozenBet
+PUSHCONT {
+	;; get member value
+	CALL $message_balance_macro$
+	;; decl: bet
+	PUSHINT 3
+	;; decl: payoutMultiplier
+	;; push identifier m_minimalBalance
+	GETGLOB 10
+	;; decl: minBalance
+	;; if
+	;; !
+	;; push identifier bet
+	PUSH S2
+	;; push identifier payoutMultiplier
+	PUSH S2
+	;; push identifier minBalance
+	PUSH S2
+	CALL $checkBet_internal$
+	PUSHCONT {
+		;; return
+		BLKDROP 4
+		RET
+	}
+	IFNOTJMP
+	;; end if
+	;; if
+	;; push identifier number
+	PUSH S3
+	GTINT 3
+	;; short-circuiting ||
+	DUP
+	PUSHCONT {
+		DROP
+		;; push identifier number
+		PUSH S3
+		EQINT 0
+	}
+	IFNOT
+	PUSHCONT {
+		PUSHINT 5
+		PUSHINT 0
+		TRUE
+		CALL $sendAnswer_internal$
+		;; return
+		BLKDROP 4
+		RET
+	}
+	IFJMP
+	;; end if
+	; function getNumber
+	CALL $reshuffleCasino_internal$
+	PUSHINT 37
+	;; uint8
+	UFITS 8
+	RAND
+	;; decl: number
+	;; return
+	; end function getNumber
+	;; decl: rouletteNumber
+	;; push identifier rouletteNumber
+	DUP
+	PUSHINT 12
+	DIVC
+	;; push identifier number
+	PUSH S5
+	;; ==
+	EQUAL
+	;; decl: hasWon
+	;; push identifier hasWon
+	DUP
+	;; push identifier bet
+	PUSH S5
+	;; push identifier payoutMultiplier
+	PUSH S5
+	;; *
+	MUL
+	UFITS 128
+	;; push identifier rouletteNumber
+	PUSH S3
+	;; push identifier minBalance
+	PUSH S5
+	CALL $finishBet_internal$
+	BLKDROP 6
+}
+CALLX
+; end function dozenBet
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	dozenBet_internal
+.type	dozenBet_internal, @function
+;; param: number
+; function dozenBet
+;; get member value
+CALL $message_balance_macro$
+;; decl: bet
+PUSHINT 3
+;; decl: payoutMultiplier
+;; push identifier m_minimalBalance
+GETGLOB 10
+;; decl: minBalance
+;; if
+;; !
+;; push identifier bet
+PUSH S2
+;; push identifier payoutMultiplier
+PUSH S2
+;; push identifier minBalance
+PUSH S2
+CALL $checkBet_internal$
+PUSHCONT {
+	;; return
+	BLKDROP 4
+	RET
+}
+IFNOTJMP
+;; end if
+;; if
+;; push identifier number
+PUSH S3
+GTINT 3
+;; short-circuiting ||
+DUP
+PUSHCONT {
+	DROP
+	;; push identifier number
+	PUSH S3
+	EQINT 0
+}
+IFNOT
+PUSHCONT {
+	PUSHINT 5
+	PUSHINT 0
+	TRUE
+	CALL $sendAnswer_internal$
+	;; return
+	BLKDROP 4
+	RET
+}
+IFJMP
+;; end if
+; function getNumber
+CALL $reshuffleCasino_internal$
+PUSHINT 37
+;; uint8
+UFITS 8
+RAND
+;; decl: number
+;; return
+; end function getNumber
+;; decl: rouletteNumber
+;; push identifier rouletteNumber
+DUP
+PUSHINT 12
+DIVC
+;; push identifier number
+PUSH S5
+;; ==
+EQUAL
+;; decl: hasWon
+;; push identifier hasWon
+DUP
+;; push identifier bet
+PUSH S5
+;; push identifier payoutMultiplier
+PUSH S5
+;; *
+MUL
+UFITS 128
+;; push identifier rouletteNumber
+PUSH S3
+;; push identifier minBalance
+PUSH S5
+CALL $finishBet_internal$
+BLKDROP 6
+; end function dozenBet
+
+.globl	columnBet
+.public	columnBet
+.type	columnBet, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+; Decode number
+LDU 8
+ENDS
+;; param: number
+; function columnBet
+PUSHCONT {
+	;; get member value
+	CALL $message_balance_macro$
+	;; decl: bet
+	PUSHINT 3
+	;; decl: payoutMultiplier
+	;; push identifier m_minimalBalance
+	GETGLOB 10
+	;; decl: minBalance
+	;; if
+	;; !
+	;; push identifier bet
+	PUSH S2
+	;; push identifier payoutMultiplier
+	PUSH S2
+	;; push identifier minBalance
+	PUSH S2
+	CALL $checkBet_internal$
+	PUSHCONT {
+		;; return
+		BLKDROP 4
+		RET
+	}
+	IFNOTJMP
+	;; end if
+	;; if
+	;; push identifier number
+	PUSH S3
+	GTINT 3
+	;; short-circuiting ||
+	DUP
+	PUSHCONT {
+		DROP
+		;; push identifier number
+		PUSH S3
+		EQINT 0
+	}
+	IFNOT
+	PUSHCONT {
+		PUSHINT 5
+		PUSHINT 0
+		TRUE
+		CALL $sendAnswer_internal$
+		;; return
+		BLKDROP 4
+		RET
+	}
+	IFJMP
+	;; end if
+	; function getNumber
+	CALL $reshuffleCasino_internal$
+	PUSHINT 37
+	;; uint8
+	UFITS 8
+	RAND
+	;; decl: number
+	;; return
+	; end function getNumber
+	;; decl: rouletteNumber
+	;; push identifier rouletteNumber
+	DUP
+	PUSHINT 3
+	;; %
+	MOD
+	;; decl: column
+	;; if
+	;; push identifier column
+	DUP
+	EQINT 0
+	;; short-circuiting &&
+	DUP
+	PUSHCONT {
+		DROP
+		;; push identifier rouletteNumber
+		PUSH S1
+		NEQINT 0
+	}
+	IF
+	PUSHCONT {
+		PUSHINT 3
+		; expValue
+		PUSH S1
+		; end expValue
+		SWAP
+		ADD
+		UFITS 8
+		; colValue
+		NIP
+		; end colValue
+	}
+	IF
+	;; end if
+	;; push identifier column
+	DUP
+	;; push identifier number
+	PUSH S6
+	;; ==
+	EQUAL
+	;; push identifier bet
+	PUSH S5
+	;; push identifier payoutMultiplier
+	PUSH S5
+	;; *
+	MUL
+	UFITS 128
+	;; push identifier rouletteNumber
+	PUSH S3
+	;; push identifier minBalance
+	PUSH S5
+	CALL $finishBet_internal$
+	BLKDROP 6
+}
+CALLX
+; end function columnBet
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	columnBet_internal
+.type	columnBet_internal, @function
+;; param: number
+; function columnBet
+;; get member value
+CALL $message_balance_macro$
+;; decl: bet
+PUSHINT 3
+;; decl: payoutMultiplier
+;; push identifier m_minimalBalance
+GETGLOB 10
+;; decl: minBalance
+;; if
+;; !
+;; push identifier bet
+PUSH S2
+;; push identifier payoutMultiplier
+PUSH S2
+;; push identifier minBalance
+PUSH S2
+CALL $checkBet_internal$
+PUSHCONT {
+	;; return
+	BLKDROP 4
+	RET
+}
+IFNOTJMP
+;; end if
+;; if
+;; push identifier number
+PUSH S3
+GTINT 3
+;; short-circuiting ||
+DUP
+PUSHCONT {
+	DROP
+	;; push identifier number
+	PUSH S3
+	EQINT 0
+}
+IFNOT
+PUSHCONT {
+	PUSHINT 5
+	PUSHINT 0
+	TRUE
+	CALL $sendAnswer_internal$
+	;; return
+	BLKDROP 4
+	RET
+}
+IFJMP
+;; end if
+; function getNumber
+CALL $reshuffleCasino_internal$
+PUSHINT 37
+;; uint8
+UFITS 8
+RAND
+;; decl: number
+;; return
+; end function getNumber
+;; decl: rouletteNumber
+;; push identifier rouletteNumber
+DUP
+PUSHINT 3
+;; %
+MOD
+;; decl: column
+;; if
+;; push identifier column
+DUP
+EQINT 0
+;; short-circuiting &&
+DUP
+PUSHCONT {
+	DROP
+	;; push identifier rouletteNumber
+	PUSH S1
+	NEQINT 0
+}
+IF
+PUSHCONT {
+	PUSHINT 3
+	; expValue
+	PUSH S1
+	; end expValue
+	SWAP
+	ADD
+	UFITS 8
+	; colValue
+	NIP
+	; end colValue
+}
+IF
+;; end if
+;; push identifier column
+DUP
+;; push identifier number
+PUSH S6
+;; ==
+EQUAL
+;; push identifier bet
+PUSH S5
+;; push identifier payoutMultiplier
+PUSH S5
+;; *
+MUL
+UFITS 128
+;; push identifier rouletteNumber
+PUSH S3
+;; push identifier minBalance
+PUSH S5
+CALL $finishBet_internal$
+BLKDROP 6
+; end function columnBet
+
+.globl	greatSmallBet
+.public	greatSmallBet
+.type	greatSmallBet, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+; Decode isGreat
+LDU 8
+ENDS
+;; param: isGreat
+; function greatSmallBet
+PUSHCONT {
+	PUSHINT 0
+	;; decl: isGreatBool
+	;; if
+	;; push identifier isGreat
+	PUSH S1
+	EQINT 1
+	PUSHCONT {
+		; expValue
+		; end expValue
+		TRUE
+		; colValue
+		NIP
+		; end colValue
+	}
+	PUSHCONT {
+		; expValue
+		; end expValue
+		FALSE
+		; colValue
+		NIP
+		; end colValue
+	}
+	IFELSE
+	;; end if
+	;; get member value
+	CALL $message_balance_macro$
+	;; decl: bet
+	PUSHINT 2
+	;; decl: payoutMultiplier
+	;; push identifier m_minimalBalance
+	GETGLOB 10
+	;; decl: minBalance
+	;; if
+	;; !
+	;; push identifier bet
+	PUSH S2
+	;; push identifier payoutMultiplier
+	PUSH S2
+	;; push identifier minBalance
+	PUSH S2
+	CALL $checkBet_internal$
+	PUSHCONT {
+		;; return
+		BLKDROP 5
+		RET
+	}
+	IFNOTJMP
+	;; end if
+	; function getNumber
+	CALL $reshuffleCasino_internal$
+	PUSHINT 37
+	;; uint8
+	UFITS 8
+	RAND
+	;; decl: number
+	;; return
+	; end function getNumber
+	;; decl: rouletteNumber
+	FALSE
+	;; decl: hasWon
+	;; if
+	;; push identifier rouletteNumber
+	PUSH S1
+	PUSHCONT {
+		; expValue
+		; end expValue
+		;; push identifier rouletteNumber
+		PUSH S1
+		PUSHINT 19
+		;; >=
+		GEQ
+		;; push identifier isGreatBool
+		PUSH S6
+		;; ==
+		EQUAL
+		; colValue
+		NIP
+		; end colValue
+	}
+	IF
+	;; end if
+	;; push identifier hasWon
+	DUP
+	;; push identifier bet
+	PUSH S5
+	;; push identifier payoutMultiplier
+	PUSH S5
+	;; *
+	MUL
+	UFITS 128
+	;; push identifier rouletteNumber
+	PUSH S3
+	;; push identifier minBalance
+	PUSH S5
+	CALL $finishBet_internal$
+	BLKDROP 7
+}
+CALLX
+; end function greatSmallBet
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	greatSmallBet_internal
+.type	greatSmallBet_internal, @function
+;; param: isGreat
+; function greatSmallBet
+PUSHINT 0
+;; decl: isGreatBool
+;; if
+;; push identifier isGreat
+PUSH S1
+EQINT 1
+PUSHCONT {
+	; expValue
+	; end expValue
+	TRUE
+	; colValue
+	NIP
+	; end colValue
+}
+PUSHCONT {
+	; expValue
+	; end expValue
+	FALSE
+	; colValue
+	NIP
+	; end colValue
+}
+IFELSE
+;; end if
+;; get member value
+CALL $message_balance_macro$
+;; decl: bet
+PUSHINT 2
+;; decl: payoutMultiplier
+;; push identifier m_minimalBalance
+GETGLOB 10
+;; decl: minBalance
+;; if
+;; !
+;; push identifier bet
+PUSH S2
+;; push identifier payoutMultiplier
+PUSH S2
+;; push identifier minBalance
+PUSH S2
+CALL $checkBet_internal$
+PUSHCONT {
+	;; return
+	BLKDROP 5
+	RET
+}
+IFNOTJMP
+;; end if
+; function getNumber
+CALL $reshuffleCasino_internal$
+PUSHINT 37
+;; uint8
+UFITS 8
+RAND
+;; decl: number
+;; return
+; end function getNumber
+;; decl: rouletteNumber
+FALSE
+;; decl: hasWon
+;; if
+;; push identifier rouletteNumber
+PUSH S1
+PUSHCONT {
+	; expValue
+	; end expValue
+	;; push identifier rouletteNumber
+	PUSH S1
+	PUSHINT 19
+	;; >=
+	GEQ
+	;; push identifier isGreatBool
+	PUSH S6
+	;; ==
+	EQUAL
+	; colValue
+	NIP
+	; end colValue
+}
+IF
+;; end if
+;; push identifier hasWon
+DUP
+;; push identifier bet
+PUSH S5
+;; push identifier payoutMultiplier
+PUSH S5
+;; *
+MUL
+UFITS 128
+;; push identifier rouletteNumber
+PUSH S3
+;; push identifier minBalance
+PUSH S5
+CALL $finishBet_internal$
+BLKDROP 7
+; end function greatSmallBet
+
+.globl	parityBet
+.public	parityBet
+.type	parityBet, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+; Decode isEven
+LDU 8
+ENDS
+;; param: isEven
+; function parityBet
+PUSHCONT {
+	PUSHINT 0
+	;; decl: isEvenBool
+	;; if
+	;; push identifier isEven
+	PUSH S1
+	EQINT 1
+	PUSHCONT {
+		; expValue
+		; end expValue
+		TRUE
+		; colValue
+		NIP
+		; end colValue
+	}
+	PUSHCONT {
+		; expValue
+		; end expValue
+		FALSE
+		; colValue
+		NIP
+		; end colValue
+	}
+	IFELSE
+	;; end if
+	;; get member value
+	CALL $message_balance_macro$
+	;; decl: bet
+	PUSHINT 2
+	;; decl: payoutMultiplier
+	;; push identifier m_minimalBalance
+	GETGLOB 10
+	;; decl: minBalance
+	;; if
+	;; !
+	;; push identifier bet
+	PUSH S2
+	;; push identifier payoutMultiplier
+	PUSH S2
+	;; push identifier minBalance
+	PUSH S2
+	CALL $checkBet_internal$
+	PUSHCONT {
+		;; return
+		BLKDROP 5
+		RET
+	}
+	IFNOTJMP
+	;; end if
+	; function getNumber
+	CALL $reshuffleCasino_internal$
+	PUSHINT 37
+	;; uint8
+	UFITS 8
+	RAND
+	;; decl: number
+	;; return
+	; end function getNumber
+	;; decl: rouletteNumber
+	FALSE
+	;; decl: hasWon
+	;; if
+	;; push identifier rouletteNumber
+	PUSH S1
+	PUSHCONT {
+		; expValue
+		; end expValue
+		;; push identifier rouletteNumber
+		PUSH S1
+		PUSHINT 2
+		;; %
+		MOD
+		EQINT 1
+		;; !
+		;; push identifier isEvenBool
+		PUSH S6
+		NOT
+		;; ==
+		EQUAL
+		; colValue
+		NIP
+		; end colValue
+	}
+	IF
+	;; end if
+	;; push identifier hasWon
+	DUP
+	;; push identifier bet
+	PUSH S5
+	;; push identifier payoutMultiplier
+	PUSH S5
+	;; *
+	MUL
+	UFITS 128
+	;; push identifier rouletteNumber
+	PUSH S3
+	;; push identifier minBalance
+	PUSH S5
+	CALL $finishBet_internal$
+	BLKDROP 7
+}
+CALLX
+; end function parityBet
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	parityBet_internal
+.type	parityBet_internal, @function
+;; param: isEven
+; function parityBet
+PUSHINT 0
+;; decl: isEvenBool
+;; if
+;; push identifier isEven
+PUSH S1
+EQINT 1
+PUSHCONT {
+	; expValue
+	; end expValue
+	TRUE
+	; colValue
+	NIP
+	; end colValue
+}
+PUSHCONT {
+	; expValue
+	; end expValue
+	FALSE
+	; colValue
+	NIP
+	; end colValue
+}
+IFELSE
+;; end if
+;; get member value
+CALL $message_balance_macro$
+;; decl: bet
+PUSHINT 2
+;; decl: payoutMultiplier
+;; push identifier m_minimalBalance
+GETGLOB 10
+;; decl: minBalance
+;; if
+;; !
+;; push identifier bet
+PUSH S2
+;; push identifier payoutMultiplier
+PUSH S2
+;; push identifier minBalance
+PUSH S2
+CALL $checkBet_internal$
+PUSHCONT {
+	;; return
+	BLKDROP 5
+	RET
+}
+IFNOTJMP
+;; end if
+; function getNumber
+CALL $reshuffleCasino_internal$
+PUSHINT 37
+;; uint8
+UFITS 8
+RAND
+;; decl: number
+;; return
+; end function getNumber
+;; decl: rouletteNumber
+FALSE
+;; decl: hasWon
+;; if
+;; push identifier rouletteNumber
+PUSH S1
+PUSHCONT {
+	; expValue
+	; end expValue
+	;; push identifier rouletteNumber
+	PUSH S1
+	PUSHINT 2
+	;; %
+	MOD
+	EQINT 1
+	;; !
+	;; push identifier isEvenBool
+	PUSH S6
+	NOT
+	;; ==
+	EQUAL
+	; colValue
+	NIP
+	; end colValue
+}
+IF
+;; end if
+;; push identifier hasWon
+DUP
+;; push identifier bet
+PUSH S5
+;; push identifier payoutMultiplier
+PUSH S5
+;; *
+MUL
+UFITS 128
+;; push identifier rouletteNumber
+PUSH S3
+;; push identifier minBalance
+PUSH S5
+CALL $finishBet_internal$
+BLKDROP 7
+; end function parityBet
+
+.globl	colorBet
+.public	colorBet
+.type	colorBet, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+; Decode isRed
+LDU 8
+ENDS
+;; param: isRed
+; function colorBet
+PUSHCONT {
+	PUSHINT 0
+	;; decl: isRedBool
+	;; if
+	;; push identifier isRed
+	PUSH S1
+	EQINT 1
+	PUSHCONT {
+		; expValue
+		; end expValue
+		TRUE
+		; colValue
+		NIP
+		; end colValue
+	}
+	PUSHCONT {
+		; expValue
+		; end expValue
+		FALSE
+		; colValue
+		NIP
+		; end colValue
+	}
+	IFELSE
+	;; end if
+	;; get member value
+	CALL $message_balance_macro$
+	;; decl: bet
+	PUSHINT 2
+	;; decl: payoutMultiplier
+	;; push identifier m_minimalBalance
+	GETGLOB 10
+	;; decl: minBalance
+	;; if
+	;; !
+	;; push identifier bet
+	PUSH S2
+	;; push identifier payoutMultiplier
+	PUSH S2
+	;; push identifier minBalance
+	PUSH S2
+	CALL $checkBet_internal$
+	PUSHCONT {
+		;; return
+		BLKDROP 5
+		RET
+	}
+	IFNOTJMP
+	;; end if
+	; function getNumber
+	CALL $reshuffleCasino_internal$
+	PUSHINT 37
+	;; uint8
+	UFITS 8
+	RAND
+	;; decl: number
+	;; return
+	; end function getNumber
+	;; decl: rouletteNumber
+	FALSE
+	;; decl: hasWon
+	;; if
+	;; push identifier rouletteNumber
+	PUSH S1
+	PUSHCONT {
+		;; if
+		;; push identifier rouletteNumber
+		PUSH S1
+		PUSHINT 10
+		;; <=
+		LEQ
+		;; short-circuiting ||
+		DUP
+		PUSHCONT {
+			DROP
+			;; push identifier rouletteNumber
+			PUSH S1
+			PUSHINT 19
+			;; >=
+			GEQ
+			;; short-circuiting &&
+			DUP
+			PUSHCONT {
+				DROP
+				;; push identifier rouletteNumber
+				PUSH S1
+				PUSHINT 28
+				;; <=
+				LEQ
+			}
+			IF
+		}
+		IFNOT
+		PUSHCONT {
+			; expValue
+			; end expValue
+			;; push identifier rouletteNumber
+			PUSH S1
+			PUSHINT 2
+			;; %
+			MOD
+			EQINT 1
+			;; push identifier isRedBool
+			PUSH S6
+			;; ==
+			EQUAL
+			; colValue
+			NIP
+			; end colValue
+		}
+		PUSHCONT {
+			; expValue
+			; end expValue
+			;; push identifier rouletteNumber
+			PUSH S1
+			PUSHINT 2
+			;; %
+			MOD
+			EQINT 1
+			;; push identifier isRedBool
+			PUSH S6
+			;; !=
+			NEQ
+			; colValue
+			NIP
+			; end colValue
+		}
+		IFELSE
+		;; end if
+	}
+	IF
+	;; end if
+	;; push identifier hasWon
+	DUP
+	;; push identifier bet
+	PUSH S5
+	;; push identifier payoutMultiplier
+	PUSH S5
+	;; *
+	MUL
+	UFITS 128
+	;; push identifier rouletteNumber
+	PUSH S3
+	;; push identifier minBalance
+	PUSH S5
+	CALL $finishBet_internal$
+	BLKDROP 7
+}
+CALLX
+; end function colorBet
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	colorBet_internal
+.type	colorBet_internal, @function
+;; param: isRed
+; function colorBet
+PUSHINT 0
+;; decl: isRedBool
+;; if
+;; push identifier isRed
+PUSH S1
+EQINT 1
+PUSHCONT {
+	; expValue
+	; end expValue
+	TRUE
+	; colValue
+	NIP
+	; end colValue
+}
+PUSHCONT {
+	; expValue
+	; end expValue
+	FALSE
+	; colValue
+	NIP
+	; end colValue
+}
+IFELSE
+;; end if
+;; get member value
+CALL $message_balance_macro$
+;; decl: bet
+PUSHINT 2
+;; decl: payoutMultiplier
+;; push identifier m_minimalBalance
+GETGLOB 10
+;; decl: minBalance
+;; if
+;; !
+;; push identifier bet
+PUSH S2
+;; push identifier payoutMultiplier
+PUSH S2
+;; push identifier minBalance
+PUSH S2
+CALL $checkBet_internal$
+PUSHCONT {
+	;; return
+	BLKDROP 5
+	RET
+}
+IFNOTJMP
+;; end if
+; function getNumber
+CALL $reshuffleCasino_internal$
+PUSHINT 37
+;; uint8
+UFITS 8
+RAND
+;; decl: number
+;; return
+; end function getNumber
+;; decl: rouletteNumber
+FALSE
+;; decl: hasWon
+;; if
+;; push identifier rouletteNumber
+PUSH S1
+PUSHCONT {
+	;; if
+	;; push identifier rouletteNumber
+	PUSH S1
+	PUSHINT 10
+	;; <=
+	LEQ
+	;; short-circuiting ||
+	DUP
+	PUSHCONT {
+		DROP
+		;; push identifier rouletteNumber
+		PUSH S1
+		PUSHINT 19
+		;; >=
+		GEQ
+		;; short-circuiting &&
+		DUP
+		PUSHCONT {
+			DROP
+			;; push identifier rouletteNumber
+			PUSH S1
+			PUSHINT 28
+			;; <=
+			LEQ
+		}
+		IF
+	}
+	IFNOT
+	PUSHCONT {
+		; expValue
+		; end expValue
+		;; push identifier rouletteNumber
+		PUSH S1
+		PUSHINT 2
+		;; %
+		MOD
+		EQINT 1
+		;; push identifier isRedBool
+		PUSH S6
+		;; ==
+		EQUAL
+		; colValue
+		NIP
+		; end colValue
+	}
+	PUSHCONT {
+		; expValue
+		; end expValue
+		;; push identifier rouletteNumber
+		PUSH S1
+		PUSHINT 2
+		;; %
+		MOD
+		EQINT 1
+		;; push identifier isRedBool
+		PUSH S6
+		;; !=
+		NEQ
+		; colValue
+		NIP
+		; end colValue
+	}
+	IFELSE
+	;; end if
+}
+IF
+;; end if
+;; push identifier hasWon
+DUP
+;; push identifier bet
+PUSH S5
+;; push identifier payoutMultiplier
+PUSH S5
+;; *
+MUL
+UFITS 128
+;; push identifier rouletteNumber
+PUSH S3
+;; push identifier minBalance
+PUSH S5
+CALL $finishBet_internal$
+BLKDROP 7
+; end function colorBet
+
+.globl	reshuffleCasino_internal
+.type	reshuffleCasino_internal, @function
+; function reshuffleCasino
+PUSHINT 10
+;; decl: repeatCnt
+; while
+;; push identifier repeatCnt
+DUP
+PUSHCONT {
+	LTIME
+	ADDRAND
+}
+REPEAT
+; end while
+DROP
+; end function reshuffleCasino
+
+.globl	receiveFunds
+.public	receiveFunds
+.type	receiveFunds, @function
+; Decode input parameters
+ENDS
+; function receiveFunds
+; end function receiveFunds
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	receiveFunds_internal
+.type	receiveFunds_internal, @function
+; function receiveFunds
+; end function receiveFunds
+
+.globl	fallback
+.type	fallback, @function
+; function fallback
+;; transfer()
+;; get member sender
+GETGLOB 9
+NEWC
+STSLICECONST x42_
+STSLICE
+PUSHINT 109
+STZEROES
+STSLICECONST 0
+STSLICECONST 0
+ENDC
+PUSHINT 64
+SENDRAWMSG
+; end function fallback
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+
+.globl	c7_to_c4
+.type	c7_to_c4, @function
+GETGLOB 2
+NEWC
+STU 256
+GETGLOB 3
+STUR 64
+GETGLOB 6
+STUR 1
+GETGLOB 10
+GETGLOB 11
+GETGLOB 12
+REVERSE 4, 0
+STU 128
+STU 128
+STSLICE
+ENDC
+POP C4
+
+.globl	c4_to_c7
+.type	c4_to_c7, @function
+PUSHROOT
+CTOS        ; c4
+LDU 256      ; pubkey c4
+LDU 64      ; pubkey timestamp c4
+LDU 1       ; pubkey [timestamp] constructor_flag memory
+LDU 128
+LDU 128
+SETGLOB 12
+SETGLOB 11
+SETGLOB 10
+TRUE
+SETGLOB 1   ; pubkey [timestamp] constructor_flag
+SETGLOB 6   ; pubkey [timestamp]
+SETGLOB 3   ; D
+SETGLOB 2
+
+.macro c4_to_c7_with_init_storage
+PUSHROOT
+CTOS        ; c4
+DUP        ; c4 c4
+SBITS      ; c4 bits
+GTINT 1    ; c4 bits>1
+PUSHCONT {
+	LDU 256      ; pubkey c4
+	LDU 64      ; pubkey timestamp c4
+	LDU 1       ; pubkey [timestamp] constructor_flag memory
+	LDU 128
+	LDU 128
+	SETGLOB 12
+	SETGLOB 11
+	SETGLOB 10
+	TRUE
+	SETGLOB 1   ; pubkey [timestamp] constructor_flag
+	SETGLOB 6   ; pubkey [timestamp]
+	SETGLOB 3   ; D
+	SETGLOB 2
+}
+PUSHCONT {
+	PLDDICT   ; D
+	; init m_minimalBalance
+	PUSHINT 0
+	SETGLOB 10
+	; init m_minimalBet
+	PUSHINT 0
+	SETGLOB 11
+	; init m_ownerWallet
+	PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
+	SETGLOB 12
+	; set contract pubkey
+	PUSHINT 0
+	SWAP
+	PUSHINT 64
+	DICTUGET
+	THROWIFNOT 61
+	PLDU 256
+	SETGLOB 2
+	PUSHINT 0 ; timestamp
+	SETGLOB 3
+	PUSHINT 0 ; constructor_flag
+	SETGLOB 6
+	TRUE
+	SETGLOB 1
+}
+IFELSE
+
+.internal-alias :main_internal,        0
+.internal	:main_internal
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Function: main_internal
+;; param: contract_balance
+;; param: msg_balance
+;; param: int_msg_info
+;; param: msg_body_slice
+PUSHINT 0  ; main_external trans id
+PUSH S2
+CTOS
+LDU 4       ; bounced tail
+LDMSGADDR   ; bounced src tail
+DROP
+SETGLOB 9
+MODPOW2 1
+GETGLOB 4
+TRUE
+SETINDEXQ 1
+PUSHINT 10000000
+SETINDEXQ 2
+NULL
+SETINDEXQ 3
+PUSHINT 1
+SETINDEXQ 4
+SETGLOB 4
+IFRET
+PUSH S1    ; body
+SEMPTY     ; isEmpty
+DUP        ; isEmpty isEmpty
+PUSHCONT {
+	DROP    ;
+	PUSH S1 ; body
+	LDU 32  ; funcId body'
+	PUSH S1 ; funcId body' funcId
+	EQINT 0 ; funcId body' isZero
+	DUP     ; funcId body' isZero isZero
+	PUSHCONT {
+ 		; funcId body' isZero
+		BLKDROP2 2, 1; isZero
+	}
+	IF
+}
+IFNOT
+; [funcId body'] doReceive
+PUSHCONT {
+	; function receive
+	;; transfer()
+	;; get member sender
+	GETGLOB 9
+	NEWC
+	STSLICECONST x42_
+	STSLICE
+	PUSHINT 109
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	ENDC
+	PUSHINT 64
+	SENDRAWMSG
+	; end function receive
+}
+IFJMP
+PUSH S1 ; funcId body' funcId
+LESSINT 3            ; funcId body' funcId<3
+PUSH S2              ; funcId body' funcId<3 funcId
+PUSHINT 4294967293   ; funcId body' funcId<3 funcId 4294967293
+GREATER              ; funcId body' funcId<3 funcId>4294967293
+OR                   ; funcId body' funcId<3||funcId>4294967293
+PUSHCONT {
+	DROP2
+	PUSHINT 1
+	CALL 1
+	CALL $fallback$
+}
+IFJMP
+SWAP    ; body funcId
+CALL 1
+GETGLOB 7
+ISNULL
+PUSHCONT {
+	DROP
+	CALL $fallback$
+}
+IF
+
+.internal-alias :main_external,        -1
+.internal	:main_external
+PUSHINT -1 ; main_external trans id
+PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
+SETGLOB 9
+PUSH S1
+CALL $c4_to_c7_with_init_storage$
+LDU 1 ; haveSign msgSlice
+SWAP
+PUSHCONT {
+	PUSHINT 512
+	LDSLICEX ; signatureSlice msgSlice
+	DUP      ; signatureSlice msgSlice msgSlice
+	HASHSU   ; signatureSlice msgSlice hashMsgSlice
+	ROT
+	GETGLOB 2
+	DUP
+	SETGLOB 5
+	CHKSIGNU      ; msgSlice isSigned
+	THROWIFNOT 40 ; msgSlice
+}
+IF
+LDU 64                         ; timestamp msgSlice
+SWAP                           ; msgSlice timestamp
+CALL $replay_protection_macro$ ; msgSlice
+LDU 32  ; expireAt msgSlice
+SWAP    ; msgSlice expireAt
+NOW     ; msgSlice expireAt now
+GREATER ; msgSlice expireAt>now
+THROWIFNOT 57
+LDU  32 ; funcId body
+PUSH S1 ; funcId body funcId
+LESSINT 3            ; funcId body' funcId<3
+PUSH S2              ; funcId body' funcId<3 funcId
+PUSHINT 4294967293   ; funcId body' funcId<3 funcId 4294967293
+GREATER              ; funcId body' funcId<3 funcId>4294967293
+OR                   ; funcId body' funcId<3||funcId>4294967293
+PUSHCONT {
+	DROP2
+	PUSHINT 1
+	CALL 1
+	CALL $fallback$
+}
+IFJMP
+SWAP    ; body funcId
+CALL 1
+GETGLOB 7
+ISNULL
+PUSHCONT {
+	DROP
+	CALL $fallback$
+}
+IF
+
+.globl	m_minimalBalance
+.public	m_minimalBalance
+.type	m_minimalBalance, @function
+CALL $c4_to_c7$
+GETGLOB 10
+NEWC
+PUSHSLICE xc0000000000000000000000002_
+STSLICER
+STSLICECONST 0
+STSLICECONST 0
+STSLICECONST xc62cb308
+PUSH S1
+STUR 128
+ENDC
+PUSHINT 1
+SENDRAWMSG
+TRUE
+SETGLOB 7
+
+.globl	m_minimalBet
+.public	m_minimalBet
+.type	m_minimalBet, @function
+CALL $c4_to_c7$
+GETGLOB 11
+NEWC
+PUSHSLICE xc0000000000000000000000002_
+STSLICER
+STSLICECONST 0
+STSLICECONST 0
+STSLICECONST xef769633
+PUSH S1
+STUR 128
+ENDC
+PUSHINT 1
+SENDRAWMSG
+TRUE
+SETGLOB 7
+
+.globl	m_ownerWallet
+.public	m_ownerWallet
+.type	m_ownerWallet, @function
+CALL $c4_to_c7$
+GETGLOB 12
+NEWC
+PUSHSLICE xc0000000000000000000000002_
+STSLICER
+STSLICECONST 0
+STSLICECONST 0
+STSLICECONST xddc5bb28
+PUSH S1
+STSLICER
+ENDC
+PUSHINT 1
+SENDRAWMSG
+TRUE
+SETGLOB 7
+
