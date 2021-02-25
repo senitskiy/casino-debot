@@ -1,8 +1,8 @@
 # casino-debot
 
 
-../solc CasinoDebot.sol 
-../tvm_linker compile CasinoDebot.code --abi-json ./CasinoDebot.abi.json -o ./CasinoDebot.tvc --lib ../stdlib_sol.tvm
+-../solc CasinoDebot.sol 
+-../tvm_linker compile CasinoDebot.code --abi-json ./CasinoDebot.abi.json -o ./CasinoDebot.tvc --lib ../stdlib_sol.tvm
 ../tonos-cli genaddr CasinoDebot.tvc CasinoDebot.abi.json --genkey CasinoDebot.keys.json
 
 Seed phrase: "month lyrics outside govern maze weekend jazz carbon denial debris crime tomato"
